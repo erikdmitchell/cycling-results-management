@@ -13,7 +13,6 @@ class CRM_Admin {
 		add_action('admin_init', array($this, 'save_settings'));
 		add_action('save_post', array($this, 'assign_parent_terms'), 10, 2);
 		
-		add_action('wp_ajax_uci_results_remove_data', array($this, 'ajax_remove_data'));
 		add_action('wp_ajax_uci_results_rider_rankings_dropdown', array($this, 'ajax_rider_rankings_dropdown'));
 		add_action('wp_ajax_uci_remove_related_race', array($this, 'ajax_remove_related_race'));
 		add_action('wp_ajax_show_related_races_box', array($this, 'ajax_show_related_races_box'));
@@ -239,56 +238,6 @@ class CRM_Admin {
 
 		//flush_rewrite_rules(); // this may not be the best place for it - doesnt seem to work
 		uci_results_init(); // updated pages
-	}
-
-	/**
-	 * ajax_remove_data function.
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function ajax_remove_data() {
-		global $wpdb;
-		
-		if (!check_ajax_referer('uci-results-remove-data-nonce', 'security', false))
-			return;
-
-		$post_types=array(
-			'riders',
-			'races',
-		);
-		$taxonoimes=array(
-			'series',
-			'country',
-			'race_class',
-			'season',	
-		);
-
-		// remove post types //
-		foreach ($post_types as $post_type) :
-			$wpdb->query("DELETE FROM $wpdb->posts WHERE post_type = '$post_type'");
-		endforeach;
-
-		// remove taxonomies //
-		foreach ($taxonoimes as $taxonomy) :
-			$terms = get_terms( array(
-				'taxonomy' => $taxonomy,
-				'hide_empty' => false,
-			) );
-			
-			foreach ($terms as $term) :
-				wp_delete_term($term->term_id, $taxonomy);
-			endforeach;
-		endforeach;
-		
-		// remove db tables //
-		$wpdb->query("DROP TABLE $wpdb->uci_results_rider_rankings");
-		$wpdb->query("DROP TABLE $wpdb->uci_results_related_races");
-		$wpdb->query("DROP TABLE $wpdb->uci_results_series_overall");
-	
-		echo '<div class="updated">Data removed.</div>';
-
-		wp_die();
 	}
 
 	/**

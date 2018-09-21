@@ -23,22 +23,6 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	/**
-	 * Remove Data button (settings) - remove all data from db
-	 */
-	$('#uci-results-remove-data').click(function(e) {
-		e.preventDefault();
-				
-		var data={
-			'action' : 'uci_results_remove_data',
-			'security' : $('#uci-results-remove-data-nonce').val()
-		}
-
-		$.post(ajaxurl, data, function(response) {
-			$('#uci-results-actions-message').append(response);
-		});
-	});
-
 	$('#rankings-filter #season').change(function(e) {
 		showLoader('#wpcontent');
 
