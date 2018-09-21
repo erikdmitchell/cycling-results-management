@@ -5,21 +5,6 @@
 
 		<section class="general">
 			<h2>General</h2>
-
-			<table class="form-table">
-				<tbody>
-
-					<tr>
-						<th scope="row">
-							<label form="current_season">Current Season</label>
-						</th>
-						<td>
-							<?php uci_results_seasons_dropdown('current_season', get_option('uci_results_current_season', 0)); ?>
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
 		</section>
 
 		<section class="pages">
