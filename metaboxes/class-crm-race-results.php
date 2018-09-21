@@ -48,7 +48,7 @@ class CRM_Race_Results {
         ?>
      
         <p>
-        	<a href="<?php echo admin_url('admin.php?page=uci-results&subpage=results&action=add-csv&race_id='.$post->ID); ?>" class="button button-secondary">Add Results</a>
+        	<a href="<?php echo admin_url('admin.php?page=cycling-results-management&subpage=results&action=add-csv&race_id='.$post->ID); ?>" class="button button-secondary">Add Results</a>
         </p>
         
         <table class="uci-results-race-results widefat fixed striped">
