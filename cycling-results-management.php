@@ -7,9 +7,9 @@
  * Author: Erik Mitchell
  * Author URI: http://erikmitchell.net
  * Text Domain: crm
- * @package CRM
  *
-*/
+ * @package CRM
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {

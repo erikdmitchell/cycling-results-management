@@ -6,12 +6,12 @@
  * @param mixed $atts
  * @return void
  */
-function uci_results_main($atts) {
-	$atts = shortcode_atts( array(
+function uci_results_main( $atts ) {
+    $atts = shortcode_atts(
+        array(), $atts, 'uci_results'
+    );
 
-	), $atts, 'uci_results' );
-
-	return uci_get_template_part('main');
+    return uci_get_template_part( 'main' );
 }
-add_shortcode('uci_results', 'uci_results_main');
-?>
+add_shortcode( 'uci_results', 'uci_results_main' );
+

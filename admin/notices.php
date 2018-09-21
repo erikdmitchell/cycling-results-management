@@ -8,15 +8,16 @@ global $uci_results_admin_notices;
  * @return void
  */
 function uci_results_admin_notices() {
-	global $uci_results_admin_notices;
+    global $uci_results_admin_notices;
 
-	if (empty($uci_results_admin_notices))
-		return;
+    if ( empty( $uci_results_admin_notices ) ) {
+        return;
+    }
 
-	foreach ($uci_results_admin_notices as $class => $notices) :
-		foreach ($notices as $notice) :
-			echo '<div class="'.$class.'">'.__($notice, 'uci-results').'</div>';
-		endforeach;
-	endforeach;
+    foreach ( $uci_results_admin_notices as $class => $notices ) :
+        foreach ( $notices as $notice ) :
+            echo '<div class="' . $class . '">' . __( $notice, 'uci-results' ) . '</div>';
+        endforeach;
+    endforeach;
 }
-?>
+

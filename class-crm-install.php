@@ -80,7 +80,7 @@ class CRM_Install {
      */
     public static function create_pages() {
         $pages_arr = array();
-        
+
         // Information needed for creating the plugin's pages.
         $page_definitions = array(
             'single-rider' => array(
@@ -110,7 +110,7 @@ class CRM_Install {
             'rankings' => array(
                 'title' => __( 'Reset Password', 'crm' ),
                 'content' => '',
-            ),            
+            ),
         );
 
         foreach ( $page_definitions as $slug => $page ) :
