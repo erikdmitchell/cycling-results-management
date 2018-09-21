@@ -29,7 +29,7 @@ class UCIRelatedRacesMetabox {
      * @return void
      */
     public function admin_scripts_styles($hook) {	    
-		wp_enqueue_script('uci-results-related-races-admin', UCI_RESULTS_ADMIN_URL.'/js/related-races.js', array('jquery'), '0.1.0', true);
+		wp_enqueue_script('uci-results-related-races-admin', CRM_ADMIN_URL.'/js/related-races.js', array('jquery'), '0.1.0', true);
     }
  
     /**

@@ -1,25 +1,15 @@
 <?php
-/**
- * Calls the class on the post edit screen.
- */
-function call_UCIResultsRacesMetabox() {
-    new UCIResultsRacesMetabox();
-}
- 
-if (is_admin()) :
-	add_action('load-post.php', 'call_UCIResultsRacesMetabox');
-	add_action('load-post-new.php', 'call_UCIResultsRacesMetabox');
-endif;
- 
-/**
- * The Class.
- */
-class UCIResultsRacesMetabox {
- 
-    /**
-     * Hook into the appropriate actions when the class is constructed.
-     */
+
+class CRM_Race_Details {
+
     public function __construct() {
+        if (is_admin()) :
+            add_action('load-post.php', array($this, 'init_metabox'));
+            add_action('load-post-new.php', array($this, 'init_metabox'));
+        endif;
+    }
+    
+    public function init_metabox() {
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
         add_action('save_post', array($this, 'save'));
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts_styles'));
@@ -33,11 +23,11 @@ class UCIResultsRacesMetabox {
      * @return void
      */
     public function admin_scripts_styles($hook) {
-		wp_enqueue_script('flatpickr-script', UCI_RESULTS_URL.'admin/js/flatpickr.min.js', array('jquery'), '2.4.8', true);
+		wp_enqueue_script('flatpickr-script', CRM_URL.'admin/js/flatpickr.min.js', array('jquery'), '2.4.8', true);
 		
-		wp_enqueue_style('flatpickr-style', UCI_RESULTS_URL.'admin/css/flatpickr.min.css', '', '2.4.8');
+		wp_enqueue_style('flatpickr-style', CRM_URL.'admin/css/flatpickr.min.css', '', '2.4.8');
 		
-	    wp_enqueue_script('uci-results-admin-races-mb-script', UCI_RESULTS_URL.'js/races-metabox.js', array('jquery-ui-datepicker'));
+	    wp_enqueue_script('uci-results-admin-races-mb-script', CRM_URL.'js/races-metabox.js', array('jquery-ui-datepicker'));
     }
  
     /**
@@ -128,11 +118,6 @@ class UCIResultsRacesMetabox {
         $default_meta=array(
 	        'start' => '',
 	        'end' => '',
-	        'winner' => '',
-	        'week' => '',
-	        'link' => '',
-	        'related' => '',
-	        'twitter' => '',
 	    );
 
         foreach ($post_meta as $key => $value) :
@@ -157,35 +142,11 @@ class UCIResultsRacesMetabox {
 		        <label for="end-date"><?php _e('End Date', 'uci-results'); ?></label>
 				<input type="text" id="end" name="race[end]" class="uci-results-datepicker date" value="<?php echo esc_attr($meta['end']); ?>" size="25" />
 	        </div>
-	                
-	        <div class="row">
-		        <label for="winner"><?php _e('Winner', 'uci-results'); ?></label>
-				<input type="text" id="winner" name="race[winner]" value="<?php echo esc_attr($meta['winner']); ?>" size="25" />
-	        </div>
-	        
-	        <div class="row">
-		        <label for="week"><?php _e('Week', 'uci-results'); ?></label>
-				<input type="text" id="week" name="race[week]" class="number" value="<?php echo esc_attr($meta['week']); ?>" size="25" />
-	        </div>
-	        
-	        <div class="row">
-		        <label for="link"><?php _e('Link', 'uci-results'); ?></label>
-				<input type="text" id="link" name="race[link]" class="code url" value="<?php echo esc_attr($meta['link']); ?>" size="25" />
-	        </div>
-	        
-	        <div class="row">
-		        <label for="related-races-id"><?php _e('Related Races ID', 'uci-results'); ?></label>
-				<input type="text" id="related-races-id" name="race[related_races_id]" class="number" value="<?php echo esc_attr($meta['related']); ?>" size="25" />
-	        </div>                                                        
-	
-	        <div class="row">
-		        <label for="twitter"><?php _e('Twitter', 'uci-results'); ?></label>
-				<input type="text" id="twitter" name="race[twitter]" value="<?php echo esc_attr($meta['twitter']); ?>" size="25" />
-	        </div>
         </div>
         
         <?php
     }
 
 }
-?>
+
+new CRM_Race_Details();

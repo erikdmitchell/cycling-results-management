@@ -33,10 +33,10 @@ class racestagesMetabox {
      * @return void
      */
     public function admin_scripts_styles($hook) {
-	    wp_enqueue_script('flatpickr-script', UCI_RESULTS_ADMIN_URL.'js/flatpickr.min.js', array('jquery'), '2.4.8', true);
-	    wp_enqueue_script('fantasy-cycling-admin-races-mb-script', UCI_RESULTS_ADMIN_URL.'js/race-stages.js', array('flatpickr-script'), '0.1.0', true);
+	    wp_enqueue_script('flatpickr-script', CRM_ADMIN_URL.'js/flatpickr.min.js', array('jquery'), '2.4.8', true);
+	    wp_enqueue_script('fantasy-cycling-admin-races-mb-script', CRM_ADMIN_URL.'js/race-stages.js', array('flatpickr-script'), '0.1.0', true);
 		
-		wp_enqueue_style('flatpickr-style', UCI_RESULTS_ADMIN_URL.'css/flatpickr.min.css', '', '2.4.8');
+		wp_enqueue_style('flatpickr-style', CRM_ADMIN_URL.'css/flatpickr.min.css', '', '2.4.8');
     }
  
     /**
