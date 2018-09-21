@@ -138,49 +138,10 @@
 			</table>
 		</section>
 
-		<section class="admin">
-			<h2>Administrator</h2>
-
-			<table class="form-table">
-				<tbody>
-
-					<tr>
-						<th scope="row">
-							<label form="enable_cron_log">Enable Cron Log</label>
-						</th>
-						<td>
-							<input type="checkbox" name="enable_cron_log" id="enable_cron_log" value="1" <?php checked(get_option('uci_results_enable_cron_log', ''), 1); ?>>
-							
-							<a href="<?php echo UCI_RESULTS_URL; ?>cron.log" class="button button-secondary">View Log</a> (<span id="uci-results-cron-job-log-size"><?php echo uci_results_format_size(filesize(UCI_RESULTS_PATH.'cron.log')); ?></span>)
-							<a href="" class="button button-secondary" id="uci-results-clear-log">Clear Log</a>
-							
-							<p class="description">
-								Our primary results task is set to run via cron job. If this box is checked, the cron job will output information to the log.
-							</p>
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
-		</section>
-
 		<p class="submit">
 			<input name="submit" type="submit" class="button button-primary" value="Save Settings">
 		</p>
 
 	</form>
-
-	<section class="admin-actions">
-		<h2>Actions</h2>
-
-		<div id="uci-results-actions-message"></div>
-
-		<div class="empty-db warning message">
-			<input type="hidden" id="uci-results-remove-data-nonce" value="<?php echo wp_create_nonce('uci-results-remove-data-nonce'); ?>" /> 
-			<p>This operation will remove all data and databases created by this plugin.</p>
-			<button class="button button-primary warning-button" class="remove-data" id="uci-results-remove-data">Remove Data</button>
-		</div>
-
-	</section>
 
 </div>
