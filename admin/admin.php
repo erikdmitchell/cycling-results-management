@@ -1,7 +1,5 @@
 <?php
-global $uci_results_admin;
-
-class UCIResultsAdmin {
+class CRM_Admin {
 
 	/**
 	 * __construct function.
@@ -76,7 +74,6 @@ class UCIResultsAdmin {
 	    add_submenu_page($parent_slug, 'Settings', 'Settings', $manage_options_cap, $parent_slug);
 	    add_submenu_page($parent_slug, 'Rider Rankings', 'Rider Rankings', $manage_options_cap, 'admin.php?page='.$parent_slug.'&subpage=rider-rankings');
 	    add_submenu_page($parent_slug, 'UCI Rankings', 'UCI Rankings', $manage_options_cap, 'admin.php?page='.$parent_slug.'&subpage=uci-rankings');
-	    add_submenu_page($parent_slug, 'API', 'API', $manage_options_cap, 'admin.php?page='.$parent_slug.'&subpage=api');
 	    add_submenu_page($parent_slug, 'WP CLI', 'WP CLI', $manage_options_cap, 'admin.php?page='.$parent_slug.'&subpage=wpcli');	        
 	}
 	
@@ -103,20 +100,6 @@ class UCIResultsAdmin {
 				case 'results':
 					if (isset($_GET['action']) && $_GET['action']=='add-csv') :
 						$html.=$this->get_admin_page('results-csv');
-					endif;
-					break;
-				case 'api':
-					$html.=$this->get_admin_page('api');
-					break;
-				case 'migration':
-					if (isset($_GET['version'])) :					
-						switch ($_GET['version']) :
-							case '1_0_0' :
-								$html.=$this->get_admin_page('migration-1_0_0');
-								break;
-						endswitch;
-					else :
-						$html.=$this->get_admin_page('settings');
 					endif;
 					break;
 				case 'uci-rankings':
@@ -149,8 +132,8 @@ class UCIResultsAdmin {
 	
 		ob_start();
 	
-		if (file_exists(UCI_RESULTS_PATH."adminpages/$template_name.php"))
-			include_once(UCI_RESULTS_PATH."adminpages/$template_name.php");
+		if (file_exists(CRM_PATH."adminpages/$template_name.php"))
+			include_once(CRM_PATH."adminpages/$template_name.php");
 	
 		$html=ob_get_contents();
 	
@@ -517,6 +500,3 @@ class UCIResultsAdmin {
 	}
 	
 }
-
-$uci_results_admin = new UCIResultsAdmin();
-?>

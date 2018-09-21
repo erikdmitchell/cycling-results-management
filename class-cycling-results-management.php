@@ -34,6 +34,16 @@ final class Cycling_Results_Management {
     public $pages = array();
 
     /**
+     * admin
+     *
+     * (default value: '')
+     *
+     * @var mixed
+     * @access public
+     */
+    public $admin = '';
+
+    /**
      * _instance
      *
      * (default value: null)
@@ -120,9 +130,7 @@ final class Cycling_Results_Management {
         include_once(CRM_PATH.'functions/utility.php'); // utility functions
         include_once(CRM_PATH.'functions/wp-query.php'); // modify wp query functions
         include_once(CRM_PATH.'functions.php'); // generic functions
-        
-        include_once(CRM_PATH.'init.php'); // functions to run on init
-        
+                
         include_once(CRM_PATH.'admin/admin.php'); // admin page
         include_once(CRM_PATH.'admin/notices.php'); // admin notices function
         include_once(CRM_PATH.'admin/add-races.php'); // cURL and add races/results to db
@@ -168,6 +176,9 @@ final class Cycling_Results_Management {
         $this->rewrite_rules();
         $this->pages = get_option( 'pcl_pages' );
         
+        if (is_admin()) :
+            $this->admin = new CRM_Admin();
+        endif;
     }
     
     private function load_files() {
