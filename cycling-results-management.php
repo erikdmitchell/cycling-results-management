@@ -42,7 +42,6 @@ include_once(UCI_RESULTS_PATH.'admin/custom-columns.php'); // custom columns for
 include_once(UCI_RESULTS_PATH.'lib/name-parser.php'); // a php nameparser
 include_once(UCI_RESULTS_PATH.'shortcode.php'); // our shortcodes
 include_once(UCI_RESULTS_PATH.'lib/flags.php'); // our flag stuff
-include_once(UCI_RESULTS_PATH.'update-to-twitter.php'); // updates results and rankings to twitter
 
 include_once(UCI_RESULTS_PATH.'rest-api/uci-rest-controller.php'); // rest api controller
 include_once(UCI_RESULTS_PATH.'rest-api/uci-rest-posts-controller.php'); // rest api posts
