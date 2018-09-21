@@ -1,11 +1,7 @@
-<div class="uci-results-settings">
+<div class="crm-settings">
 
 	<form action="" method="post">
 		<input type="hidden" name="save_settings" value="1" />
-
-		<section class="general">
-			<h2>General</h2>
-		</section>
 
 		<section class="pages">
 		  <h2>Pages</h2>
@@ -14,7 +10,6 @@
 
 		  <table class="form-table">
 		  	<tbody>
-<?php print_r(cycling_results_management()->pages); ?>
 		      <tr>
 		      	<th scope="row" valign="top">
 							<label for="single_rider_page_id">Single Rider Page:</label>
@@ -22,12 +17,12 @@
 						<td>
 							<?php wp_dropdown_pages(array(
 								'name' => 'single_rider_page_id',
-								'show_option_none' => '-- '.__('Select One', 'ucicurl').' --',
-								'selected' => $uci_results_pages['single_rider']
+								'show_option_none' => '-- '.__('Select One', 'crm').' --',
+								'selected' => cycling_results_management()->pages['single-rider']
 							)); ?>
-							<a target="_blank" href="<?php echo admin_url('post.php?post='.$uci_results_pages['single_rider'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
+							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['single-rider'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
-							<a target="_blank" href="<?php echo get_permalink($uci_results_pages['single_rider']); ?>" class="button button-secondary">View Page</a>
+							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['single-rider']); ?>" class="button button-secondary">View Page</a>
 						</td>
 					</tr>
 
@@ -38,12 +33,12 @@
 						<td>
 							<?php wp_dropdown_pages(array(
 								'name' => 'single_race_page_id',
-								'show_option_none' => '-- '.__('Select One', 'ucicurl').' --',
-								'selected' => $uci_results_pages['single_race']
+								'show_option_none' => '-- '.__('Select One', 'crm').' --',
+								'selected' => cycling_results_management()->pages['single-race']
 							)); ?>
-							<a target="_blank" href="<?php echo admin_url('post.php?post='.$uci_results_pages['single_race'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
+							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['single-race'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
-							<a target="_blank" href="<?php echo get_permalink($uci_results_pages['single_race']); ?>" class="button button-secondary">View Page</a>
+							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['single-race']); ?>" class="button button-secondary">View Page</a>
 						</td>
 					</tr>
 
@@ -54,12 +49,12 @@
 						<td>
 							<?php wp_dropdown_pages(array(
 								'name' => 'country_page_id',
-								'show_option_none' => '-- '.__('Select One', 'ucicurl').' --',
-								'selected' => $uci_results_pages['country']
+								'show_option_none' => '-- '.__('Select One', 'crm').' --',
+								'selected' => cycling_results_management()->pages['country']
 							)); ?>
-							<a target="_blank" href="<?php echo admin_url('post.php?post='.$uci_results_pages['country'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
+							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['country'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
-							<a target="_blank" href="<?php echo get_permalink($uci_results_pages['country']); ?>" class="button button-secondary">View Page</a>
+							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['country']); ?>" class="button button-secondary">View Page</a>
 						</td>
 					</tr>
 
@@ -70,12 +65,12 @@
 						<td>
 							<?php wp_dropdown_pages(array(
 								'name' => 'riders_page_id',
-								'show_option_none' => '-- '.__('Select One', 'ucicurl').' --',
-								'selected' => $uci_results_pages['riders']
+								'show_option_none' => '-- '.__('Select One', 'crm').' --',
+								'selected' => cycling_results_management()->pages['riders']
 							)); ?>
-							<a target="_blank" href="<?php echo admin_url('post.php?post='.$uci_results_pages['riders'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
+							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['riders'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
-							<a target="_blank" href="<?php echo get_permalink($uci_results_pages['riders']); ?>" class="button button-secondary">View Page</a>
+							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['riders']); ?>" class="button button-secondary">View Page</a>
 						</td>
 					</tr>
 
@@ -86,12 +81,12 @@
 						<td>
 							<?php wp_dropdown_pages(array(
 								'name' => 'races_page_id',
-								'show_option_none' => '-- '.__('Select One', 'ucicurl').' --',
-								'selected' => $uci_results_pages['races']
+								'show_option_none' => '-- '.__('Select One', 'crm').' --',
+								'selected' => cycling_results_management()->pages['races']
 							)); ?>
-							<a target="_blank" href="<?php echo admin_url('post.php?post='.$uci_results_pages['races'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
+							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['races'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
-							<a target="_blank" href="<?php echo get_permalink($uci_results_pages['races']); ?>" class="button button-secondary">View Page</a>
+							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['races']); ?>" class="button button-secondary">View Page</a>
 						</td>
 					</tr>
 
@@ -102,12 +97,12 @@
 						<td>
 							<?php wp_dropdown_pages(array(
 								'name' => 'uci_results_search_page_id',
-								'show_option_none' => '-- '.__('Select One', 'uci-results').' --',
-								'selected' => $uci_results_pages['search']
+								'show_option_none' => '-- '.__('Select One', 'crm').' --',
+								'selected' => cycling_results_management()->pages['search']
 							)); ?>
-							<a target="_blank" href="<?php echo admin_url('post.php?post='.$uci_results_pages['search'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
+							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['search'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
-							<a target="_blank" href="<?php echo get_permalink($uci_results_pages['search']); ?>" class="button button-secondary">View Page</a>
+							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['search']); ?>" class="button button-secondary">View Page</a>
 						</td>
 					</tr>
 					
@@ -118,12 +113,12 @@
 						<td>
 							<?php wp_dropdown_pages(array(
 								'name' => 'uci_results_uci_rankings_page_id',
-								'show_option_none' => '-- '.__('Select One', 'uci-results').' --',
-								'selected' => $uci_results_pages['uci_rankings']
+								'show_option_none' => '-- '.__('Select One', 'crm').' --',
+								'selected' => cycling_results_management()->pages['rankings']
 							)); ?>
-							<a target="_blank" href="<?php echo admin_url('post.php?post='.$uci_results_pages['uci_rankings'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
+							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['rankings'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
-							<a target="_blank" href="<?php echo get_permalink($uci_results_pages['uci_rankings']); ?>" class="button button-secondary">View Page</a>
+							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['rankings']); ?>" class="button button-secondary">View Page</a>
 						</td>
 					</tr>					
 					

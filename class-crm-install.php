@@ -188,4 +188,4 @@ class CRM_Install {
 
 }
 
-PCL_Install::init();
+CRM_Install::init();

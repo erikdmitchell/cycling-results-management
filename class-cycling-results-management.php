@@ -148,6 +148,8 @@ final class Cycling_Results_Management {
         
         // discipline classes //
         include_once(CRM_PATH.'disciplines/base.php');
+
+        include_once(CRM_PATH.'class-crm-install.php');
     }
 
     /**
@@ -175,7 +177,7 @@ final class Cycling_Results_Management {
         $this->load_files();
         $this->rewrite_rules();
         $this->pages = get_option( 'crm_pages' );
-        print_r($this->pages);
+
         if (is_admin()) :
             $this->admin = new CRM_Admin();
         endif;
@@ -224,6 +226,10 @@ final class Cycling_Results_Management {
         $vars[] = 'rankings_discipline';
         
         return $vars;
+    }
+    
+    private function get_pages() {
+        
     }
 
 }

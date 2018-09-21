@@ -86,8 +86,8 @@ class CRM_Admin {
 		$html=null;	
 		$subpage=isset($_GET['subpage']) ? $_GET['subpage'] : 'settings';	
 
-		$html.='<div class="wrap uci-results">';
-			$html.='<h1>UCI Results</h1>';
+		$html.='<div class="wrap crm">';
+			$html.='<h1>Cycling Results Management</h1>';
 
 			switch ($subpage) :
 				case 'rider-rankings' :
