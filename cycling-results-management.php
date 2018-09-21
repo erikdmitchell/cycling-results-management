@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: UCI Results
+ * Plugin Name: Cycling Results Management
  * Plugin URI: http://therunup.com
- * Description: Pulls in race results from the UCI website and adds it to your site.
+ * Description: A WordPress plugin to manage cycling results. Designed to manage UCI race results and riders.
  * Version: 1.0.0
  * Author: Erik Mitchell
  * Author URI: http://erikmitchell.net
- * Text Domain: uci-results
+ * Text Domain: crms
  */
 
 define('UCI_RESULTS_PATH', plugin_dir_path(__FILE__));
@@ -50,8 +50,6 @@ include_once(UCI_RESULTS_PATH.'rest-api/uci-rest-taxonomies-controller.php'); //
 include_once(UCI_RESULTS_PATH.'rest-api/uci-rest-terms-controller.php'); // rest api terms
 include_once(UCI_RESULTS_PATH.'rest-api/rest-api.php'); // basic rest api functions
 include_once(UCI_RESULTS_PATH.'rest-api/filters.php'); // filters for rest api functions
-
-include_once(UCI_RESULTS_PATH.'inc/updater.php'); // github - wp version update function
 
 include_once(UCI_RESULTS_PATH.'stats/base.php'); // base stats class
 include_once(UCI_RESULTS_PATH.'stats/init.php'); // init class
