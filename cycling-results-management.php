@@ -43,13 +43,6 @@ include_once(CRM_PATH.'lib/name-parser.php'); // a php nameparser
 include_once(CRM_PATH.'shortcode.php'); // our shortcodes
 include_once(CRM_PATH.'lib/flags.php'); // our flag stuff
 
-include_once(CRM_PATH.'rest-api/uci-rest-controller.php'); // rest api controller
-include_once(CRM_PATH.'rest-api/uci-rest-posts-controller.php'); // rest api posts
-include_once(CRM_PATH.'rest-api/uci-rest-taxonomies-controller.php'); // rest api taxonomies
-include_once(CRM_PATH.'rest-api/uci-rest-terms-controller.php'); // rest api terms
-include_once(CRM_PATH.'rest-api/rest-api.php'); // basic rest api functions
-include_once(CRM_PATH.'rest-api/filters.php'); // filters for rest api functions
-
 include_once(CRM_PATH.'stats/base.php'); // base stats class
 include_once(CRM_PATH.'stats/init.php'); // init class
 include_once(CRM_PATH.'stats/cross.php'); // cross stats class
