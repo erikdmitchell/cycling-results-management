@@ -39,7 +39,7 @@ class CRM_Install {
      * @return void
      */
     public static function check_version() {
-        if ( get_option( 'crm_version' ) !== pickle_custom_login()->version ) {
+        if ( get_option( 'crm_version' ) !== cycling_results_management()->version ) {
             self::install();
         }
     }

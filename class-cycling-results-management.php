@@ -174,8 +174,8 @@ final class Cycling_Results_Management {
     public function init() {
         $this->load_files();
         $this->rewrite_rules();
-        $this->pages = get_option( 'pcl_pages' );
-        
+        $this->pages = get_option( 'crm_pages' );
+        print_r($this->pages);
         if (is_admin()) :
             $this->admin = new CRM_Admin();
         endif;

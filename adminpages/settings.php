@@ -10,11 +10,11 @@
 		<section class="pages">
 		  <h2>Pages</h2>
 
-		  <p>Manage the WordPress pages assigned to each UCI Results page.</p>
+		  <p>Manage the WordPress pages assigned to each CRM page.</p>
 
 		  <table class="form-table">
 		  	<tbody>
-
+<?php print_r(cycling_results_management()->pages); ?>
 		      <tr>
 		      	<th scope="row" valign="top">
 							<label for="single_rider_page_id">Single Rider Page:</label>

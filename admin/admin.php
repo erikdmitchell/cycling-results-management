@@ -59,10 +59,10 @@ class CRM_Admin {
 	 * @return void
 	 */
 	public function register_menu_page() {
-		$parent_slug='uci-results';
+		$parent_slug='cycling-results-management';
 		$manage_options_cap='manage_options';
 		
-	    add_menu_page(__('UCI Results', 'uci-results'), 'UCI Results', $manage_options_cap, $parent_slug, array($this, 'admin_page'), 'dashicons-media-spreadsheet', 80);
+	    add_menu_page(__('Cycling Results', 'crm'), 'Cycling Results', $manage_options_cap, $parent_slug, array($this, 'admin_page'), 'dashicons-media-spreadsheet', 80);
 	    add_submenu_page($parent_slug, 'Riders', 'Riders', $manage_options_cap, 'edit.php?post_type=riders');
 	    add_submenu_page($parent_slug, 'Races', 'Races', $manage_options_cap, 'edit.php?post_type=races');
 	    add_submenu_page($parent_slug, 'Countries', 'Countries', $manage_options_cap, 'edit-tags.php?taxonomy=country&post_type=races');
