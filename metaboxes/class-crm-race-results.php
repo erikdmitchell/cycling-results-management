@@ -1,25 +1,15 @@
 <?php
-/**
- * Calls the class on the post edit screen.
- */
-function call_UCIResultsResultsMetabox() {
-    new UCIResultsResultsMetabox();
-}
+
+class CRM_Race_Results {
  
-if (is_admin()) :
-	add_action('load-post.php', 'call_UCIResultsResultsMetabox');
-	add_action('load-post-new.php', 'call_UCIResultsResultsMetabox');
-endif;
- 
-/**
- * The Class.
- */
-class UCIResultsResultsMetabox {
- 
-    /**
-     * Hook into the appropriate actions when the class is constructed.
-     */
     public function __construct() {
+        if (is_admin()) :
+            add_action('load-post.php', array($this, 'init_metabox'));
+            add_action('load-post-new.php', array($this, 'init_metabox'));
+        endif;
+    }
+    
+    public function init_metabox() {
         add_action('add_meta_boxes', array($this, 'add_meta_box'));
     }
  
@@ -88,4 +78,5 @@ class UCIResultsResultsMetabox {
     }
     
 }
-?>
+
+new CRM_Race_Results();
