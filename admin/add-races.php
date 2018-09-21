@@ -26,7 +26,7 @@ class UCIResultsAddRaces {
 	 * @return void
 	 */
 	public function admin_scripts_styles() {
-		wp_enqueue_script('uci-results-add-races-admin-script', UCI_RESULTS_ADMIN_URL.'js/add-races.js', array('uci-results-admin'), '0.1.0', true);
+		wp_enqueue_script('uci-results-add-races-admin-script',CRM_ADMIN_URL.'js/add-races.js', array('uci-results-admin'), '0.1.0', true);
 	}
 
 	public function build_race_code($args='') {

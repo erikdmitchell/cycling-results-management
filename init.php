@@ -82,7 +82,7 @@ function uci_results_load_files() {
 	);
 
 	foreach ($dirs as $dir) :
-		foreach(glob(UCI_RESULTS_PATH.$dir.'/*.php') as $file) :
+		foreach(glob(CRM_PATH.$dir.'/*.php') as $file) :
 			include_once($file);
 		endforeach;
 	endforeach;
