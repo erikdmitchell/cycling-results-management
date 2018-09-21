@@ -102,10 +102,7 @@ class CRM_Admin {
 					break;
 				case 'uci-rankings':
 					$html.=$this->get_admin_page('uci-rankings');
-					break;	
-				case 'wpcli':
-					$html.=$this->get_admin_page('wpcli');
-					break;	
+					break;
 				default:
 					$html.=$this->get_admin_page('settings');
 			endswitch;
