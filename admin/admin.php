@@ -11,7 +11,6 @@ class CRM_Admin {
 		add_action('admin_menu', array($this, 'register_menu_page'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_scripts_styles'));
 		add_action('admin_init', array($this, 'save_settings'));
-		add_action('admin_init', array($this, 'include_migration_files'));
 		add_action('save_post', array($this, 'assign_parent_terms'), 10, 2);
 		
 		add_action('wp_ajax_uci_results_remove_data', array($this, 'ajax_remove_data'));
@@ -302,26 +301,6 @@ class CRM_Admin {
 		echo uci_get_season_weeks($_POST['season']);
 
 		wp_die();
-	}
-
-	/**
-	 * include_migration_files function.
-	 * 
-	 * @access public
-	 * @return void
-	 */
-	public function include_migration_files() {
-		include_once(CRM_ADMIN_PATH.'/migration/v1-0-0/ajax.php');	
-		
-		if (isset($_GET['subpage']) && $_GET['subpage']=='migration') :
-			if (isset($_GET['version'])) :					
-				switch ($_GET['version']) :
-					case '1_0_0' :
-						include_once(CRM_ADMIN_PATH.'/migration/v1-0-0/ajax.php');	
-						break;
-				endswitch;
-			endif;
-		endif;
 	}
 	
 	/**

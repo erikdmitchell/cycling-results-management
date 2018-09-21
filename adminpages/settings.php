@@ -1,5 +1,3 @@
-<?php global $uci_results_pages; ?>
-
 <div class="uci-results-settings">
 
 	<form action="" method="post">
@@ -153,70 +151,6 @@
 							<p class="description">
 								When logged in as an admin, the default templates will be shown. Custom templates will be ignored.
 							</p>
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
-		</section>
-
-		<section class="twitter">
-			<h2>Updates to Twitter</h2>
-
-			<table class="form-table">
-				<tbody>
-
-					<tr>
-						<th scope="row">
-							<label form="post_results_to_twitter">Post Results</label>
-						</th>
-						<td>
-							<input type="checkbox" name="post_results_to_twitter" id="post_results_to_twitter" value="1" <?php checked(get_option('uci_results_post_results_to_twitter', ''), 1); ?>>
-						</td>
-					</tr>
-
-					<tr>
-						<th scope="row">
-							<label form="post_rankings_to_twitter">Post Rankings Updates</label>
-						</th>
-						<td>
-							<input type="checkbox" name="post_rankings_to_twitter" id="post_rankings_to_twitter" value="1" <?php checked(get_option('uci_results_post_rankings_to_twitter', ''), 1); ?>>
-						</td>
-					</tr>
-
-					<tr>
-						<th scope="row">
-							<label form="twitter_consumer_key">Consumer Key</label>
-						</th>
-						<td>
-							<input type="text" name="twitter_consumer_key" id="twitter_consumer_key" class="regular-text code" value="<?php echo get_option('uci_results_twitter_consumer_key', ''); ?>" />
-						</td>
-					</tr>
-
-					<tr>
-						<th scope="row">
-							<label form="twitter_consumer_secret">Consumer Secret</label>
-						</th>
-						<td>
-							<input type="text" name="twitter_consumer_secret" id="twitter_consumer_secret" class="regular-text code" value="<?php echo get_option('uci_results_twitter_consumer_secret', ''); ?>" />
-						</td>
-					</tr>
-
-					<tr>
-						<th scope="row">
-							<label form="twitter_access_token">Access Token</label>
-						</th>
-						<td>
-							<input type="text" name="twitter_access_token" id="twitter_access_token" class="regular-text code" value="<?php echo get_option('uci_results_twitter_access_token', ''); ?>" />
-						</td>
-					</tr>
-
-					<tr>
-						<th scope="row">
-							<label form="twitter_access_token_secret">Access Token Secret</label>
-						</th>
-						<td>
-							<input type="text" name="twitter_access_token_secret" id="twitter_access_token_secret" class="regular-text code" value="<?php echo get_option('uci_results_twitter_access_token_secret', ''); ?>" />
 						</td>
 					</tr>
 
