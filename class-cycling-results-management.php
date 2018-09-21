@@ -149,10 +149,12 @@ final class Cycling_Results_Management {
      * @return void
      */
     private function init_hooks() {
-        //register_activation_hook( PCL_PLUGIN_FILE, array( 'Pickle_Custom_Login_Install', 'install' ) );
+        register_activation_hook(CRM_PLUGIN_FILE, array( 'CRM_Install', 'install' ) );
         //register_deactivation_hook( PCL_PLUGIN_FILE, array( 'PCL_Uninstall', 'uninstall' ) );
 
         add_action( 'init', array( $this, 'init' ), 0 );
+        
+        add_filter( 'query_vars', array($this, 'register_query_vars'));
     }
 
     /**
@@ -162,7 +164,55 @@ final class Cycling_Results_Management {
      * @return void
      */
     public function init() {
+        $this->load_files();
+        $this->rewrite_rules();
         $this->pages = get_option( 'pcl_pages' );
+        
+    }
+    
+    private function load_files() {
+    	$dirs=array(
+    		'post-types',
+    		'taxonomies',
+    		'metaboxes',
+    	);
+    
+    	foreach ($dirs as $dir) :
+    		foreach(glob(CRM_PATH.$dir.'/*.php') as $file) :
+    			include_once($file);
+    		endforeach;
+    	endforeach;        
+    }
+
+    private function rewrite_rules() {
+    	global $uci_results_pages;
+    
+    	$single_rider_url=ltrim(str_replace( home_url(), "", get_permalink($uci_results_pages['single_rider'])), '/');
+    	$single_race_url=ltrim(str_replace( home_url(), "", get_permalink($uci_results_pages['single_race'])), '/');
+    	$country_url=ltrim(str_replace( home_url(), "", get_permalink($uci_results_pages['country'])), '/');
+    	$uci_rankings_url=ltrim(str_replace( home_url(), "", get_permalink($uci_results_pages['uci_rankings'])), '/');
+    
+    	if (!empty($single_rider_url))
+    		add_rewrite_rule($single_rider_url.'([^/]*)/?', 'index.php?page_id='.$uci_results_pages['single_rider'].'&rider_slug=$matches[1]', 'top');
+    
+    	if (!empty($single_race_url))
+    		add_rewrite_rule($single_race_url.'([^/]*)/?', 'index.php?page_id='.$uci_results_pages['single_race'].'&race_code=$matches[1]', 'top');
+    
+    	if (!empty($country_url))
+    		add_rewrite_rule($country_url.'([^/]*)/?', 'index.php?page_id='.$uci_results_pages['country'].'&country_slug=$matches[1]', 'top');
+    
+    	if (!empty($uci_rankings_url))
+    		add_rewrite_rule($uci_rankings_url.'([^/]*)/([^/]*)/?', 'index.php?page_id='.$uci_results_pages['uci_rankings'].'&rankings_discipline=$matches[1]&rankings_date=$matches[2]', 'top');
+    }
+
+    public function register_query_vars( $vars ) {
+        $vars[] = 'rider_slug';
+        $vars[] = 'race_code';
+        $vars[] = 'country_slug';
+        $vars[] = 'rankings_date';
+        $vars[] = 'rankings_discipline';
+        
+        return $vars;
     }
 
 }
