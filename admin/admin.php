@@ -147,97 +147,16 @@ class CRM_Admin {
 	 * @return void
 	 */
 	public function save_settings() {
-		if (!isset($_POST['save_settings']) || $_POST['save_settings']!=1)
-			return false;
-
-		if (isset($_POST['single_rider_page_id'])) :
-			update_option('single_rider_page_id', $_POST['single_rider_page_id']);
-		else :
-			delete_option('single_rider_page_id');
-		endif;
-
-		if (isset($_POST['single_race_page_id'])) :
-			update_option('single_race_page_id', $_POST['single_race_page_id']);
-		else :
-			delete_option('single_race_page_id');
-		endif;
-
-		if (isset($_POST['country_page_id'])) :
-			update_option('country_page_id', $_POST['country_page_id']);
-		else :
-			delete_option('country_page_id');
-		endif;
-
-		if (isset($_POST['riders_page_id'])) :
-			update_option('riders_page_id', $_POST['riders_page_id']);
-		else :
-			delete_option('riders_page_id');
-		endif;
-
-		if (isset($_POST['races_page_id'])) :
-			update_option('races_page_id', $_POST['races_page_id']);
-		else :
-			delete_option('races_page_id');
-		endif;
-
-		if (isset($_POST['uci_results_search_page_id'])) :
-			update_option('uci_results_search_page_id', $_POST['uci_results_search_page_id']);
-		else :
-			delete_option('uci_results_search_page_id');
-		endif;
-
-		if (isset($_POST['uci_results_uci_rankings_page_id'])) :
-			update_option('uci_results_uci_rankings_page_id', $_POST['uci_results_uci_rankings_page_id']);
-		else :
-			delete_option('uci_results_uci_rankings_page_id');
-		endif;
-
-		if (isset($_POST['current_season']) && $_POST['current_season']!='') :
-			update_option('uci_results_current_season', $_POST['current_season']);
-		else :
-			delete_option('uci_results_current_season');
-		endif;
-
-		if (isset($_POST['twitter_consumer_key']) && $_POST['twitter_consumer_key']!='') :
-			update_option('uci_results_twitter_consumer_key', $_POST['twitter_consumer_key']);
-		else :
-			delete_option('uci_results_twitter_consumer_key');
-		endif;
-
-		if (isset($_POST['twitter_consumer_secret']) && $_POST['twitter_consumer_secret']!='') :
-			update_option('uci_results_twitter_consumer_secret', $_POST['twitter_consumer_secret']);
-		else :
-			delete_option('uci_results_twitter_consumer_secret');
-		endif;
-
-		if (isset($_POST['twitter_access_token']) && $_POST['twitter_access_token']!='') :
-			update_option('uci_results_twitter_access_token', $_POST['twitter_access_token']);
-		else :
-			delete_option('uci_results_twitter_access_token');
-		endif;
-
-		if (isset($_POST['twitter_access_token_secret']) && $_POST['twitter_access_token_secret']!='') :
-			update_option('uci_results_twitter_access_token_secret', $_POST['twitter_access_token_secret']);
-		else :
-			delete_option('uci_results_twitter_access_token_secret');
-		endif;
-
-		if (isset($_POST['post_results_to_twitter']) && $_POST['post_results_to_twitter']!='') :
-			update_option('uci_results_post_results_to_twitter', $_POST['post_results_to_twitter']);
-		else :
-			delete_option('uci_results_post_results_to_twitter');
-		endif;
-
-		if (isset($_POST['post_rankings_to_twitter']) && $_POST['post_rankings_to_twitter']!='') :
-			update_option('uci_results_post_rankings_to_twitter', $_POST['post_rankings_to_twitter']);
-		else :
-			delete_option('uci_results_post_rankings_to_twitter');
-		endif;
+        if ( ! isset( $_POST['crm_admin_settings'] ) || ! wp_verify_nonce( $_POST['crm_admin_settings'], 'update_settings' ))
+            return; 
+            
+        $pages = wp_parse_args($_POST['crm_pages'], cycling_results_management()->pages);
+        
+        update_option('crm_pages', $pages); // update option.
+        
+        cycling_results_management()->pages = $pages; // force new pages.
 
 		echo '<div class="updated">Settings updated!</div>';
-
-		//flush_rewrite_rules(); // this may not be the best place for it - doesnt seem to work
-		uci_results_init(); // updated pages
 	}
 
 	/**

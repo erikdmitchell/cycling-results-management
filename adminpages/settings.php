@@ -1,7 +1,7 @@
 <div class="crm-settings">
 
 	<form action="" method="post">
-		<input type="hidden" name="save_settings" value="1" />
+		<?php wp_nonce_field('update_settings', 'crm_admin_settings'); ?>
 
 		<section class="pages">
 		  <h2>Pages</h2>
@@ -16,7 +16,7 @@
 						</th>
 						<td>
 							<?php wp_dropdown_pages(array(
-								'name' => 'single_rider_page_id',
+								'name' => 'crm_pages[single-rider]',
 								'show_option_none' => '-- '.__('Select One', 'crm').' --',
 								'selected' => cycling_results_management()->pages['single-rider']
 							)); ?>
@@ -32,7 +32,7 @@
 						</th>
 						<td>
 							<?php wp_dropdown_pages(array(
-								'name' => 'single_race_page_id',
+								'name' => 'crm_pages[single-race]',
 								'show_option_none' => '-- '.__('Select One', 'crm').' --',
 								'selected' => cycling_results_management()->pages['single-race']
 							)); ?>
@@ -48,7 +48,7 @@
 						</th>
 						<td>
 							<?php wp_dropdown_pages(array(
-								'name' => 'country_page_id',
+								'name' => 'crm_pages[country]',
 								'show_option_none' => '-- '.__('Select One', 'crm').' --',
 								'selected' => cycling_results_management()->pages['country']
 							)); ?>
@@ -64,7 +64,7 @@
 						</th>
 						<td>
 							<?php wp_dropdown_pages(array(
-								'name' => 'riders_page_id',
+								'name' => 'crm_pages[riders]',
 								'show_option_none' => '-- '.__('Select One', 'crm').' --',
 								'selected' => cycling_results_management()->pages['riders']
 							)); ?>
@@ -80,7 +80,7 @@
 						</th>
 						<td>
 							<?php wp_dropdown_pages(array(
-								'name' => 'races_page_id',
+								'name' => 'crm_pages[races]',
 								'show_option_none' => '-- '.__('Select One', 'crm').' --',
 								'selected' => cycling_results_management()->pages['races']
 							)); ?>
@@ -96,7 +96,7 @@
 						</th>
 						<td>
 							<?php wp_dropdown_pages(array(
-								'name' => 'uci_results_search_page_id',
+								'name' => 'crm_pages[search]',
 								'show_option_none' => '-- '.__('Select One', 'crm').' --',
 								'selected' => cycling_results_management()->pages['search']
 							)); ?>
@@ -112,25 +112,13 @@
 						</th>
 						<td>
 							<?php wp_dropdown_pages(array(
-								'name' => 'uci_results_uci_rankings_page_id',
+								'name' => 'crm_pages[rankings]',
 								'show_option_none' => '-- '.__('Select One', 'crm').' --',
 								'selected' => cycling_results_management()->pages['rankings']
 							)); ?>
 							<a target="_blank" href="<?php echo admin_url('post.php?post='.cycling_results_management()->pages['rankings'].'&action=edit'); ?>" class="button button-secondary">Edit Page</a>
 							&nbsp;
 							<a target="_blank" href="<?php echo get_permalink(cycling_results_management()->pages['rankings']); ?>" class="button button-secondary">View Page</a>
-						</td>
-					</tr>					
-					
-					<tr>
-						<th scope="row" valign="top">
-							<label for="template_disable">Disable Templates</label>
-						</th>
-						<td>
-							<input type="checkbox" name="template_disable" id="template_disable" value="1" <?php checked(get_option('uci_results_template_disable', 0), 1, true); ?> />
-							<p class="description">
-								When logged in as an admin, the default templates will be shown. Custom templates will be ignored.
-							</p>
 						</td>
 					</tr>
 
