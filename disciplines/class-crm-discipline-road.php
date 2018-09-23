@@ -4,7 +4,7 @@ class CRM_Discipline_Road extends CRM_Discipline {
 
     public function __construct() {
         add_filter( 'race_results_metabox_rider_output_road', array( $this, 'race_results_metabox' ), 10, 2 );
-        add_filter( 'uci_results_insert_race_result_road', array( $this, 'clean_results' ), 10, 3 );
+        add_filter( 'crm_insert_race_result_road', array( $this, 'clean_results' ), 10, 3 );
     }
 
     public function clean_results( $meta_values, $race, $args ) {

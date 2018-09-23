@@ -69,6 +69,9 @@ jQuery(document).ready(function($) {
 		});
 	});
 	
+	/**
+     * Add csv results button click.
+     */
 	$('#csv-data #add-results').on('click', function(e) {
 		e.preventDefault();	
 		

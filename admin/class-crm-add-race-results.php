@@ -1,10 +1,8 @@
 <?php
-global $uci_results_add_races;
+//global $uci_results_add_races;
 
-/**
- * UCIResultsAddRaces class.
- */
-class UCIResultsAddRaces {
+
+class CRM_Add_Race_Results {
 
     /**
      * __construct function.
@@ -14,7 +12,7 @@ class UCIResultsAddRaces {
      */
     public function __construct() {
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_styles' ) );
-        add_action( 'wp_ajax_add_race_to_db', array( $this, 'ajax_add_race_to_db' ) );
+        
         add_action( 'wp_ajax_process_csv_results', array( $this, 'ajax_process_results_csv' ) );
         add_action( 'wp_ajax_csv_add_results', array( $this, 'add_csv_results_to_race' ) );
     }
@@ -242,7 +240,7 @@ class UCIResultsAddRaces {
         // update race results //
         update_post_meta( $race->race_id, '_races_results', 1 );
 
-        do_action( 'uci_results_updated_results_' . $race->discipline, $race, $updated_results, $results );
+        do_action( 'crm_updated_results_' . $race->discipline, $race, $updated_results, $results );
 
         return $results;
     }
@@ -275,7 +273,7 @@ class UCIResultsAddRaces {
         endforeach;
 
         // filter value //
-        $meta_values = apply_filters( 'uci_results_insert_race_result_' . $race->discipline, $meta_values, $race, $args );
+        $meta_values = apply_filters( 'crm_insert_race_result_' . $race->discipline, $meta_values, $race, $args );
 
         // get rider id //
         if ( isset( $result->nat ) ) :
@@ -286,12 +284,12 @@ class UCIResultsAddRaces {
 
         $rider_id = $this->get_rider_id( $result->name, $rider_nat, $args['insert'] );
 
-        // bail if no id //
+        // bail if no id.
         if ( empty( $rider_id ) || ! $rider_id ) {
             return;
         }
 
-        // bail on no meta values //
+        // bail on no meta values.
         if ( empty( $meta_values ) || $meta_values == '' ) {
             return;
         }
@@ -520,7 +518,7 @@ class UCIResultsAddRaces {
         $results = array_to_object( $formdata['race']['results'] );
         $race = get_post( $formdata['race']['race_id'] );
         $race->race_id = $race->ID;
-        $race->discipline = uci_get_race_discipline( $race->ID );
+        $race->discipline = crm_get_race_discipline( $race->ID );
         $this->add_race_results_to_db( $race, $results );
 
         echo admin_url( 'post.php?post=' . $formdata['race']['race_id'] . '&action=edit' );
@@ -582,5 +580,5 @@ class UCIResultsAddRaces {
 
 }
 
-$uci_results_add_races = new UCIResultsAddRaces();
-
+//$uci_results_add_races = new UCIResultsAddRaces();
+new CRM_Add_Race_Results();
