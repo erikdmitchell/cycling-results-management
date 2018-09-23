@@ -146,7 +146,7 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'stats/cross.php' ); // cross stats class
 
         // discipline classes //
-        include_once( CRM_PATH . 'disciplines/base.php' );
+        include_once( CRM_PATH . 'disciplines/class-crm-discipline.php' );
 
         include_once( CRM_PATH . 'class-crm-install.php' );
     }
