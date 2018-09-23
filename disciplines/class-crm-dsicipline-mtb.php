@@ -1,6 +1,6 @@
 <?php
 
-class UCI_Results_MTB extends UCI_Results_Discipline {
+class CRM_Discipline_MTB extends CRM_Discipline {
 
     /**
      * __construct function.

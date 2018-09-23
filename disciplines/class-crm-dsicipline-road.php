@@ -1,6 +1,6 @@
 <?php
 
-class UCI_Results_Road extends UCI_Results_Discipline {
+class CRM_Discipline_Road extends CRM_Discipline {
 
     public function __construct() {
         add_filter( 'race_results_metabox_rider_output_road', array( $this, 'race_results_metabox' ), 10, 2 );

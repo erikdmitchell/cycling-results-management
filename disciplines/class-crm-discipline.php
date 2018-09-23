@@ -1,6 +1,6 @@
 <?php
 
-class UCI_Results_Discipline {
+class CRM_Discipline {
 
     public function __construct() {
         $this->load_subclasses();
@@ -27,5 +27,5 @@ class UCI_Results_Discipline {
 
 }
 
-new UCI_Results_Discipline();
+new CRM_Discipline();
 
