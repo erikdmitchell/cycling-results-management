@@ -1,6 +1,6 @@
 <?php
 
-class CRM_Discipline_MTB extends CRM_Discipline {
+class CRM_Discipline_Mtb extends CRM_Discipline {
 
     /**
      * __construct function.
