@@ -75,7 +75,7 @@ function curl_exec_utf8( $ch ) {
  * @return void
  */
 function uci_results_template_loader( $template ) {
-    global $uci_results_pages, $post;
+    global $post;
 
     $located = false;
     $template_slug = '';
@@ -84,8 +84,8 @@ function uci_results_template_loader( $template ) {
     if ( is_archive() ) :
         $template_slug = 'archive';
 
-        // see if this page matches our set pages //
-        foreach ( $uci_results_pages as $slug => $id ) :
+        // see if this page matches our set pages.
+        foreach ( cycling_results_management()->pages as $slug => $id ) :
             if ( get_post_type() == $slug ) :
                 $template_slug = $slug;
             endif;
@@ -96,8 +96,8 @@ function uci_results_template_loader( $template ) {
     if ( is_page() ) :
         $template_slug = 'page';
 
-        // see if this page matches our set pages //
-        foreach ( $uci_results_pages as $slug => $id ) :
+        // see if this page matches our set pages.
+        foreach ( cycling_results_management()->pages as $slug => $id ) :
             if ( $post->ID == $id ) :
                 $template_slug = $slug;
             endif;
@@ -109,8 +109,8 @@ function uci_results_template_loader( $template ) {
         $located = get_stylesheet_directory() . '/uci-results/' . $template_slug . '.php';
     elseif ( file_exists( get_template_directory() . '/uci-results/' . $template_slug . '.php' ) ) :
         $located = get_template_directory() . '/uci-results/' . $template_slug . '.php';
-    elseif ( file_exists( UCI_RESULTS_PATH . 'templates/' . $template_slug . '.php' ) ) :
-        $located = UCI_RESULTS_PATH . 'templates/' . $template_slug . '.php';
+    elseif ( file_exists( CRM_PATH . 'templates/' . $template_slug . '.php' ) ) :
+        $located = CRM_PATH . 'templates/' . $template_slug . '.php';
     endif;
 
     // we found a template //
