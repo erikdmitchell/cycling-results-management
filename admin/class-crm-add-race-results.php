@@ -147,22 +147,6 @@ class CRM_Add_Race_Results {
         return false;
     }
 
-    protected function update_to_twitter() {
-        if ( uci_results_post_results_to_twitter() ) :
-            $url = get_permalink( $uci_results_pages['single_race'] ) . $data['code'];
-
-            // use twitter if we have it //
-            $twitter = uci_get_race_twitter( $race_id );
-
-            if ( ! empty( $twitter ) ) {
-                $twitter = '@' . $twitter;
-            }
-
-            $status = $race_data->winner . ' wins ' . $race_data->event . ' (' . $race_data->class . ') ' . $twitter . ' ' . $url;
-            $uci_results_twitter->update_status( $status );
-        endif;
-    }
-
     /**
      * get_race_week function.
      *
