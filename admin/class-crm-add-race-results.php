@@ -266,22 +266,23 @@ class CRM_Add_Race_Results {
             $result = array_to_object( $result );
         }
 
-        // essentially converts our object to an array //
+        // essentially converts our object to an array.
         foreach ( $result as $key => $value ) :
             $_key = $args['type'] . '_' . $key;
             $meta_values[ $_key ] = $value;
         endforeach;
 
-        // filter value //
+        // filter values.
         $meta_values = apply_filters( 'crm_insert_race_result_' . $race->discipline, $meta_values, $race, $args );
 
-        // get rider id //
+        // get rider nat.
         if ( isset( $result->nat ) ) :
             $rider_nat = $result->nat;
         else :
             $rider_nat = '';
         endif;
 
+        // get rider id.
         $rider_id = $this->get_rider_id( $result->name, $rider_nat, $args['insert'] );
 
         // bail if no id.
