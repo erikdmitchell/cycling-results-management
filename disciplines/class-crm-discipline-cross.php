@@ -13,7 +13,7 @@ class CRM_Discipline_Cross extends CRM_Discipline {
         
         // add points based on race class.
         $race_class = crm_race_class($race->ID);
-        $meta_values['uci_points'] = $this->get_uci_points($race_class, $meta_values['result_place']);
+        $meta_values['result_uci_points'] = $this->get_uci_points($race_class, $meta_values['result_place']);
 
         return $meta_values;
     }
