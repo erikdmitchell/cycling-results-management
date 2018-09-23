@@ -28,7 +28,7 @@ class CRM_Discipline_Cross extends CRM_Discipline {
             'CC' => array(100,60,40,30,25,20,17,15,12,10,8,6,4,2,1),
             'CDM' => array(200,160,140,120,110,110,90,80,70,60,58,56,54,53,50,48,46,44,42,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,5),
         );
-        
+     
         if ('CDM' == $class && $place >= 51) :
             return 5;
         else :
@@ -39,7 +39,7 @@ class CRM_Discipline_Cross extends CRM_Discipline {
             endif;
         endif;
         
-        return $place;
+        return $points;
     }
 
 }
