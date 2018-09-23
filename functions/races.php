@@ -121,13 +121,13 @@ function uci_race_country( $race_id = 0 ) {
 }
 
 /**
- * uci_race_class function.
+ * Get race class.
  *
  * @access public
  * @param int $race_id (default: 0)
  * @return void
  */
-function uci_race_class( $race_id = 0 ) {
+function crm_race_class( $race_id = 0 ) {
     $classes = wp_get_post_terms( $race_id, 'race_class', array( 'fields' => 'names' ) );
 
     if ( isset( $classes[0] ) ) :
