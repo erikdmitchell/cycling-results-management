@@ -1,13 +1,13 @@
 jQuery(document).ready(function($) {
 	
-	// datepicker //
+	// datepicker.
 	$('.uci-results-datepicker').datepicker({
 		changeMonth: true,
 		changeYear: true,
 		dateFormat: 'yy-mm-dd'
     });
 	
-	// add-rider-rankings button - opens media uploader //
+	// add-rider-rankings button - opens media uploader.
 	$('.button.add-rider-rankings').click(function(e) {
 		e.preventDefault();
 	
@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
 	    return false;
 	});	
 	
-	// insert ajax //
+	// insert ajax.
 	$('#insert-rider-rankings').on('click', function(e) {
 		e.preventDefault();
 		
