@@ -38,13 +38,10 @@ function crm_get_races( $args = '' ) {
 
     extract( $args );
 
-    $argss = array(
+    $post_args = array(
         'posts_per_page' => $per_page,
         'include' => $id,
         'post_type' => 'races',
-        // 'orderby' => $orderby,
-        // 'meta_key' => $meta_key,
-        // 'order' => $order,
         'meta_query'      => array(
             'relation'    => 'OR',
             '_race_date' => array(
@@ -58,11 +55,10 @@ function crm_get_races( $args = '' ) {
         ),
     );
 
-    $races = get_posts( $argss );
-    global $wpdb;
+    $races = get_posts( $post_args );
 
     foreach ( $races as $race ) :
-        $race = uci_race_details( $race );
+        $race = crm_race_details( $race );
 
         if ( $results ) {
             $race->results = uci_results_get_race_results( $race->ID );
@@ -70,21 +66,14 @@ function crm_get_races( $args = '' ) {
     endforeach;
 
     // check for single race //
-    if ( count( $races ) == 1 ) {
+    if ( 1 == count( $races ) ) {
         $races = $races[0];
     }
 
     return $races;
 }
 
-/**
- * uci_race_details function.
- *
- * @access public
- * @param string $race (default: '')
- * @return void
- */
-function uci_race_details( $race = '' ) {
+function crm_race_details( $race = '' ) {
     $race->race_date = get_post_meta( $race->ID, '_race_date', true );
     $race->nat = uci_race_country( $race->ID );
     $race->class = crm_race_class( $race->ID );
