@@ -2,7 +2,7 @@
 
 /**
  * Append riders details to riders post type.
- * 
+ *
  * @access public
  * @param mixed $posts
  * @param mixed $query
@@ -23,12 +23,12 @@ function crm_riders_posts_details( $posts, $query ) {
                 'rider_id' => $post->ID,
             )
         );
-/*
+        /*
         $post->last_result = $uci_riders->rider_last_race_result( $rider_id );
         $post->rank = $uci_riders->get_rider_rank( $rider_id );
         $post->stats = uci_results_get_rider_stats( $rider_id );
-*/
-    endforeach;   
+        */
+    endforeach;
 
     return $posts;
 }

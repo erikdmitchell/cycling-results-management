@@ -77,9 +77,9 @@ function uci_results_get_rider_rank( $rider_id = 0, $season = '', $week = '' ) {
  * @return void
  */
 function crm_country_url( $slug = '' ) {
-    $country = strtolower($slug);
-    
-    echo site_url('crm_country/'.$country);
+    $country = strtolower( $slug );
+
+    echo site_url( 'crm_country/' . $country );
 }
 
 /**
@@ -137,7 +137,7 @@ function uci_pagination( $numpages = '', $pagerange = '', $paged = '' ) {
 }
 
 function crm_uci_rankings_url( $discipline = 'cyclocross', $date = '' ) {
-    $url = site_url('uci-rankings/'.strtolower( $discipline ) . '/' . $date);
+    $url = site_url( 'uci-rankings/' . strtolower( $discipline ) . '/' . $date );
 
     echo $url;
 }

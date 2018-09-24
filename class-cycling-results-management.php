@@ -32,18 +32,18 @@ final class Cycling_Results_Management {
      * @access public
      */
     public $admin = '';
-    
-    
+
+
     /**
      * UCI rankings.
-     * 
+     *
      * (default value: '')
-     * 
+     *
      * @var string
      * @access public
      */
     public $uci_rankings = '';
-    
+
     public $riders = '';
 
     /**
@@ -120,10 +120,10 @@ final class Cycling_Results_Management {
      */
     public function includes() {
         include_once( CRM_PATH . 'class-crm-riders.php' ); // our riders functions
-        
+
         include_once( CRM_PATH . 'classes/rider-rankings-query.php' ); // rider rankings query class
         include_once( CRM_PATH . 'classes/seasons.php' );
-        
+
         include_once( CRM_PATH . 'admin/class-uci-rankings-admin.php' );
         include_once( CRM_PATH . 'class-uci-rankings.php' );
 
@@ -165,7 +165,7 @@ final class Cycling_Results_Management {
         register_activation_hook( CRM_PLUGIN_FILE, array( 'CRM_Install', 'install' ) );
         // register_deactivation_hook( PCL_PLUGIN_FILE, array( 'PCL_Uninstall', 'uninstall' ) );
         add_action( 'init', array( $this, 'init' ), 0 );
-        add_action('wp_enqueue_scripts', array($this, 'frontend_scripts_styles'));
+        add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts_styles' ) );
 
         add_filter( 'query_vars', array( $this, 'register_query_vars' ) );
     }
@@ -179,7 +179,7 @@ final class Cycling_Results_Management {
     public function init() {
         $this->load_files();
         $this->rewrite_rules();
-        
+
         $this->riders = new CRM_Riders();
         $this->uci_rankings = new UCI_Rankings();
 
@@ -187,28 +187,27 @@ final class Cycling_Results_Management {
             $this->admin = new CRM_Admin();
         endif;
     }
-    
+
     public function frontend_scripts_styles() {
 
-
-    // include on search page //
-/*
-    if ( is_page( $uci_results_pages['search'] ) ) :
+        // include on search page //
+        /*
+        if ( is_page( $uci_results_pages['search'] ) ) :
         wp_enqueue_script( 'uci-results-search-script', CRM_URL . '/js/search.js', array( 'jquery' ), '0.1.0' );
 
         wp_localize_script( 'uci-results-search-script', 'searchAJAXObject', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-    endif;
-*/
+        endif;
+        */
 
         wp_register_script( 'uci-results-front-end', CRM_URL . '/js/front-end.js', array( 'jquery' ), '0.1.0', true );
-    
+
         wp_localize_script( 'uci-results-front-end', 'UCIResultsFrontEnd', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-    
+
         wp_enqueue_script( 'uci-results-front-end' );
-    
+
         wp_enqueue_style( 'crm-fa-style', CRM_URL . 'css/font-awesome.min.css' );
         wp_enqueue_style( 'crm-style', CRM_URL . '/css/main.css' );
-        wp_enqueue_style( 'crm-compiled', CRM_URL . '/sass/crm.css' );       
+        wp_enqueue_style( 'crm-compiled', CRM_URL . '/sass/crm.css' );
     }
 
     private function load_files() {

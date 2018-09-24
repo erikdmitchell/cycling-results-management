@@ -128,7 +128,6 @@ class UCI_Rankings_Admin {
                 $country = $this->convert_country( $row[ $found_nation_key ] );
             endif;
             // end nation check.
-            
             $data[ $key ]['rank'] = $rank_arr[0];
             $data[ $key ]['rider_id'] = uci_results_add_rider( $name, $country );
             $data[ $key ]['date'] = $date;
@@ -141,9 +140,8 @@ class UCI_Rankings_Admin {
         // update our option so we know we have a ranking change.
         $update_date = $date . ' ' . date( 'H:i:s' );
         update_option( "uci_rankings_last_update_$discipline", $update_date );
-        
-        //$this->last_update = $date;
 
+        // $this->last_update = $date;
         return true;
     }
 

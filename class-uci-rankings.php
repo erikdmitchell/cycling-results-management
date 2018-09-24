@@ -102,7 +102,7 @@ class UCI_Rankings {
      * @param string $date (default: '')
      * @return void
      */
-/*
+    /*
     public function is_ranks_updated( $date = '' ) {
         if ( empty( $date ) ) {
             $date = date( 'Y-m-d' );
@@ -114,7 +114,7 @@ class UCI_Rankings {
 
         return false;
     }
-*/
+    */
 
     /**
      * get_rank function.
@@ -155,13 +155,13 @@ class UCI_Rankings {
      * @param string $discipline (default: '')
      * @return void
      */
-/*
+    /*
     public function max_rank( $date = '', $discipline = '' ) {
         global $wpdb;
 
         return $wpdb->get_var( 'SELECT MAX(rank) FROM ' . $this->table_name . ' ORDER BY date ASC' );
     }
-*/
+    */
 
     /**
      * get_rankings_dates function.
@@ -216,7 +216,7 @@ class UCI_Rankings {
      * @param int $discipline (default: 0)
      * @return void
      */
-/*
+    /*
     public function recent_date( $discipline = 0 ) {
         global $wpdb;
 
@@ -227,7 +227,7 @@ class UCI_Rankings {
 
         return $wpdb->get_var( 'SELECT date FROM ' . $this->table_name . " WHERE discipline = $discipline ORDER BY date DESC LIMIT 1" );
     }
-*/
+    */
 }
 
 

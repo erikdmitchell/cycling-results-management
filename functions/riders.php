@@ -169,14 +169,14 @@ function uci_get_riders_by_rank( $args = '' ) {
 }
 
 function crm_rider_url( $slug = '' ) {
-    if ( !is_numeric( $slug ) ) :
-        $post = get_page_by_path($slug, OBJECT, 'riders');
+    if ( ! is_numeric( $slug ) ) :
+        $post = get_page_by_path( $slug, OBJECT, 'riders' );
         $post_id = $post->ID;
     else :
         $post_id = $slug;
     endif;
 
-    echo get_permalink($post_id);
+    echo get_permalink( $post_id );
 }
 
 /**

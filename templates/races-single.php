@@ -11,7 +11,7 @@ get_header(); ?>
 
 <div class="container crm-template crm-single-race">
 
-    <?php if ( ! $post->results || empty($post->results) ) : ?>
+    <?php if ( ! $post->results || empty( $post->results ) ) : ?>
         <div class="race-results-not-found">Race results not found.</div>
     <?php else : ?>
         <h1 class="page-title"><?php echo $post->post_title; ?><span class="flag"><?php echo uci_results_get_country_flag( $post->nat ); ?></span></h1>

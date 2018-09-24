@@ -51,14 +51,14 @@ class CRM_Install {
      * @static
      * @return void
      */
-    public static function install() {       
+    public static function install() {
         if ( ! is_blog_installed() ) {
             return;
         }
 
         // Check if we are not already running this routine.
         if ( 'yes' === get_transient( 'crm_installing' ) ) {
-            //return;
+            // return;
         }
 
         // If we made it till here nothing is running yet, lets set the transient now.
@@ -71,41 +71,41 @@ class CRM_Install {
 
         delete_transient( 'crm_installing' );
     }
-    
+
     /**
      * Create db tables.
-     * 
+     *
      * @access private
      * @static
      * @return void
      */
     private static function create_tables() {
         global $wpdb;
-        
+
         $wpdb->hide_errors();
-            
+
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-        dbDelta(self::get_schema());
+        dbDelta( self::get_schema() );
     }
-    
+
     /**
      * Get db schema.
-     * 
+     *
      * @access private
      * @static
      * @return void
      */
     private static function get_schema() {
         global $wpdb;
-		
-		$collate = '';
-		
-		if ( $wpdb->has_cap( 'collation' ) ) {
-			$collate = $wpdb->get_charset_collate();
-		}
-		
-		$tables = "
+
+        $collate = '';
+
+        if ( $wpdb->has_cap( 'collation' ) ) {
+            $collate = $wpdb->get_charset_collate();
+        }
+
+        $tables = "
     		CREATE TABLE {$wpdb->prefix}crm_rider_rankings (
     		  id bigint(20) NOT NULL AUTO_INCREMENT,
     			rider_id bigint(20) NOT NULL,
@@ -136,41 +136,41 @@ class CRM_Install {
     		) $collate;	
 		";
 
-		return $tables;  
+        return $tables;
     }
-    
+
     /**
      * Update db version if need ebe.
-     * 
+     *
      * @access private
      * @static
      * @return void
      */
     private static function maybe_update_db_version() {
-		if ( self::needs_db_update() ) {
-			self::update();
-		} else {
-			self::update_db_version();
-		}
-	}  
-	
+        if ( self::needs_db_update() ) {
+            self::update();
+        } else {
+            self::update_db_version();
+        }
+    }
+
     /**
      * Check if db update is needed.
-     * 
+     *
      * @access private
      * @static
      * @return void
      */
     private static function needs_db_update() {
-		$current_db_version = get_option( 'crm_db_version', null );
-		$updates            = self::get_db_update_callbacks();
-		
-		return ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( $updates ) ), '<' );
-	}	  
+        $current_db_version = get_option( 'crm_db_version', null );
+        $updates            = self::get_db_update_callbacks();
+
+        return ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( $updates ) ), '<' );
+    }
 
     /**
      * Get db update callbacks.
-     * 
+     *
      * @access private
      * @static
      * @return void
@@ -181,17 +181,17 @@ class CRM_Install {
 
     /**
      * Update db version.
-     * 
+     *
      * @access public
      * @static
      * @param mixed $version (default: null)
      * @return void
      */
     public static function update_db_version( $version = null ) {
-		delete_option( 'crm_db_version' );
-		
-		add_option( 'crm_db_version', is_null( $version ) ? cycling_results_management()->version : $version );
-	}
+        delete_option( 'crm_db_version' );
+
+        add_option( 'crm_db_version', is_null( $version ) ? cycling_results_management()->version : $version );
+    }
 
     /**
      * Update function.

@@ -10,7 +10,7 @@
 get_header(); ?>
 
 <pre>
-    <?php print_r($post); ?>
+    <?php print_r( $post ); ?>
 </pre>
 
 <?php

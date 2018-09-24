@@ -72,24 +72,27 @@ function crm_template_loader( $template ) {
 
     $located = false;
     $template_slug = '';
-    
-    if (is_archive()) :
+
+    if ( is_archive() ) :
         $obj = get_queried_object();
-        
-        if (isset($obj->taxonomy)) :
+
+        if ( isset( $obj->taxonomy ) ) :
             $template_slug = 'country';
-        endif; 
+        endif;
     endif;
-    
-    if (isset($post->post_type))
+
+    if ( isset( $post->post_type ) ) {
         $template_slug = $post->post_type;
+    }
 
-    if (is_single())
+    if ( is_single() ) {
         $template_slug = "$template_slug-single";
+    }
 
-    if (get_query_var('rankings_discipline') && get_query_var('rankings_date'))
+    if ( get_query_var( 'rankings_discipline' ) && get_query_var( 'rankings_date' ) ) {
         $template_slug = 'uci-rankings';
-        
+    }
+
     // check theme(s), then plugin.
     if ( file_exists( get_stylesheet_directory() . '/crm/' . $template_slug . '.php' ) ) :
         $located = get_stylesheet_directory() . '/crm/' . $template_slug . '.php';
