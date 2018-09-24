@@ -87,7 +87,7 @@ function crm_template_loader( $template ) {
     if (is_single())
         $template_slug = "$template_slug-single";
 
-    if (false !== get_query_var('rankings_discipline') && false !== get_query_var('rankings_date'))
+    if (get_query_var('rankings_discipline') && get_query_var('rankings_date'))
         $template_slug = 'uci-rankings';
         
     // check theme(s), then plugin.
