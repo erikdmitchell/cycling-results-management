@@ -1,7 +1,7 @@
 <?php
 global $uci_rankings;
 
-class UCIRankings {
+class UCI_Rankings {
 
     public $last_update;
 
@@ -110,17 +110,17 @@ class UCIRankings {
                 $row_counter++;
         endforeach;
 
-        // clean rank, add rider id via name and add date //
+        // clean rank, add rider id via name and add date.
         foreach ( $data as $key => $row ) :
             $rank_arr = explode( ' ', $row['rank'] );
             $name = trim( str_replace( '*', '', $row['name'] ) );
 
-            // clean name //
+            // clean name.
             if ( $clean_names ) {
                 $name = $this->clean_names( $name );
             }
 
-            // nation check //
+            // nation check.
             $found_nation_key = false;
 
             foreach ( $row as $k => $v ) :
@@ -133,7 +133,8 @@ class UCIRankings {
             if ( $found_nation_key ) :
                 $country = $this->convert_country( $row[ $found_nation_key ] );
             endif;
-            // end nation check //
+            // end nation check.
+            
             $data[ $key ]['rank'] = $rank_arr[0];
             $data[ $key ]['rider_id'] = uci_results_add_rider( $name, $country );
             $data[ $key ]['date'] = $date;
@@ -143,9 +144,10 @@ class UCIRankings {
 
         $this->insert_rankings_into_db( $data );
 
-        // update our option so we know we have a ranking change THIS NEEDS TO CHANGE TO INCLUDE DISCIPLINE //
+        // update our option so we know we have a ranking change.
         $update_date = $date . ' ' . date( 'H:i:s' );
-        update_option( 'uci_rankings_last_update', $update_date );
+        update_option( "uci_rankings_last_update_$discipline", $update_date );
+        
         $this->last_update = $date;
 
         return true;
@@ -519,7 +521,7 @@ class UCIRankings {
     }
 }
 
-$uci_rankings = new UCIRankings();
+$uci_rankings = new UCI_Rankings();
 
 /**
  * uci_rankings_last_update function.
