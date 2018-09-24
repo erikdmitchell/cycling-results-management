@@ -1,9 +1,8 @@
 <?php
-global $uci_rankings;
 
-class UCI_Rankings {
+class UCI_Rankings_Admin {
 
-    public $last_update;
+    //public $last_update;
 
     /**
      * __construct function.
@@ -14,10 +13,10 @@ class UCI_Rankings {
     public function __construct() {
         global $wpdb;
 
-        $this->table_name = $wpdb->prefix . 'uci_results_uci_rankings';
+        $this->table_name = $wpdb->prefix . 'crm_uci_rankings';
         $this->primary_key = 'id';
         $this->version = '1.0.0';
-        $this->last_update = get_option( 'uci_rankings_last_update', 0 );
+        //$this->last_update = get_option( 'uci_rankings_last_update', 0 );
 
         add_action( 'wp_ajax_uci_add_rider_rankings', array( $this, 'ajax_process_csv_file' ) );
 
@@ -35,11 +34,11 @@ class UCI_Rankings {
         global $wp_scripts;
 
         wp_enqueue_script( 'jquery-ui-datepicker' );
-        wp_enqueue_script( 'uci-rankings-script', CRM_ADMIN_URL . 'js/uci-rankings.js', array( 'jquery-ui-datepicker' ), '0.2.0' );
+        wp_enqueue_script( 'uci-rankings-script', CRM_ADMIN_URL . 'js/uci-rankings.js', array( 'jquery-ui-datepicker' ), $this->version );
 
         wp_enqueue_style( 'jquery-ui-css', 'http://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/ui-lightness/jquery-ui.min.css' );
 
-        wp_enqueue_media();
+        //wp_enqueue_media();
     }
 
     /**
@@ -148,7 +147,7 @@ class UCI_Rankings {
         $update_date = $date . ' ' . date( 'H:i:s' );
         update_option( "uci_rankings_last_update_$discipline", $update_date );
         
-        $this->last_update = $date;
+        //$this->last_update = $date;
 
         return true;
     }
@@ -261,51 +260,13 @@ class UCI_Rankings {
     }
 
     /**
-     * file_input function.
-     *
-     * @access public
-     * @param bool $echo (default: true)
-     * @return void
-     */
-    public function file_input( $echo = true ) {
-        $html = null;
-
-        $html .= '<input type="text" id="add-rider-rankings-input" name="file" value="" class="regular-text" /> <a class="button add-rider-rankings" href="">Add File</a>';
-
-        if ( $echo ) {
-            echo $html;
-        }
-
-        return $html;
-    }
-
-    /**
-     * process_button function.
-     *
-     * @access public
-     * @param string $text (default: 'Insert Into DB')
-     * @param bool   $echo (default: true)
-     * @return void
-     */
-    public function process_button( $text = 'Insert Into DB', $echo = true ) {
-        $html = null;
-
-        $html .= '<p><a class="button button-primary" id="insert-rider-rankings" href="">' . $text . '</a></p>';
-
-        if ( $echo ) {
-            echo $html;
-        }
-
-        return $html;
-    }
-
-    /**
      * get_rankings function.
      *
      * @access public
      * @param string $args (default: '')
      * @return void
      */
+/*
     public function get_rankings( $args = '' ) {
         global $wpdb;
 
@@ -379,6 +340,7 @@ class UCI_Rankings {
 
         return $db_results;
     }
+*/
 
     /**
      * is_ranks_updated function.
@@ -387,6 +349,7 @@ class UCI_Rankings {
      * @param string $date (default: '')
      * @return void
      */
+/*
     public function is_ranks_updated( $date = '' ) {
         if ( empty( $date ) ) {
             $date = date( 'Y-m-d' );
@@ -398,6 +361,7 @@ class UCI_Rankings {
 
         return false;
     }
+*/
 
     /**
      * get_rank function.
@@ -407,6 +371,7 @@ class UCI_Rankings {
      * @param string $discipline (default: 0)
      * @return void
      */
+/*
     public function get_rank( $rider_id = 0, $discipline = 0 ) {
         global $wpdb;
 
@@ -429,6 +394,7 @@ class UCI_Rankings {
 
         return $rank;
     }
+*/
 
     /**
      * max_rank function.
@@ -438,11 +404,13 @@ class UCI_Rankings {
      * @param string $discipline (default: '')
      * @return void
      */
+/*
     public function max_rank( $date = '', $discipline = '' ) {
         global $wpdb;
 
         return $wpdb->get_var( 'SELECT MAX(rank) FROM ' . $this->table_name . ' ORDER BY date ASC' );
     }
+*/
 
     /**
      * get_rankings_dates function.
@@ -451,6 +419,7 @@ class UCI_Rankings {
      * @param int $discipline (default: 0)
      * @return void
      */
+/*
     public function get_rankings_dates( $discipline = 0 ) {
         global $wpdb;
 
@@ -473,6 +442,7 @@ class UCI_Rankings {
 
         return $dates;
     }
+*/
 
     /**
      * disciplines function.
@@ -497,6 +467,7 @@ class UCI_Rankings {
      * @param int $discipline (default: 0)
      * @return void
      */
+/*
     public function recent_date( $discipline = 0 ) {
         global $wpdb;
 
@@ -507,6 +478,7 @@ class UCI_Rankings {
 
         return $wpdb->get_var( 'SELECT date FROM ' . $this->table_name . " WHERE discipline = $discipline ORDER BY date DESC LIMIT 1" );
     }
+*/
 
     /**
      * get_columns function.
@@ -521,7 +493,7 @@ class UCI_Rankings {
     }
 }
 
-$uci_rankings = new UCI_Rankings();
+new UCI_Rankings_Admin();
 
 /**
  * uci_rankings_last_update function.
@@ -529,9 +501,11 @@ $uci_rankings = new UCI_Rankings();
  * @access public
  * @return void
  */
+/*
 function uci_rankings_last_update() {
     global $uci_rankings;
 
     return $uci_rankings->last_update;
 }
+*/
 
