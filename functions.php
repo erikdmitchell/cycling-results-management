@@ -1,33 +1,5 @@
 <?php
 /**
- * uci_scripts_styles function.
- *
- * @access public
- * @return void
- */
-function uci_scripts_styles() {
-    global $uci_results_pages;
-
-    // include on search page //
-    if ( is_page( $uci_results_pages['search'] ) ) :
-        wp_enqueue_script( 'uci-results-search-script', CRM_URL . '/js/search.js', array( 'jquery' ), '0.1.0' );
-
-        wp_localize_script( 'uci-results-search-script', 'searchAJAXObject', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-    endif;
-
-    wp_register_script( 'uci-results-front-end', CRM_URL . '/js/front-end.js', array( 'jquery' ), '0.1.0', true );
-
-    wp_localize_script( 'uci-results-front-end', 'UCIResultsFrontEnd', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-
-    wp_enqueue_script( 'uci-results-front-end' );
-
-    wp_enqueue_style( 'uci-results-fa-style', CRM_URL . 'css/font-awesome.min.css' );
-    wp_enqueue_style( 'uci-results-style', CRM_URL . '/css/main.css' );
-    wp_enqueue_style( 'uci-results-grid', CRM_URL . '/css/em-bs-grid.css' );
-}
-add_action( 'wp_enqueue_scripts', 'uci_scripts_styles' );
-
-/**
  * uci_get_first_term function.
  *
  * @access public

@@ -161,6 +161,7 @@ final class Cycling_Results_Management {
         register_activation_hook( CRM_PLUGIN_FILE, array( 'CRM_Install', 'install' ) );
         // register_deactivation_hook( PCL_PLUGIN_FILE, array( 'PCL_Uninstall', 'uninstall' ) );
         add_action( 'init', array( $this, 'init' ), 0 );
+        add_action('wp_enqueue_scripts', array($this, 'frontend_scripts_styles'));
 
         add_filter( 'query_vars', array( $this, 'register_query_vars' ) );
     }
@@ -179,6 +180,29 @@ final class Cycling_Results_Management {
         if ( is_admin() ) :
             $this->admin = new CRM_Admin();
         endif;
+    }
+    
+    public function frontend_scripts_styles() {
+
+
+    // include on search page //
+/*
+    if ( is_page( $uci_results_pages['search'] ) ) :
+        wp_enqueue_script( 'uci-results-search-script', CRM_URL . '/js/search.js', array( 'jquery' ), '0.1.0' );
+
+        wp_localize_script( 'uci-results-search-script', 'searchAJAXObject', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+    endif;
+*/
+
+        wp_register_script( 'uci-results-front-end', CRM_URL . '/js/front-end.js', array( 'jquery' ), '0.1.0', true );
+    
+        wp_localize_script( 'uci-results-front-end', 'UCIResultsFrontEnd', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+    
+        wp_enqueue_script( 'uci-results-front-end' );
+    
+        wp_enqueue_style( 'crm-fa-style', CRM_URL . 'css/font-awesome.min.css' );
+        wp_enqueue_style( 'crm-style', CRM_URL . '/css/main.css' );
+        wp_enqueue_style( 'crm-compiled', CRM_URL . '/scss/crm.css' );       
     }
 
     private function load_files() {
