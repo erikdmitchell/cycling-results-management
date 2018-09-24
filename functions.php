@@ -136,10 +136,8 @@ function uci_pagination( $numpages = '', $pagerange = '', $paged = '' ) {
     echo $html;
 }
 
-function uci_results_uci_rankings_url( $discipline = 'road', $date = '' ) {
-    global $uci_results_pages;
-
-    $url = get_permalink( $uci_results_pages['uci_rankings'] ) . strtolower( $discipline ) . '/' . $date;
+function crm_uci_rankings_url( $discipline = 'cyclocross', $date = '' ) {
+    $url = site_url(strtolower( $discipline ) . '/' . $date);
 
     echo $url;
 }
