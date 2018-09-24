@@ -9,7 +9,12 @@
 
 get_header(); ?>
 
+<pre>
+    <?php print_r($post); ?>
+</pre>
+
 <?php
+    /*
 global $uci_riders;
 
 $rider = $uci_riders->get_rider(
@@ -21,6 +26,7 @@ $rider = $uci_riders->get_rider(
         'stats' => true,
     )
 );
+*/
 ?>
 
 <div class="em-container uci-results uci-results-rider">
