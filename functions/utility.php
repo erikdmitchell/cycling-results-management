@@ -67,14 +67,7 @@ function curl_exec_utf8( $ch ) {
     return $data;
 }
 
-/**
- * uci_results_template_loader function.
- *
- * @access public
- * @param mixed $template
- * @return void
- */
-function uci_results_template_loader( $template ) {
+function crm_template_loader( $template ) {
     global $post;
 
     $located = false;
@@ -120,7 +113,7 @@ function uci_results_template_loader( $template ) {
 
     return $template;
 }
-add_filter( 'template_include', 'uci_results_template_loader' );
+add_filter( 'template_include', 'crm_template_loader' );
 
 /**
  * uci_get_template_part function.
