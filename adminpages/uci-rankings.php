@@ -1,5 +1,3 @@
-<?php global $uci_rankings; ?>
-
 <div class="uci-results-admin uci-rankings">
     <h2>UCI Rankings</h2>
     
@@ -52,7 +50,10 @@
                 <tr>
                     <th scope="row">View Rankings</th>
                     <td>
-                        
+                        <?php $dates = cycling_results_management()->uci_rankings->get_rankings_dates(); ?>
+                        <?php foreach ( $dates as $date ) : ?>
+                            <a href="<?php crm_uci_rankings_url( $date->discipline, $date->date ); ?>"><?php echo $date->date; ?> (<?php echo $date->discipline; ?>)</a><br />
+                        <?php endforeach; ?>
                     </td>
                 </tr>
                 
