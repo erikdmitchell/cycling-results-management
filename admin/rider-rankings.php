@@ -189,47 +189,6 @@ class UCIResultsRiderRankings {
     }
 
     /**
-     * update_twitter function.
-     *
-     * @access public
-     * @return void
-     */
-    public function update_twitter() {
-        global $uci_results_pages, $uci_results_twitter, $uci_riders;
-
-        if ( ! uci_results_post_rankings_updates_to_twitter() ) {
-            return false;
-        }
-
-        $rider_info = '';
-        $riders = new RiderRankingsQuery(
-            array(
-                'per_page' => 1,
-            )
-        );
-
-        // get our leader info //
-        if ( isset( $riders->posts[0] ) ) :
-            $rider = $riders->posts[0];
-
-            // use twitter if we have it //
-            $twitter = $uci_riders->get_twitter( $rider->ID );
-
-            if ( ! empty( $twitter ) ) :
-                $name = '@' . $twitter;
-            else :
-                $name = $rider->name;
-            endif;
-
-            $rider_info = $name . ' (' . $rider->nat . ') leads the rankings with ' . $rider->points . ' points.';
-        endif;
-
-        $url = get_permalink( $uci_results_pages['riders'] );
-        $status = $rider_info . ' ' . $url;
-        $uci_results_twitter->update_status( $status );
-    }
-
-    /**
      * update_series_overall function.
      *
      * @access public
