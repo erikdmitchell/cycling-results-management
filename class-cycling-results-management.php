@@ -202,7 +202,7 @@ final class Cycling_Results_Management {
     
         wp_enqueue_style( 'crm-fa-style', CRM_URL . 'css/font-awesome.min.css' );
         wp_enqueue_style( 'crm-style', CRM_URL . '/css/main.css' );
-        wp_enqueue_style( 'crm-compiled', CRM_URL . '/scss/crm.css' );       
+        wp_enqueue_style( 'crm-compiled', CRM_URL . '/sass/crm.css' );       
     }
 
     private function load_files() {
