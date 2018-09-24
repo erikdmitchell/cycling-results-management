@@ -14,7 +14,7 @@
                         <label form="add-rankings">Add New Rankings</label>
                     </th>
                     <td>
-                            <?php $uci_rankings->file_input(); ?>
+                        <input type="text" id="add-rider-rankings-input" name="file" value="" class="regular-text" /> <a class="button add-rider-rankings" href="">Add File</a>
 
                         <div class="custom-date">
                             <label form="custom-date">Custom Date</label>
@@ -45,7 +45,7 @@
                             <p class="description">If names are not in correct order, this will use the UCI name sort where the last name is first.</p>
                         </div>
                         
-                        <?php $uci_rankings->process_button(); ?>
+                        <p><a class="button button-primary" id="insert-rider-rankings" href="">Insert into DB</a></p>
                     </td>
                 </tr>
                 
