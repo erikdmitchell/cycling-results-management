@@ -18,86 +18,6 @@ class CRM_Riders {
     }
 
     /**
-     * get_rider function.
-     *
-     * @access public
-     * @param string $args (default: '')
-     * @return void
-     */
-    public function get_rider( $args = '' ) {
-        global $wpdb;
-
-        $default_args = array(
-            'rider_id' => 0,
-            'results' => false,
-            'last_result' => false,
-            'race_ids' => '',
-            'results_season' => '',
-            'ranking' => false,
-            'stats' => false,
-        );
-        $args = wp_parse_args( $args, $default_args );
-
-        extract( $args );
-
-        // if not an int, it's a slug //
-        if ( ! is_numeric( $rider_id ) ) {
-            $rider_id = uci_get_rider_id( $rider_id );
-        }
-
-        // last rider id check //
-        if ( ! $rider_id ) {
-            return false;
-        }
-
-        $rider = get_post( $rider_id );
-        $rider->results = '';
-        $rider->last_result = '';
-        $rider->rank = '';
-        $rider->stats = '';
-
-        // get results //
-        if ( $results ) :
-            $rider->results = uci_results_get_rider_results(
-                array(
-                    'rider_id' => $rider_id,
-                    'race_ids' => $race_ids,
-                    'season' => $results_season,
-                )
-            );
-            $rider->last_result = $this->rider_last_race_result( $rider_id );
-        endif;
-
-        // if no results, but last result //
-        if ( ! $results && $last_result ) {
-            $rider->last_result = $this->rider_last_race_result( $rider_id );
-        }
-
-        // get ranking //
-        if ( $ranking ) {
-            $rider->rank = $this->get_rider_rank( $rider_id );
-        }
-
-        // get stats //
-        if ( $stats ) {
-            $rider->stats = uci_results_get_rider_stats( $rider_id );
-        }
-
-        $rider->twitter = $this->get_twitter( $rider_id );
-
-        // nat (country) //
-        $countries = wp_get_post_terms( $rider_id, 'country', array( 'fields' => 'names' ) );
-
-        if ( isset( $countries[0] ) ) :
-            $rider->nat = $countries[0];
-        else :
-            $rider->nat = '';
-        endif;
-
-        return $rider;
-    }
-
-    /**
      * get_riders function.
      *
      * @access public
@@ -215,62 +135,8 @@ class CRM_Riders {
         return;
     }
 
-    /**
-     * get_rider_rank function.
-     *
-     * @access public
-     * @param int $rider_id (default: 0)
-     * @return void
-     */
     public function get_rider_rank( $rider_id = 0 ) {
-        global $wpdb;
-
-        if ( ! $rider_id ) {
-            return false;
-        }
-
-        $current_season = uci_results_get_current_season();
-        $prev_season = uci_results_get_previous_season();
-        $current_season_rank = $wpdb->get_row( "SELECT * FROM $wpdb->uci_results_rider_rankings WHERE season='$current_season->name' AND rider_id=$rider_id ORDER BY week DESC LIMIT 1" );
-
-        // check for current rank, else get prev season //
-        if ( null !== $current_season_rank ) :
-            $season = $current_season->name;
-            $rank = $current_season_rank;
-        else :
-            $season = $prev_season->name;
-            $rank = $wpdb->get_row( "SELECT * FROM $wpdb->uci_results_rider_rankings WHERE season='$prev_season->name' AND rider_id=$rider_id ORDER BY week DESC LIMIT 1" );
-        endif;
-
-        if ( empty( $rank ) ) {
-            return $this->blank_rank( $season );
-        }
-
-        // get prev week rank //
-        $prev_week = (int) $rank->week - 1;
-
-        $prev_week_rank = uci_results_get_rider_rank( $rider_id, $season, $prev_week );
-
-        // set icon based on change //
-        if ( $prev_week_rank === null ) :
-            $rank->status = '';
-        elseif ( $prev_week_rank == $rank->rank ) :
-            $rank->status = 'same';
-        elseif ( $prev_week_rank < $rank->rank ) :
-            $rank->status = 'down';
-        elseif ( $prev_week_rank > $rank->rank ) :
-            $rank->status = 'up';
-        else :
-            $rank->status = '';
-        endif;
-
-        // get actual rank amount //
-        $rank->prev_rank = $prev_week_rank;
-
-        // get max rank //
-        $rank->max = $wpdb->get_var( "SELECT MAX(rank) FROM $wpdb->uci_results_rider_rankings WHERE season='$season' AND week=$rank->week" );
-
-        return $rank;
+        return 0;
     }
 
     /**
