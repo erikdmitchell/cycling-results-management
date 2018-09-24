@@ -32,6 +32,17 @@ final class Cycling_Results_Management {
      * @access public
      */
     public $admin = '';
+    
+    
+    /**
+     * UCI rankings.
+     * 
+     * (default value: '')
+     * 
+     * @var string
+     * @access public
+     */
+    public $uci_rankings = '';
 
     /**
      * _instance
@@ -110,6 +121,7 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'classes/rider-rankings-query.php' ); // rider rankings query class
         include_once( CRM_PATH . 'classes/seasons.php' );
         include_once( CRM_PATH . 'admin/class-uci-rankings-admin.php' );
+        include_once( CRM_PATH . 'class-uci-rankings.php' );
 
         include_once( CRM_PATH . 'functions/ajax.php' ); // ajax functions
         include_once( CRM_PATH . 'functions/races.php' ); // races functions
@@ -165,6 +177,7 @@ final class Cycling_Results_Management {
         $this->rewrite_rules();
         
         $this->riders = new CRM_Riders();
+        $this->uci_rankings = new UCI_Rankings();
 
         if ( is_admin() ) :
             $this->admin = new CRM_Admin();
