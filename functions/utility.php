@@ -68,10 +68,21 @@ function curl_exec_utf8( $ch ) {
 }
 
 function crm_template_loader( $template ) {
-    global $post;
+    global $wp_query, $post;
 
     $located = false;
-    $template_slug = $post->post_type;
+    $template_slug = '';
+    
+    if (is_archive()) :
+        $obj = get_queried_object();
+        
+        if (isset($obj->taxonomy)) :
+            $template_slug = 'country';
+        endif; 
+    endif;
+    
+    if (isset($post->post_type))
+        $template_slug = $post->post_type;
 
     if (is_single())
         $template_slug = "$template_slug-single";
