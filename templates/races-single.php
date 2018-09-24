@@ -18,7 +18,7 @@ $race = crm_get_races(
 );
 ?>
 <pre>
-    <?php print_r($race); ?>
+    <?php print_r($post); ?>
 </pre>
 <div class="container crm-template crm-single-race">
 

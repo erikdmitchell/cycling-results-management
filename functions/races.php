@@ -74,7 +74,7 @@ function crm_get_races( $args = '' ) {
 }
 
 function crm_race_details( $race = '' ) {
-    $race->race_date = get_post_meta( $race->ID, '_race_date', true );
+    $race->race_date = get_post_meta( $race->ID, '_race_start', true );
     $race->nat = uci_race_country( $race->ID );
     $race->class = crm_race_class( $race->ID );
     $race->season = uci_race_season( $race->ID );

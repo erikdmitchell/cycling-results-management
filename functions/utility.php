@@ -73,6 +73,9 @@ function crm_template_loader( $template ) {
     $located = false;
     $template_slug = $post->post_type;
 
+    if (is_single())
+        $template_slug = "$template_slug-single";
+
     // check theme(s), then plugin.
     if ( file_exists( get_stylesheet_directory() . '/crm/' . $template_slug . '.php' ) ) :
         $located = get_stylesheet_directory() . '/crm/' . $template_slug . '.php';

@@ -44,7 +44,7 @@ function races_the_posts_details( $posts, $query ) {
     }
 
     foreach ( $posts as $post ) :
-        $post = uci_race_details( $post );
+        $post = crm_race_details( $post );
     endforeach;
 
     return $posts;
