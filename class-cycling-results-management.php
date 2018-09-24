@@ -34,6 +34,16 @@ final class Cycling_Results_Management {
     public $admin = '';
 
     /**
+     * DB
+     * 
+     * (default value: '').
+     * 
+     * @var string
+     * @access public
+     */
+    public $db = '';
+
+    /**
      * _instance
      *
      * (default value: null)
@@ -111,7 +121,7 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'classes/seasons.php' );
         include_once( CRM_PATH . 'class-uci-rankings.php' );
 
-        include_once( CRM_PATH . 'database.php' ); // sets up our db tables
+        include_once( CRM_PATH . 'class-crm-database.php' ); // sets up our db tables
         include_once( CRM_PATH . 'functions/ajax.php' ); // ajax functions
         include_once( CRM_PATH . 'functions/races.php' ); // races functions
         include_once( CRM_PATH . 'functions/riders.php' ); // riders functions
@@ -139,6 +149,8 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'disciplines/class-crm-discipline.php' );
 
         include_once( CRM_PATH . 'class-crm-install.php' );
+        
+        $this->db = new CRM_Database();
     }
 
     /**
