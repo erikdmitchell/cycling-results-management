@@ -137,7 +137,7 @@ function uci_pagination( $numpages = '', $pagerange = '', $paged = '' ) {
 }
 
 function crm_uci_rankings_url( $discipline = 'cyclocross', $date = '' ) {
-    $url = site_url(strtolower( $discipline ) . '/' . $date);
+    $url = site_url('uci-rankings/'.strtolower( $discipline ) . '/' . $date);
 
     echo $url;
 }
