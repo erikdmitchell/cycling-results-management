@@ -1,12 +1,11 @@
 <?php
-global $uci_riders;
 
 /**
- * UCIRiders class.
+ * CRM_Riders class.
  *
- * @since 0.1.0
+ * @since 1.0.0
  */
-class UCIRiders {
+class CRM_Riders {
 
     /**
      * __construct function.
@@ -306,6 +305,3 @@ class UCIRiders {
     }
 
 }
-
-$uci_riders = new UCIRiders();
-

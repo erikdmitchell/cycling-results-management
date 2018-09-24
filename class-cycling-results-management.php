@@ -106,7 +106,7 @@ final class Cycling_Results_Management {
      * @return void
      */
     public function includes() {
-        include_once( CRM_PATH . 'classes/riders.php' ); // our riders functions
+        include_once( CRM_PATH . 'classes/class-crm-riders.php' ); // our riders functions
         include_once( CRM_PATH . 'classes/rider-rankings-query.php' ); // rider rankings query class
         include_once( CRM_PATH . 'classes/seasons.php' );
         include_once( CRM_PATH . 'classes/uci-rankings.php' );
@@ -165,7 +165,8 @@ final class Cycling_Results_Management {
     public function init() {
         $this->load_files();
         $this->rewrite_rules();
-        $this->pages = get_option( 'crm_pages' );
+        
+        $this->riders = new CRM_Riders();
 
         if ( is_admin() ) :
             $this->admin = new CRM_Admin();
