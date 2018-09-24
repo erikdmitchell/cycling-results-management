@@ -35,20 +35,6 @@ class CRM_Admin {
         wp_enqueue_script( 'uci-results-admin', CRM_ADMIN_URL . '/js/admin.js', array( 'jquery' ), '0.1.0', true );
 
         wp_enqueue_style( 'uci-results-api-admin-styles', CRM_ADMIN_URL . 'css/admin.css', '0.1.0' );
-
-        if ( $hook == 'toplevel_page_uci-results' && isset( $_GET['subpage'] ) && $_GET['subpage'] == 'migration' ) :
-            if ( isset( $_GET['version'] ) ) :
-                switch ( $_GET['version'] ) :
-                    case '1_0_0':
-                        wp_enqueue_script( 'jquery-ui-progressbar' );
-                        wp_enqueue_script( 'uci-results-migration-0_2_0-script', CRM_ADMIN_URL . 'migration/v1-0-0/script.js', array( 'jquery-ui-progressbar' ), '0.1.0', true );
-
-                        wp_enqueue_style( 'uci-results-jquery-ui-css', "http://ajax.googleapis.com/ajax/libs/jqueryui/$jquery_ui_version/themes/ui-lightness/jquery-ui.min.css" );
-
-                        break;
-                endswitch;
-            endif;
-        endif;
     }
 
     /**
