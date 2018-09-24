@@ -1,6 +1,4 @@
 <?php
-//global $uci_results_add_races;
-
 
 class CRM_Add_Race_Results {
 
@@ -12,7 +10,7 @@ class CRM_Add_Race_Results {
      */
     public function __construct() {
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_styles' ) );
-        
+
         add_action( 'wp_ajax_process_csv_results', array( $this, 'ajax_process_results_csv' ) );
         add_action( 'wp_ajax_csv_add_results', array( $this, 'add_csv_results_to_race' ) );
     }
@@ -565,5 +563,4 @@ class CRM_Add_Race_Results {
 
 }
 
-//$uci_results_add_races = new UCIResultsAddRaces();
 new CRM_Add_Race_Results();
