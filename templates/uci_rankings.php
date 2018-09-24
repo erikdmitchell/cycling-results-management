@@ -32,7 +32,7 @@ $rankings = $uci_rankings->get_rankings(
     <?php foreach ( $rankings as $rank ) : ?>
         <div class="em-row">
             <div class="em-col-sm-2"><?php echo $rank->rank; ?></div>
-            <div class="em-col-sm-7"><a href="<?php echo uci_results_rider_url( $rank->rider_id ); ?>"><?php echo $rank->name; ?></a></div>
+            <div class="em-col-sm-7"><a href="<?php echo crm_rider_url( $rank->rider_id ); ?>"><?php echo $rank->name; ?></a></div>
             <div class="em-col-sm-3"><?php echo $rank->points; ?></div>         
         </div>
     <?php endforeach; ?>

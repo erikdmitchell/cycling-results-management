@@ -36,7 +36,7 @@ get_header(); ?>
                 <?php foreach ( $riders_chunk as $key => $chunk ) : ?>
                 <div class="em-col-md-4 col-<?php echo $key; ?> columns-<?php echo $columns; ?>">
                     <?php foreach ( $chunk as $arr ) : ?>
-                    <div class="rider-name"><a href="<?php echo uci_results_rider_url( $arr->post_name ); ?>"><?php echo $arr->post_title; ?></a></div>
+                    <div class="rider-name"><a href="<?php echo crm_rider_url( $arr->post_name ); ?>"><?php echo $arr->post_title; ?></a></div>
                     <?php endforeach; ?>
                 </div>
                 <?php endforeach; ?>

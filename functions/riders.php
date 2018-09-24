@@ -175,14 +175,7 @@ function uci_get_riders_by_rank( $args = '' ) {
     return $riders->posts;
 }
 
-/**
- * uci_results_rider_url function.
- *
- * @access public
- * @param string $slug (default: '')
- * @return void
- */
-function uci_results_rider_url( $slug = '' ) {
+function crm_rider_url( $slug = '' ) {
     global $uci_results_pages;
 
     if ( is_numeric( $slug ) ) :

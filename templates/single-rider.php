@@ -30,7 +30,7 @@ $rider = $uci_riders->get_rider(
             <div class="em-col-md-4 general">
                 <h1 class="page-title"><?php echo $rider->post_title; ?></h1>
 
-                <div class="country"><span class="">Nationality:</span> <a href="<?php echo uci_results_country_url( $rider->nat ); ?>"><?php echo uci_results_get_country_flag( $rider->nat ); ?></a></div>
+                <div class="country"><span class="">Nationality:</span> <a href="<?php echo crm_country_url( $rider->nat ); ?>"><?php echo uci_results_get_country_flag( $rider->nat ); ?></a></div>
             </div>
             
             <?php foreach ( $rider->stats as $slug => $stats ) : ?>

@@ -70,13 +70,13 @@ function uci_results_get_rider_rank( $rider_id = 0, $season = '', $week = '' ) {
 }
 
 /**
- * uci_results_country_url function.
+ * Get country URL
  *
  * @access public
  * @param string $slug (default: '')
  * @return void
  */
-function uci_results_country_url( $slug = '' ) {
+function crm_country_url( $slug = '' ) {
     global $uci_results_pages;
 
     $base_url = get_permalink( $uci_results_pages['country'] );
