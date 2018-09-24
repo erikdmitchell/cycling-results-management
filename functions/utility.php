@@ -72,8 +72,8 @@ function crm_template_loader( $template ) {
 
     $located = false;
     $template_slug = '';
-
-    // check archive //
+echo $template;
+    // check archive.
     if ( is_archive() ) :
         $template_slug = 'archive';
 
@@ -85,7 +85,7 @@ function crm_template_loader( $template ) {
         endforeach;
     endif;
 
-    // it's a page //
+    // it's a page.
     if ( is_page() ) :
         $template_slug = 'page';
 
@@ -97,7 +97,7 @@ function crm_template_loader( $template ) {
         endforeach;
     endif;
 
-    // check theme(s), then plugin //
+    // check theme(s), then plugin.
     if ( file_exists( get_stylesheet_directory() . '/uci-results/' . $template_slug . '.php' ) ) :
         $located = get_stylesheet_directory() . '/uci-results/' . $template_slug . '.php';
     elseif ( file_exists( get_template_directory() . '/uci-results/' . $template_slug . '.php' ) ) :
@@ -106,7 +106,7 @@ function crm_template_loader( $template ) {
         $located = CRM_PATH . 'templates/' . $template_slug . '.php';
     endif;
 
-    // we found a template //
+    // we found a template.
     if ( $located ) {
         $template = $located;
     }

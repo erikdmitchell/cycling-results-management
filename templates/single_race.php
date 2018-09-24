@@ -10,7 +10,7 @@
 get_header(); ?>
 
 <?php
-$race = uci_get_races(
+$race = crm_get_races(
     array(
         'id' => uci_get_race_id( get_query_var( 'race_code' ) ),
         'results' => true,

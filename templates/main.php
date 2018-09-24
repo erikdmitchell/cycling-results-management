@@ -20,7 +20,7 @@ $riders = $uci_rankings->get_rankings(
     )
 );
 
-$races = uci_get_races(
+$races = crm_get_races(
     array(
         'per_page' => 10,
     )

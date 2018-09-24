@@ -24,14 +24,7 @@ function uci_results_race_has_results( $code = '' ) {
     return false;
 }
 
-/**
- * uci_get_races function.
- *
- * @access public
- * @param string $args (default: '')
- * @return void
- */
-function uci_get_races( $args = '' ) {
+function crm_get_races( $args = '' ) {
     $default_args = array(
         'id' => '',
         'per_page' => -1,
@@ -94,7 +87,7 @@ function uci_get_races( $args = '' ) {
 function uci_race_details( $race = '' ) {
     $race->race_date = get_post_meta( $race->ID, '_race_date', true );
     $race->nat = uci_race_country( $race->ID );
-    $race->class = uci_race_class( $race->ID );
+    $race->class = crm_race_class( $race->ID );
     $race->season = uci_race_season( $race->ID );
     $race->series = uci_race_series( $race->ID );
 
