@@ -64,7 +64,7 @@ class CRM_Admin {
         add_menu_page( __( 'Cycling Results', 'crm' ), 'Cycling Results', $manage_options_cap, $parent_slug, array( $this, 'admin_page' ), 'dashicons-media-spreadsheet', 80 );
         add_submenu_page( $parent_slug, 'Riders', 'Riders', $manage_options_cap, 'edit.php?post_type=riders' );
         add_submenu_page( $parent_slug, 'Races', 'Races', $manage_options_cap, 'edit.php?post_type=races' );
-        add_submenu_page( $parent_slug, 'Countries', 'Countries', $manage_options_cap, 'edit-tags.php?taxonomy=country&post_type=races' );
+        add_submenu_page( $parent_slug, 'Countries', 'Countries', $manage_options_cap, 'edit-tags.php?taxonomy=crm_country' );
         add_submenu_page( $parent_slug, 'Class', 'Class', $manage_options_cap, 'edit-tags.php?taxonomy=race_class&post_type=races' );
         add_submenu_page( $parent_slug, 'Discipline', 'Discipline', $manage_options_cap, 'edit-tags.php?taxonomy=discipline&post_type=races' );
         add_submenu_page( $parent_slug, 'Series', 'Series', $manage_options_cap, 'edit-tags.php?taxonomy=series&post_type=races' );
@@ -72,7 +72,6 @@ class CRM_Admin {
         add_submenu_page( $parent_slug, 'Settings', 'Settings', $manage_options_cap, $parent_slug );
         add_submenu_page( $parent_slug, 'Rider Rankings', 'Rider Rankings', $manage_options_cap, 'admin.php?page=' . $parent_slug . '&subpage=rider-rankings' );
         add_submenu_page( $parent_slug, 'UCI Rankings', 'UCI Rankings', $manage_options_cap, 'admin.php?page=' . $parent_slug . '&subpage=uci-rankings' );
-        add_submenu_page( $parent_slug, 'WP CLI', 'WP CLI', $manage_options_cap, 'admin.php?page=' . $parent_slug . '&subpage=wpcli' );
     }
 
     /**
