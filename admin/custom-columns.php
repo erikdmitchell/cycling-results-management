@@ -9,9 +9,7 @@
 function set_custom_edit_riders_columns( $columns ) {
     unset( $columns['date'] );
 
-    $columns['country'] = __( 'Country', 'uci-results' );
-    $columns['twitter'] = __( 'Twitter', 'uci-results' );
-    // $columns['date'] = __('Date', 'uci-results');
+    $columns['country'] = __( 'Country', 'crm' );
     return $columns;
 }
 add_filter( 'manage_riders_posts_columns', 'set_custom_edit_riders_columns' );
@@ -27,17 +25,13 @@ add_filter( 'manage_riders_posts_columns', 'set_custom_edit_riders_columns' );
 function custom_riders_columns( $column, $post_id ) {
     switch ( $column ) :
         case 'country':
-            $terms = get_the_term_list( $post_id, 'country', '', ',', '' );
+            $terms = get_the_term_list( $post_id, 'crm_country', '', ',', '' );
 
             if ( is_string( $terms ) ) :
                 echo $terms;
             else :
-                _e( 'Unable to get country', 'uci-results' );
+                _e( 'Unable to get country', 'crm' );
             endif;
-            break;
-
-        case 'twitter':
-            echo get_post_meta( $post_id, '_rider_twitter', true );
             break;
     endswitch;
 }
