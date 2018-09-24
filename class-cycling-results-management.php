@@ -109,7 +109,7 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'class-crm-riders.php' ); // our riders functions
         include_once( CRM_PATH . 'classes/rider-rankings-query.php' ); // rider rankings query class
         include_once( CRM_PATH . 'classes/seasons.php' );
-        include_once( CRM_PATH . 'class-uci-rankings.php' );
+        include_once( CRM_PATH . 'admin/class-uci-rankings-admin.php' );
 
         include_once( CRM_PATH . 'functions/ajax.php' ); // ajax functions
         include_once( CRM_PATH . 'functions/races.php' ); // races functions
