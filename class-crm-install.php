@@ -64,15 +64,64 @@ class CRM_Install {
         // If we made it till here nothing is running yet, lets set the transient now.
         set_transient( 'crm_installing', 'yes', MINUTE_IN_SECONDS * 10 );
 
-        self::create_databse();
+        self::create_tables();
         self::update_version();
         self::update();
 
         delete_transient( 'crm_installing' );
     }
     
-    private function create_database() {
-        cycling_results_management()->db->install();
+    private static function create_tables() {
+        global $wpdb;
+        
+        $wpdb->hide_errors();
+            
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    
+        dbDelta(self::get_schema());
+    }
+    
+    private static function get_schema() {
+        global $wpdb;
+		
+		$collate = '';
+		
+		if ( $wpdb->has_cap( 'collation' ) ) {
+			$collate = $wpdb->get_charset_collate();
+		}
+		
+		$tables = "
+    		CREATE TABLE $wpdb->uci_results_rider_rankings (
+    		  id bigint(20) NOT NULL AUTO_INCREMENT,
+    			rider_id bigint(20) NOT NULL,
+    			points bigint(20) NOT NULL DEFAULT '0',
+    			season VARCHAR(50) NOT NULL,
+    			rank bigint(20) NOT NULL DEFAULT '0',
+    			week bigint(20) NOT NULL DEFAULT '0',
+    			PRIMARY KEY (`id`)
+    		) $charset;
+    	
+    		CREATE TABLE $wpdb->uci_results_related_races (			
+    			id bigint(20) NOT NULL AUTO_INCREMENT,
+    			race_id bigint(20) NOT NULL DEFAULT '0',
+    			related_race_id bigint(20) NOT NULL DEFAULT '0',
+    			PRIMARY KEY (`id`)
+    		) $charset;
+    
+    		CREATE TABLE $wpdb->uci_results_uci_rankings (
+    			id bigint(20) NOT NULL AUTO_INCREMENT,
+    			name TEXT NOT NULL,
+    			rider_id bigint(20) NOT NULL DEFAULT '0',
+    			rank bigint(20) NOT NULL DEFAULT '0',
+    			age bigint(20) NOT NULL DEFAULT '0',
+    			points bigint(20) NOT NULL DEFAULT '0',
+    			discipline bigint(20) NOT NULL DEFAULT '0',
+    			date DATE NOT NULL,
+    			PRIMARY KEY (`id`)
+    		) $charset;	
+		";
+
+		return $tables;  
     }
 
     /**
