@@ -174,7 +174,6 @@ final class Cycling_Results_Management {
      */
     public function init() {
         $this->load_files();
-        $this->rewrite_rules();
         
         $this->riders = new CRM_Riders();
         $this->uci_rankings = new UCI_Rankings();
