@@ -64,10 +64,15 @@ class CRM_Install {
         // If we made it till here nothing is running yet, lets set the transient now.
         set_transient( 'crm_installing', 'yes', MINUTE_IN_SECONDS * 10 );
 
+        self::create_databse();
         self::update_version();
         self::update();
 
         delete_transient( 'crm_installing' );
+    }
+    
+    private function create_database() {
+        cycling_results_management()->db->install();
     }
 
     /**
