@@ -27,14 +27,7 @@ function uci_get_riders( $args = '' ) {
     return $riders;
 }
 
-/**
- * uci_results_get_rider_results function.
- *
- * @access public
- * @param string $args (default: '')
- * @return void
- */
-function uci_results_get_rider_results( $args = '' ) {
+function crm_get_rider_results( $args = '' ) {
     $default_args = array(
         'rider_id' => 0,
         'race_ids' => '',
