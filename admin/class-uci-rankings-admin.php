@@ -15,7 +15,7 @@ class UCI_Rankings_Admin {
 
         $this->table_name = $wpdb->prefix . 'crm_uci_rankings';
         $this->primary_key = 'id';
-        $this->version = '1.0.0';
+        //$this->version = '1.0.0';
         //$this->last_update = get_option( 'uci_rankings_last_update', 0 );
 
         add_action( 'wp_ajax_uci_add_rider_rankings', array( $this, 'ajax_process_csv_file' ) );
@@ -34,11 +34,11 @@ class UCI_Rankings_Admin {
         global $wp_scripts;
 
         wp_enqueue_script( 'jquery-ui-datepicker' );
-        wp_enqueue_script( 'uci-rankings-script', CRM_ADMIN_URL . 'js/uci-rankings.js', array( 'jquery-ui-datepicker' ), $this->version );
+        wp_enqueue_script( 'uci-rankings-script', CRM_ADMIN_URL . 'js/uci-rankings.js', array( 'jquery-ui-datepicker' ), CRM_VERSION, true );
 
         wp_enqueue_style( 'jquery-ui-css', 'http://ajax.googleapis.com/ajax/libs/jqueryui/' . $wp_scripts->registered['jquery-ui-core']->ver . '/themes/ui-lightness/jquery-ui.min.css' );
 
-        //wp_enqueue_media();
+        wp_enqueue_media();
     }
 
     /**
@@ -53,7 +53,7 @@ class UCI_Rankings_Admin {
 
         $this->process_csv_file( $args );
 
-        echo '<div class="success">CSV file processed and inserted into db.</div>';
+        echo '<div class="notice notice-success is-dismissible">CSV file processed and inserted into db.</div>';
 
         wp_die();
     }

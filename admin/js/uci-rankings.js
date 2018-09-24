@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
 
 	    return false;
 	});	
-	
+
 	// insert ajax.
 	$('#insert-rider-rankings').on('click', function(e) {
 		e.preventDefault();

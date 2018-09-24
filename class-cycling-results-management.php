@@ -123,7 +123,6 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'admin/admin.php' ); // admin page
         include_once( CRM_PATH . 'admin/notices.php' ); // admin notices function
         include_once( CRM_PATH . 'admin/class-crm-add-race-results.php' ); // add races/results to db
-        include_once( CRM_PATH . 'admin/rider-rankings.php' ); // add and update rider rankings
         include_once( CRM_PATH . 'admin/custom-columns.php' ); // custom columns for our admin pages
 
         include_once( CRM_PATH . 'lib/name-parser.php' ); // a php nameparser
