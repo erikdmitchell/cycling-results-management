@@ -257,7 +257,7 @@ function uci_results_add_rider( $name = '', $country = '' ) {
 
         $rider_id = wp_insert_post( $rider_insert );
 
-        wp_set_object_terms( $rider_id, $country, 'country', false );
+        wp_set_object_terms( $rider_id, $country, 'crm_country', false );
     endif;
 
     return $rider_id;
