@@ -6,7 +6,7 @@
  */
 function crm_country_init() {
 	register_taxonomy( 'crm_country', array( 'riders', 'races' ), array(
-		'hierarchical'      => false,
+		'hierarchical'      => true,
 		'public'            => true,
 		'show_in_nav_menus' => true,
 		'show_ui'           => true,
