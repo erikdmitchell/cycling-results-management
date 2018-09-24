@@ -9,14 +9,6 @@
 
 get_header(); ?>
 
-<?php
-$race = crm_get_races(
-    array(
-        'id' => $post->ID,
-        'results' => true,
-    )
-);
-?>
 <pre>
     <?php print_r($post); ?>
 </pre>

@@ -29,14 +29,14 @@ function riders_the_posts_details( $posts, $query ) {
 add_action( 'the_posts', 'riders_the_posts_details', 10, 2 );
 
 /**
- * races_the_posts_details function.
+ * Append race details to races post
  *
  * @access public
  * @param mixed $posts
  * @param mixed $query
  * @return void
  */
-function races_the_posts_details( $posts, $query ) {
+function crm_races_post_details( $posts, $query ) {
     global $uci_riders;
 
     if ( $query->query_vars['post_type'] != 'races' ) {
@@ -45,9 +45,10 @@ function races_the_posts_details( $posts, $query ) {
 
     foreach ( $posts as $post ) :
         $post = crm_race_details( $post );
+        $post->results = uci_results_get_race_results( $post->ID );
     endforeach;
 
     return $posts;
 }
-add_action( 'the_posts', 'races_the_posts_details', 10, 2 );
+add_action( 'the_posts', 'crm_races_post_details', 10, 2 );
 
