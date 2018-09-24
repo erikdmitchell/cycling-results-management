@@ -24,16 +24,6 @@ final class Cycling_Results_Management {
     public $version = '1.0.0';
 
     /**
-     * pages
-     *
-     * (default value: array())
-     *
-     * @var array
-     * @access public
-     */
-    public $pages = array();
-
-    /**
      * admin
      *
      * (default value: '')
@@ -252,10 +242,6 @@ final class Cycling_Results_Management {
         $vars[] = 'rankings_discipline';
 
         return $vars;
-    }
-
-    private function get_pages() {
-
     }
 
 }

@@ -71,37 +71,13 @@ function crm_template_loader( $template ) {
     global $post;
 
     $located = false;
-    $template_slug = '';
-echo $template;
-    // check archive.
-    if ( is_archive() ) :
-        $template_slug = 'archive';
-
-        // see if this page matches our set pages.
-        foreach ( cycling_results_management()->pages as $slug => $id ) :
-            if ( get_post_type() == $slug ) :
-                $template_slug = $slug;
-            endif;
-        endforeach;
-    endif;
-
-    // it's a page.
-    if ( is_page() ) :
-        $template_slug = 'page';
-
-        // see if this page matches our set pages.
-        foreach ( cycling_results_management()->pages as $slug => $id ) :
-            if ( $post->ID == $id ) :
-                $template_slug = $slug;
-            endif;
-        endforeach;
-    endif;
+    $template_slug = $post->post_type;
 
     // check theme(s), then plugin.
-    if ( file_exists( get_stylesheet_directory() . '/uci-results/' . $template_slug . '.php' ) ) :
-        $located = get_stylesheet_directory() . '/uci-results/' . $template_slug . '.php';
-    elseif ( file_exists( get_template_directory() . '/uci-results/' . $template_slug . '.php' ) ) :
-        $located = get_template_directory() . '/uci-results/' . $template_slug . '.php';
+    if ( file_exists( get_stylesheet_directory() . '/crm/' . $template_slug . '.php' ) ) :
+        $located = get_stylesheet_directory() . '/crm/' . $template_slug . '.php';
+    elseif ( file_exists( get_template_directory() . '/crm/' . $template_slug . '.php' ) ) :
+        $located = get_template_directory() . '/crm/' . $template_slug . '.php';
     elseif ( file_exists( CRM_PATH . 'templates/' . $template_slug . '.php' ) ) :
         $located = CRM_PATH . 'templates/' . $template_slug . '.php';
     endif;
