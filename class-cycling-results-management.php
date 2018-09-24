@@ -174,6 +174,7 @@ final class Cycling_Results_Management {
      */
     public function init() {
         $this->load_files();
+        $this->rewrite_rules();
         
         $this->riders = new CRM_Riders();
         $this->uci_rankings = new UCI_Rankings();
@@ -218,6 +219,17 @@ final class Cycling_Results_Management {
                 include_once( $file );
             endforeach;
         endforeach;
+    }
+
+    public function rewrite_rules() {
+        add_rewrite_rule( 'uci-rankings/([^/]*)/([^/]*)/?', 'index.php?rankings_discipline=$matches[1]&rankings_date=$matches[2]', 'top' );
+    }
+
+    public function register_query_vars( $vars ) {
+        $vars[] = 'rankings_date';
+        $vars[] = 'rankings_discipline';
+
+        return $vars;
     }
 
 }
