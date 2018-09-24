@@ -1,13 +1,5 @@
 <?php
 
-/**
- * riders_the_posts_details function.
- *
- * @access public
- * @param mixed $posts
- * @param mixed $query
- * @return void
- */
 function riders_the_posts_details( $posts, $query ) {
     global $uci_riders;
 
