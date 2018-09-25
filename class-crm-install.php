@@ -114,10 +114,14 @@ class CRM_Install {
     		CREATE TABLE {$wpdb->prefix}crm_rider_rankings (
     		  id bigint(20) NOT NULL AUTO_INCREMENT,
     			rider_id bigint(20) NOT NULL,
-    			points bigint(20) NOT NULL DEFAULT '0',
+    			fantasy_points bigint(20) NOT NULL DEFAULT '0',
+    			fantasy_rank bigint(20) NOT NULL DEFAULT '0',
+                uci_points bigint(20) NOT NULL DEFAULT '0',
+    			uci_rank bigint(20) NOT NULL DEFAULT '0',    			
     			season VARCHAR(50) NOT NULL,
-    			rank bigint(20) NOT NULL DEFAULT '0',
-    			week bigint(20) NOT NULL DEFAULT '0',
+    			discipline VARCHAR(50) NOT NULL,
+    			wins bigint(20) NOT NULL DEFAULT '0',
+    			podiums bigint(20) NOT NULL DEFAULT '0',
     			PRIMARY KEY (`id`)
     		) $collate;
     	
