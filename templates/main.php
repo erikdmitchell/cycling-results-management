@@ -106,7 +106,7 @@ endif;
                     if ( count( $riders ) ) :
                         foreach ( $riders as $rider ) :
                             ?>
-                                                    <?php echo uci_get_template_part( 'uci-rankings-rider-row', $rider ); ?>
+                                                    <?php echo crm_get_template_part( 'uci-rankings-rider-row', $rider ); ?>
                                             <?php
                     endforeach;
 endif;

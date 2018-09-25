@@ -45,14 +45,14 @@ function crm_template_loader( $template ) {
 add_filter( 'template_include', 'crm_template_loader' );
 
 /**
- * uci_get_template_part function.
+ * crm_get_template_part function.
  *
  * @access public
  * @param string $template_name (default: '')
  * @param string $atts (default: '')
  * @return void
  */
-function uci_get_template_part( $template_name = '', $atts = '' ) {
+function crm_get_template_part( $template_name = '', $atts = '' ) {
     if ( empty( $template_name ) ) {
         return false;
     }
@@ -61,12 +61,12 @@ function uci_get_template_part( $template_name = '', $atts = '' ) {
 
     do_action( 'uci_results_get_template_part' . $template_name );
 
-    if ( file_exists( get_stylesheet_directory() . '/uci-results/' . $template_name . '.php' ) ) :
-        include( get_stylesheet_directory() . '/uci-results/' . $template_name . '.php' );
-    elseif ( file_exists( get_template_directory() . '/uci-results/' . $template_name . '.php' ) ) :
-        include( get_template_directory() . '/uci-results/' . $template_name . '.php' );
+    if ( file_exists( get_stylesheet_directory() . '/crm/' . $template_name . '.php' ) ) :
+        include( get_stylesheet_directory() . '/crm/' . $template_name . '.php' );
+    elseif ( file_exists( get_template_directory() . '/crm/' . $template_name . '.php' ) ) :
+        include( get_template_directory() . '/crm/' . $template_name . '.php' );
     else :
-        include( UCI_RESULTS_PATH . 'templates/' . $template_name . '.php' );
+        include( CRM_PATH . 'templates/' . $template_name . '.php' );
     endif;
 
     $html = ob_get_contents();
