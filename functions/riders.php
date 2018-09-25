@@ -354,19 +354,21 @@ function crm_get_rider_rankings($args = '') {
     
     $default_args = array(
         'posts_per_page' => 25,
-        'paged' => 0,
+        'offset' => 0,
         'discipline' => 'cyclocross',
         'season' => '20172018',
     );
     $args =wp_parse_args($args, $default_args);
     
-    if ($args['paged'] >= 1) :
-        $limit = $args['posts_per_page'] . ',' . $args['paged'];
+    if (-1 == $args['posts_per_page']) :
+        $limit = '';
+    elseif ($args['offset'] >= 1) :
+        $limit = 'LIMIT '.$args['posts_per_page'] . ',' . $args['offset'];
     else :
-        $limit = $args['posts_per_page'];
+        $limit = 'LIMIT '.$args['posts_per_page'];
     endif;
     
-    $db_results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '".$args['discipline']."' AND season = '".$args['season']."' ORDER BY rank LIMIT $limit");
+    $db_results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '".$args['discipline']."' AND season = '".$args['season']."' ORDER BY rank $limit");
     
     // append name and nat.
     foreach ($db_results as $rider) :
@@ -374,7 +376,7 @@ function crm_get_rider_rankings($args = '') {
         $rider->nat = uci_get_first_term( $rider->rider_id, 'crm_country' );
     endforeach;
     
-    return $db_results;    
+    return $db_results;   
 }
 
 function crm_get_rider_name($rider_id = 0) {

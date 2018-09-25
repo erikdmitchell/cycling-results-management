@@ -179,4 +179,3 @@ function uci_results_uci_rankings_list_dropdown( $args = '' ) {
 
     return $html;
 }
-
