@@ -45,19 +45,19 @@ $rider = $uci_riders->get_rider(
                 <div class="em-col-md-4 championships">
                     <h4>Championships</h4>
     
-                    <div class="world-titles"><span class="">World Titles:</span> <?php uci_results_display_total( $stats->world_champs ); ?></div>
-                    <div class="world-cup-titles"><span class="">World Cup Titles:</span> <?php uci_results_display_total( $stats->world_cup_titles ); ?></div>
-                    <div class="superprestige-titles"><span class="">Superprestige Titles:</span> <?php uci_results_display_total( $stats->superprestige_titles ); ?></div>
-                    <div class="bpost-bank-titles"><span class="">Gva/BPost Bank Titles:</span> <?php uci_results_display_total( $stats->gva_bpost_bank_titles ); ?></div>
+                    <div class="world-titles"><span class="">World Titles:</span> <?php crm_display_total( $stats->world_champs ); ?></div>
+                    <div class="world-cup-titles"><span class="">World Cup Titles:</span> <?php crm_display_total( $stats->world_cup_titles ); ?></div>
+                    <div class="superprestige-titles"><span class="">Superprestige Titles:</span> <?php crm_display_total( $stats->superprestige_titles ); ?></div>
+                    <div class="bpost-bank-titles"><span class="">Gva/BPost Bank Titles:</span> <?php crm_display_total( $stats->gva_bpost_bank_titles ); ?></div>
                 </div>
                 <div class="em-col-md-4 top-results">
                     <h4>Top Results</h4>
     
-                    <div class="wins"><span class="">Wins:</span> <?php uci_results_display_total( $stats->wins ); ?></div>
-                    <div class="podiums"><span class="">Podiums:</span> <?php uci_results_display_total( $stats->podiums ); ?></div>
-                    <div class="world-cup-wins"><span class="">World Cup Wins:</span> <?php uci_results_display_total( $stats->world_cup_wins ); ?></div>
-                    <div class="superprestige-wins"><span class="">Superprestige Wins:</span> <?php uci_results_display_total( $stats->superprestige_wins ); ?></div>
-                    <div class="bpost-bank-wins"><span class="">GvA/BPost Bank Wins:</span> <?php uci_results_display_total( $stats->gva_bpost_bank_wins ); ?></div>
+                    <div class="wins"><span class="">Wins:</span> <?php crm_display_total( $stats->wins ); ?></div>
+                    <div class="podiums"><span class="">Podiums:</span> <?php crm_display_total( $stats->podiums ); ?></div>
+                    <div class="world-cup-wins"><span class="">World Cup Wins:</span> <?php crm_display_total( $stats->world_cup_wins ); ?></div>
+                    <div class="superprestige-wins"><span class="">Superprestige Wins:</span> <?php crm_display_total( $stats->superprestige_wins ); ?></div>
+                    <div class="bpost-bank-wins"><span class="">GvA/BPost Bank Wins:</span> <?php crm_display_total( $stats->gva_bpost_bank_wins ); ?></div>
                 </div>
             <?php endforeach; ?>
         </div>

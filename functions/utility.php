@@ -112,13 +112,13 @@ function uci_results_format_size( $size = '' ) {
 }
 
 /**
- * uci_results_display_total function.
+ * crm_display_total function.
  *
  * @access public
  * @param array $arr (default: array())
  * @return void
  */
-function uci_results_display_total( $arr = array() ) {
+function crm_display_total( $arr = array() ) {
     if ( ! $arr || empty( $arr ) ) :
         echo 0;
     else :
