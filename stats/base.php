@@ -32,7 +32,7 @@ class UCIRiderStats {
             'discipline' => '',
             'options' => array(),
         );
-        $args = uci_results_parse_args( $args, $default_args );
+        $args = crm_parse_args( $args, $default_args );
 
         $this->id = $args['id'];
         $this->name = $args['name'];
