@@ -1,22 +1,7 @@
-<?php
-$rider_rankings=crm_get_rider_rankings();
-?>
+<?php $rider_rankings=crm_get_rider_rankings(array('posts_per_page' => -1)); ?>
+
 <div class="crm-rider-rankings">
     <h2>Rider Rankings</h2>
-
-    <div class="tablenav top">
-        <div class="pagination">
-            Pagination
-        </div>
-
-        <form id="rankings-filter" name="rankings-filter" method="get" action="">
-            <?php wp_nonce_field('filter-rider-rankings', 'crm-rider-rankings'); ?>
-            
-            FILTERS
-
-            <input type="submit" id="doaction" class="button action" value="Apply">
-        </form>
-    </div>
 
     <table class="wp-list-table widefat fixed striped riders">
         <thead>
@@ -39,5 +24,4 @@ $rider_rankings=crm_get_rider_rankings();
         </tbody>
     </table>
 
-    Pagination
 </div>
