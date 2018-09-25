@@ -210,20 +210,6 @@ function uci_get_rider_id_by_name( $name = '' ) {
 }
 
 /**
- * uci_results_rider_rankings_url function.
- *
- * @access public
- * @return void
- */
-function uci_results_rider_rankings_url() {
-    global $uci_results_pages;
-
-    $url = get_permalink( $uci_results_pages['riders'] );
-
-    echo $url;
-}
-
-/**
  * uci_results_add_rider function.
  *
  * @access public
