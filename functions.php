@@ -33,7 +33,7 @@ function uci_get_country_dropdown( $name = 'country', $selected = '' ) {
     $html = null;
     $countries = get_terms(
         array(
-            'taxonomy' => 'country',
+            'taxonomy' => 'crm_country',
             'hide_empty' => false,
         )
     );
@@ -46,27 +46,6 @@ function uci_get_country_dropdown( $name = 'country', $selected = '' ) {
     $html .= '</select>';
 
     return $html;
-}
-
-/**
- * uci_results_get_rider_rank function.
- *
- * @access public
- * @param int    $rider_id (default: 0)
- * @param string $season (default: '')
- * @param string $week (default: '')
- * @return void
- */
-function uci_results_get_rider_rank( $rider_id = 0, $season = '', $week = '' ) {
-    global $wpdb;
-
-    $rank = $wpdb->get_var( "SELECT rank FROM $wpdb->uci_results_rider_rankings WHERE rider_id=$rider_id AND season='$season' AND week=$week" );
-
-    if ( ! $rank ) {
-        $rank = 0;
-    }
-
-    return $rank;
 }
 
 /**
@@ -140,42 +119,4 @@ function crm_uci_rankings_url( $discipline = 'cyclocross', $date = '' ) {
     $url = site_url( 'uci-rankings/' . strtolower( $discipline ) . '/' . $date );
 
     echo $url;
-}
-
-/**
- * uci_results_uci_rankings_list_dropdown function.
- *
- * @access public
- * @param string $args (default: '')
- * @return void
- */
-function uci_results_uci_rankings_list_dropdown( $args = '' ) {
-    global $uci_rankings;
-
-    $default_args = array(
-        'echo' => true,
-        'selected' => '',
-    );
-    $args = wp_parse_args( $args, $default_args );
-    $html = '';
-    $dates = $uci_rankings->get_rankings_dates();
-
-    if ( empty( $dates ) ) {
-        return;
-    }
-
-    $html .= '<select name="fc_rankings_list_date">';
-        $html .= '<option value="0">Select Date</option>';
-
-    foreach ( $dates as $date ) :
-        $html .= '<option value="' . $date->date . '" ' . selected( $args['selected'], $date->date, false ) . '>' . date( get_option( 'date_format' ), strtotime( $date->date ) ) . ' (' . $date->discipline . ')</option>';
-        endforeach;
-
-    $html .= '</select>';
-
-    if ( $args['echo'] ) {
-        echo $html;
-    }
-
-    return $html;
 }
