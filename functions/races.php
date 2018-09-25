@@ -410,23 +410,6 @@ function uci_results_races_url() {
 }
 
 /**
- * uci_get_race_id function.
- *
- * @access public
- * @param string $slug (default: '')
- * @return void
- */
-function uci_get_race_id( $slug = '' ) {
-    $race = get_page_by_path( $slug, OBJECT, 'races' );
-
-    if ( isset( $race->ID ) ) {
-        return $race->ID;
-    }
-
-    return false;
-}
-
-/**
  * CRM get race discipline.
  *
  * @access public
