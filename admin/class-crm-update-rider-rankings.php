@@ -21,6 +21,7 @@ class CRM_Update_Rider_Rankings {
     protected function update() {
         global $wpdb;
 
+        // update individual riders.
         foreach ($this->results as $result) :
             $discipline = $this->race->discipline;
             $season = $this->race->season;
@@ -68,8 +69,9 @@ class CRM_Update_Rider_Rankings {
                 $wpdb->update( $this->table, $data, $where);
             endif; 
         
-        endforeach;       
-
+        endforeach;
+        
+        $this->update_rank($discipline, $season);
     }
     
     private function get_rider_results_data($rider_id = 0, $race_ids = array()) {
@@ -113,6 +115,24 @@ class CRM_Update_Rider_Rankings {
             return true;
             
         return false;
+    }
+    
+    private function update_rank($discipline = '', $season = '') {
+        global $wpdb;
+        
+        if (empty($discipline) || empty($season))
+            return;
+            
+        $rank = 1;
+        $rows = $wpdb->get_results("SELECT * FROM $this->table WHERE discipline = '$discipline' AND season = '$season' ORDER BY points DESC");
+        
+        foreach ($rows as $row) {
+            $data = array('rank' => $rank);
+            $where = array('id' => $row->id);
+            $wpdb->update( $this->table, $data, $where);
+            
+            $rank ++;
+        }
     }
         
 }
