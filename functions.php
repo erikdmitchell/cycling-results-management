@@ -1,13 +1,13 @@
 <?php
 /**
- * uci_get_first_term function.
+ * crm_get_first_term function.
  *
  * @access public
  * @param int    $post_id (default: 0)
  * @param string $taxonomy (default: '')
  * @return void
  */
-function uci_get_first_term( $post_id = 0, $taxonomy = '' ) {
+function crm_get_first_term( $post_id = 0, $taxonomy = '' ) {
     $terms = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'names' ) );
 
     if ( is_wp_error( $terms ) ) {
