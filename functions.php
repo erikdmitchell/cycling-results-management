@@ -62,7 +62,7 @@ function crm_country_url( $slug = '' ) {
 }
 
 /**
- * uci_pagination function.
+ * crm_pagination function.
  *
  * @access public
  * @param string $numpages (default: '')
@@ -70,7 +70,7 @@ function crm_country_url( $slug = '' ) {
  * @param string $paged (default: '')
  * @return void
  */
-function uci_pagination( $numpages = '', $pagerange = '', $paged = '' ) {
+function crm_pagination( $numpages = '', $pagerange = '', $paged = '' ) {
     global $paged;
 
     $html = null;

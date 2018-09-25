@@ -47,7 +47,7 @@ endif;
         ?>
     </div>
 
-    <?php uci_pagination( $riders->max_num_pages ); ?>
+    <?php crm_pagination( $riders->max_num_pages ); ?>
 
     <?php wp_reset_postdata(); ?>
 </div>

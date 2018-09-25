@@ -49,7 +49,7 @@ endif;
 
     </div>
 
-    <?php uci_pagination( $races->max_num_pages ); ?>
+    <?php crm_pagination( $races->max_num_pages ); ?>
 </div>
 
 <?php get_footer(); ?>
