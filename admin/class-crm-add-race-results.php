@@ -146,26 +146,6 @@ class CRM_Add_Race_Results {
     }
 
     /**
-     * get_race_week function.
-     *
-     * @access public
-     * @param string $date (default: '')
-     * @param string $season (default: '')
-     * @return void
-     */
-    public function get_race_week( $date = '', $season = '' ) {
-        global $uci_results_seasons;
-
-        $season_weeks = $uci_results_seasons->get_season_weeks( $season );
-
-        if ( empty( $season_weeks ) ) {
-            return 0;
-        }
-
-        return $this->get_week_of_date( $date, $season_weeks );
-    }
-
-    /**
      * get_week_of_date function.
      *
      * @access public
