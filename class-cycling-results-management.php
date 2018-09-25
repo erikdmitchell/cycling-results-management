@@ -126,11 +126,11 @@ final class Cycling_Results_Management {
 
         include_once( CRM_PATH . 'class-uci-rankings.php' );
 
-        include_once( CRM_PATH . 'functions/ajax.php' ); // ajax functions
+
         include_once( CRM_PATH . 'functions/races.php' ); // races functions
         include_once( CRM_PATH . 'functions/riders.php' ); // riders functions
         include_once( CRM_PATH . 'functions/search.php' ); // search functions
-        include_once( CRM_PATH . 'functions/seasons.php' ); // seasons functions
+
         include_once( CRM_PATH . 'functions/utility.php' ); // utility functions
         include_once( CRM_PATH . 'functions/wp-query.php' ); // modify wp query functions
         include_once( CRM_PATH . 'functions.php' ); // generic functions
