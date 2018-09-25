@@ -349,3 +349,34 @@ function uci_results_get_uci_rank( $rider_id = 0, $discipline = '' ) {
     return $uci_rankings->get_rank( $rider_id, $discipline );
 }
 
+function crm_get_rider_rankings($args = '') {
+    global $wpdb;
+    
+    $default_args = array(
+        'posts_per_page' => 25,
+        'paged' => 0,
+        'discipline' => 'cyclocross',
+        'season' => '20172018',
+    );
+    $args =wp_parse_args($args, $default_args);
+    
+    if ($args['paged'] >= 1) :
+        $limit = $args['posts_per_page'] . ',' . $args['paged'];
+    else :
+        $limit = $args['posts_per_page'];
+    endif;
+    
+    $db_results = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '".$args['discipline']."' AND season = '".$args['season']."' ORDER BY rank LIMIT $limit");
+    
+    // append name and nat.
+    foreach ($db_results as $rider) :
+        $rider->name = crm_get_rider_name($rider->rider_id);
+        $rider->nat = uci_get_first_term( $rider->rider_id, 'crm_country' );
+    endforeach;
+    
+    return $db_results;    
+}
+
+function crm_get_rider_name($rider_id = 0) {
+    return get_the_title($rider_id);
+}

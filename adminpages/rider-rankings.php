@@ -1,43 +1,18 @@
 <?php
-global $rider_rankings_post;
-
-$search = isset( $_GET['search'] ) ? $_GET['search'] : '';
-$season = isset( $_GET['season'] ) ? $_GET['season'] : '20162017';
-$week = isset( $_GET['week'] ) ? $_GET['week'] : 1;
-$nat = isset( $_GET['nat'] ) ? $_GET['nat'] : '';
-
-$riders = new RiderRankingsQuery(
-    array(
-        'season' => $season,
-        'week' => $week,
-        'nat' => $nat,
-    )
-);
+$rider_rankings=crm_get_rider_rankings();
 ?>
-
-<div class="ucicurl-rider-rankings">
-    <h2>Rider Rankings <span class="ucicurl-admin-total">(<?php echo $riders->found_posts; ?>)</span></h2>
+<div class="crm-rider-rankings">
+    <h2>Rider Rankings</h2>
 
     <div class="tablenav top">
         <div class="pagination">
-            <?php uci_rider_rankings_admin_pagination(); ?>
+            Pagination
         </div>
 
         <form id="rankings-filter" name="rankings-filter" method="get" action="">
-            <input type="hidden" name="page" value="uci-results">
-            <input type="hidden" name="subpage" value="rider-rankings">
-
-            <div class="alignleft actions">
-                <?php echo uci_get_race_seasons_dropdown( 'season', $season ); ?>
-            </div>
-
-            <div class="alignleft actions">
-                <?php echo uci_get_season_weeks_dropdown( $season, $week ); ?>
-            </div>
-
-            <div class="alignleft actions">
-                <?php echo uci_get_country_dropdown( 'nat', $nat ); ?>
-            </div>
+            <?php wp_nonce_field('filter-rider-rankings', 'crm-rider-rankings'); ?>
+            
+            FILTERS
 
             <input type="submit" id="doaction" class="button action" value="Apply">
         </form>
@@ -48,28 +23,21 @@ $riders = new RiderRankingsQuery(
             <tr>
                 <th scope="col" class="rider-rank">Rank</th>
                 <th scope="col" class="rider-name">Name</th>
-                <th scope="col" class="rider-nat">Nat.</th>
                 <th scope="col" class="rider-points">Points</th>
+                <th scope="col" class="rider-nat">Nat.</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            if ( $riders->have_posts() ) :
-                while ( $riders->have_posts() ) :
-                    $riders->the_post();
-                    ?>
+            <?php foreach ($rider_rankings as $rider) : ?>
                 <tr>
-                    <td class="rider-rank"><?php echo $rider_rankings_post->rank; ?></td>
-                    <td class="rider-name"><a href="<?php echo admin_url( 'admin.php?page=uci-results&tab=riders&rider=' . urlencode( $rider_rankings_post->post_name ) ); ?>"><?php echo $rider_rankings_post->post_title; ?></a></td>
-                    <td class="rider-nat"><?php echo $rider_rankings_post->nat; ?></td>
-                    <td class="rider-points"><?php echo $rider_rankings_post->points; ?></td>
+                    <td class="rider-rank"><?php echo $rider->rank; ?></td>
+                    <td class="rider-name"><a href="<?php echo admin_url( 'admin.php?page=uci-results&tab=riders&rider=' . urlencode( $rider->name ) ); ?>"><?php echo $rider->name; ?></a></td>
+                    <td class="rider-points"><?php echo $rider->points; ?></td>
+                    <td class="rider-nat"><?php echo $rider->nat; ?></td>
                 </tr>
-                            <?php
-            endwhile;
-endif;
-            ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 
-    <?php uci_rider_rankings_admin_pagination(); ?>
+    Pagination
 </div>
