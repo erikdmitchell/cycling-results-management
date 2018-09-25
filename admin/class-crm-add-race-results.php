@@ -146,34 +146,6 @@ class CRM_Add_Race_Results {
     }
 
     /**
-     * get_week_of_date function.
-     *
-     * @access public
-     * @param string $date (default: '')
-     * @param array  $weeks (default:'')
-     * @return void
-     */
-    public function get_week_of_date( $date = '', $weeks = '' ) {
-        if ( empty( $weeks ) ) {
-            return;
-        }
-
-        // cycle through weeks and if date falls in there, return the week //
-        foreach ( $weeks as $week ) :
-            $week_start = strtotime( $week->start );
-            $week_end = strtotime( $week->end );
-            $date_raw = strtotime( $date );
-
-            if ( $date_raw >= $week_start && $date_raw <= $week_end ) {
-                return $week->week;
-            }
-
-        endforeach;
-
-        return 0;
-    }
-
-    /**
      * add_race_results_to_db function.
      *
      * @access public
