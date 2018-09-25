@@ -121,8 +121,6 @@ final class Cycling_Results_Management {
     public function includes() {
         include_once( CRM_PATH . 'class-crm-riders.php' ); // our riders functions
 
-        include_once( CRM_PATH . 'classes/rider-rankings-query.php' ); // rider rankings query class
-
         include_once( CRM_PATH . 'admin/class-uci-rankings-admin.php' );
         include_once( CRM_PATH . 'admin/class-crm-update-rider-rankings.php' );
 
