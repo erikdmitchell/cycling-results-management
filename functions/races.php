@@ -282,21 +282,6 @@ function uci_race_has_results( $race_id = 0 ) {
 }
 
 /**
- * uci_get_race_twitter function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
-function uci_get_race_twitter( $race_id = 0 ) {
-    if ( empty( $race_id ) ) {
-        return false;
-    }
-
-    return get_post_meta( $race_id, '_race_twitter', true );
-}
-
-/**
  * uci_get_related_races function.
  *
  * @access public
