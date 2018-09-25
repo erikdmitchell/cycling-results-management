@@ -1,4 +1,4 @@
-<?php $rider_rankings=crm_get_rider_rankings(array('posts_per_page' => -1)); ?>
+<?php $rider_rankings = crm_get_rider_rankings( array( 'posts_per_page' => -1 ) ); ?>
 
 <div class="crm-rider-rankings">
     <h2>Rider Rankings</h2>
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($rider_rankings as $rider) : ?>
+            <?php foreach ( $rider_rankings as $rider ) : ?>
                 <tr>
                     <td class="rider-rank"><?php echo $rider->rank; ?></td>
                     <td class="rider-name"><a href="<?php echo admin_url( 'admin.php?page=uci-results&tab=riders&rider=' . urlencode( $rider->name ) ); ?>"><?php echo $rider->name; ?></a></td>
