@@ -125,7 +125,7 @@ final class Cycling_Results_Management {
 
         include_once( CRM_PATH . 'admin/class-uci-rankings-admin.php' );
         include_once( CRM_PATH . 'admin/class-crm-update-rider-rankings.php' );
-        
+
         include_once( CRM_PATH . 'class-uci-rankings.php' );
 
         include_once( CRM_PATH . 'functions/ajax.php' ); // ajax functions

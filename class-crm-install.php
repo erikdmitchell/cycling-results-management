@@ -20,8 +20,8 @@ class CRM_Install {
      */
     private static $db_updates = array(
         '1.1.0' => array(
-            'crm_update_110_rider_rankings', 
-            'crm_update_110_db_version',   
+            'crm_update_110_rider_rankings',
+            'crm_update_110_db_version',
         ),
     );
 

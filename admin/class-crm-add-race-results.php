@@ -173,8 +173,8 @@ class CRM_Add_Race_Results {
 
         // update race results.
         update_post_meta( $race->race_id, '_races_results', 1 );
-        
-        $update_rider_rankings = new CRM_Update_Rider_Rankings($race, $updated_results);
+
+        $update_rider_rankings = new CRM_Update_Rider_Rankings( $race, $updated_results );
 
         do_action( 'crm_updated_results_' . $race->discipline, $race, $updated_results, $results );
 
@@ -456,7 +456,7 @@ class CRM_Add_Race_Results {
         $race = get_post( $formdata['race']['race_id'] );
         $race->race_id = $race->ID;
         $race->discipline = crm_get_race_discipline( $race->ID );
-        $race->season = crm_get_race_season($race->ID);
+        $race->season = crm_get_race_season( $race->ID );
         $this->add_race_results_to_db( $race, $results );
 
         echo admin_url( 'post.php?post=' . $formdata['race']['race_id'] . '&action=edit' );

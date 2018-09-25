@@ -121,7 +121,7 @@ function crm_get_rider_results( $args = '' ) {
             'type' => 'DATE',
         );
     }
-print_r($results_args_meta);
+    print_r( $results_args_meta );
     $race_ids = get_posts( $results_args_meta );
 
     foreach ( $race_ids as $race_id ) :
