@@ -22,33 +22,6 @@ function uci_get_first_term( $post_id = 0, $taxonomy = '' ) {
 }
 
 /**
- * uci_get_country_dropdown function.
- *
- * @access public
- * @param string $name (default: 'country')
- * @param string $selected (default: '')
- * @return void
- */
-function uci_get_country_dropdown( $name = 'country', $selected = '' ) {
-    $html = null;
-    $countries = get_terms(
-        array(
-            'taxonomy' => 'crm_country',
-            'hide_empty' => false,
-        )
-    );
-
-    $html .= '<select id="' . $name . '" name="' . $name . '" class="' . $name . '">';
-        $html .= '<option value="0">-- Select Country --</option>';
-    foreach ( $countries as $country ) :
-        $html .= '<option value="' . $country->slug . '" ' . selected( $selected, $country->slug, false ) . '>' . $country->name . '</option>';
-            endforeach;
-    $html .= '</select>';
-
-    return $html;
-}
-
-/**
  * Get country URL
  *
  * @access public
