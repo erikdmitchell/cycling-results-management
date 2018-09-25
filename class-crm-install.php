@@ -114,10 +114,8 @@ class CRM_Install {
     		CREATE TABLE {$wpdb->prefix}crm_rider_rankings (
     		  id bigint(20) NOT NULL AUTO_INCREMENT,
     			rider_id bigint(20) NOT NULL,
-    			fantasy_points bigint(20) NOT NULL DEFAULT '0',
-    			fantasy_rank bigint(20) NOT NULL DEFAULT '0',
-                uci_points bigint(20) NOT NULL DEFAULT '0',
-    			uci_rank bigint(20) NOT NULL DEFAULT '0',    			
+                points bigint(20) NOT NULL DEFAULT '0',
+    			rank bigint(20) NOT NULL DEFAULT '0',    			
     			season VARCHAR(50) NOT NULL,
     			discipline VARCHAR(50) NOT NULL,
     			wins bigint(20) NOT NULL DEFAULT '0',
