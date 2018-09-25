@@ -373,33 +373,6 @@ function uci_get_related_race_id( $race_id = 0 ) {
 }
 
 /**
- * uci_get_race_seasons_dropdown function.
- *
- * @access public
- * @param string $name (default: 'season')
- * @param string $selected (default: '')
- * @return void
- */
-function uci_get_race_seasons_dropdown( $name = 'season', $selected = '' ) {
-    $html = null;
-    $seasons = get_terms(
-        array(
-            'taxonomy' => 'season',
-            'hide_empty' => false,
-        )
-    );
-
-    $html .= '<select id="' . $name . '" name="' . $name . '" class="' . $name . '">';
-        $html .= '<option value="0">-- Select Season --</option>';
-    foreach ( $seasons as $season ) :
-        $html .= '<option value="' . $season->slug . '" ' . selected( $selected, $season->slug, false ) . '>' . $season->name . '</option>';
-            endforeach;
-    $html .= '</select>';
-
-    return $html;
-}
-
-/**
  * uci_results_race_url function.
  *
  * @access public
