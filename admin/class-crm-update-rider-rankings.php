@@ -1,10 +1,49 @@
 <?php
     
+/**
+ * CRM_Update_Rider_Rankings class.
+ */
 class CRM_Update_Rider_Rankings {
+    
+    /**
+     * race
+     * 
+     * (default value: '')
+     * 
+     * @var string
+     * @access protected
+     */
     protected $race = '';
+    
+    /**
+     * results
+     * 
+     * (default value: '')
+     * 
+     * @var string
+     * @access protected
+     */
     protected $results = '';
+    
+    /**
+     * table
+     * 
+     * (default value: '')
+     * 
+     * @var string
+     * @access private
+     */
     private $table = '';
     
+    
+    /**
+     * __construct function.
+     * 
+     * @access public
+     * @param string $race (default: '')
+     * @param string $results (default: '')
+     * @return void
+     */
     public function __construct($race = '', $results = '') {
         global $wpdb;
         
@@ -18,6 +57,13 @@ class CRM_Update_Rider_Rankings {
         $this->update();
     }
     
+    
+    /**
+     * Update.
+     * 
+     * @access protected
+     * @return void
+     */
     protected function update() {
         global $wpdb;
 
@@ -74,6 +120,14 @@ class CRM_Update_Rider_Rankings {
         $this->update_rank($discipline, $season);
     }
     
+    /**
+     * Get rider results data from db.
+     * 
+     * @access private
+     * @param int $rider_id (default: 0)
+     * @param array $race_ids (default: array())
+     * @return void
+     */
     private function get_rider_results_data($rider_id = 0, $race_ids = array()) {
         global $wpdb;
         
@@ -103,6 +157,13 @@ class CRM_Update_Rider_Rankings {
         return $data;
     }
     
+    /**
+     * Check if place is win.
+     * 
+     * @access private
+     * @param int $place (default: 0)
+     * @return void
+     */
     private function is_win($place = 0) {
         if (1 == $place)
             return true;
@@ -110,6 +171,13 @@ class CRM_Update_Rider_Rankings {
         return false;        
     }
     
+    /**
+     * Check if place is podium.
+     * 
+     * @access private
+     * @param int $place (default: 0)
+     * @return void
+     */
     private function is_podium($place = 0) {
         if ($place >= 1 && $place <=3)
             return true;
@@ -117,6 +185,14 @@ class CRM_Update_Rider_Rankings {
         return false;
     }
     
+    /**
+     * Update overall rank in db.
+     * 
+     * @access private
+     * @param string $discipline (default: '')
+     * @param string $season (default: '')
+     * @return void
+     */
     private function update_rank($discipline = '', $season = '') {
         global $wpdb;
         
