@@ -458,3 +458,13 @@ function crm_get_race_discipline( $race_id = 0 ) {
     return;
 }
 
+function crm_get_race_season( $race_id = 0 ) {
+    $seasons = wp_get_post_terms( $race_id, 'season' );
+
+    if ( isset( $seasons[0] ) ) {
+        return $seasons[0]->slug;
+    }
+
+    return;
+}
+

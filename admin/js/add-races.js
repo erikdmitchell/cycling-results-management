@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
 		$.post(ajaxurl, data, function(url) {
 			hideLoader();
 				
-			window.location.replace(url);
+			//window.location.replace(url);
 		});	
 	});
 		

@@ -146,7 +146,7 @@ class CRM_Add_Race_Results {
     }
 
     /**
-     * add_race_results_to_db function.
+     * Add race results to database.
      *
      * @access public
      * @param string $race (default: '')
@@ -164,15 +164,17 @@ class CRM_Add_Race_Results {
             return false;
         }
 
-        // insert rider results //
+        // insert rider results.
         foreach ( $results as $type => $result_list ) :
             foreach ( $result_list as $type_results_list ) :
                 $updated_results[] = $this->insert_rider_result( $type_results_list, $race, array( 'type' => $type ) );
             endforeach;
         endforeach;
 
-        // update race results //
+        // update race results.
         update_post_meta( $race->race_id, '_races_results', 1 );
+        
+        $update_rider_rankings = new CRM_Update_Rider_Rankings($race, $updated_results);
 
         do_action( 'crm_updated_results_' . $race->discipline, $race, $updated_results, $results );
 
@@ -454,6 +456,7 @@ class CRM_Add_Race_Results {
         $race = get_post( $formdata['race']['race_id'] );
         $race->race_id = $race->ID;
         $race->discipline = crm_get_race_discipline( $race->ID );
+        $race->season = crm_get_race_season($race->ID);
         $this->add_race_results_to_db( $race, $results );
 
         echo admin_url( 'post.php?post=' . $formdata['race']['race_id'] . '&action=edit' );
