@@ -42,7 +42,7 @@ class CRM_Race_Results {
         wp_nonce_field( 'update_race_results_meta', 'uci_results_admin' );
 
         $riders = uci_results_get_race_results( $post->ID );
-        $discipline = strtolower( uci_get_first_term( $post->ID, 'discipline' ) );
+        $discipline = strtolower( crm_get_first_term( $post->ID, 'discipline' ) );
 
         $rider_output = apply_filters( 'race_results_metabox_rider_output_' . $discipline, array( 'result_place', 'name', 'nat', 'result_result', 'result_uci_points' ), $post->ID );
         ?>

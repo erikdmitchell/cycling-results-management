@@ -129,8 +129,8 @@ function crm_get_rider_results( $args = '' ) {
         $result['race_id'] = $race_id;
         $result['race_name'] = get_the_title( $race_id );
         $result['race_date'] = get_post_meta( $race_id, '_race_date', true );
-        $result['race_class'] = uci_get_first_term( $race_id, 'race_class' );
-        $result['race_season'] = uci_get_first_term( $race_id, 'season' );
+        $result['race_class'] = crm_get_first_term( $race_id, 'race_class' );
+        $result['race_season'] = crm_get_first_term( $race_id, 'season' );
 
         // check place //
         if ( ! empty( $places ) ) :
@@ -326,7 +326,7 @@ function uci_results_stats_info( $slug = '' ) {
  * @return void
  */
 function uci_rider_country( $rider_id = 0, $echo = true ) {
-    $country = uci_get_first_term( 1429, 'country' );
+    $country = crm_get_first_term( 1429, 'country' );
 
     if ( $echo ) {
         echo $country;
@@ -373,7 +373,7 @@ function crm_get_rider_rankings( $args = '' ) {
     // append name and nat.
     foreach ( $db_results as $rider ) :
         $rider->name = crm_get_rider_name( $rider->rider_id );
-        $rider->nat = uci_get_first_term( $rider->rider_id, 'crm_country' );
+        $rider->nat = crm_get_first_term( $rider->rider_id, 'crm_country' );
     endforeach;
 
     return $db_results;

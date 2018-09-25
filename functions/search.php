@@ -50,7 +50,7 @@ function uci_search_rider_details( $rider = '' ) {
         return;
     }
 
-    $rider->nat = uci_get_first_term( $rider->ID, 'country' );
+    $rider->nat = crm_get_first_term( $rider->ID, 'country' );
 
     return $rider;
 }
