@@ -44,6 +44,14 @@ final class Cycling_Results_Management {
      */
     public $uci_rankings = '';
 
+    /**
+     * riders
+     * 
+     * (default value: '')
+     * 
+     * @var string
+     * @access public
+     */
     public $riders = '';
 
     /**
@@ -141,10 +149,6 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'lib/name-parser.php' ); // a php nameparser
         include_once( CRM_PATH . 'shortcode.php' ); // our shortcodes
         include_once( CRM_PATH . 'lib/flags.php' ); // our flag stuff
-
-        include_once( CRM_PATH . 'stats/base.php' ); // base stats class
-        include_once( CRM_PATH . 'stats/init.php' ); // init class
-        include_once( CRM_PATH . 'stats/cross.php' ); // cross stats class
 
         // discipline classes //
         include_once( CRM_PATH . 'disciplines/class-crm-discipline.php' );
