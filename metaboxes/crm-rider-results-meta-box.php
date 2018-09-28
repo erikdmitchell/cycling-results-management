@@ -30,7 +30,7 @@ class CRM_Rider_Results_Meta_Box {
     }
 
     public function render_meta_box_content( $post ) {
-        $results = uci_results_get_rider_results( array( 'rider_id' => $post->ID ) );
+        $results = crm_get_rider_results( array( 'rider_id' => $post->ID ) );
         ?>
         
         <table class="uci-results-rider-results widefat fixed striped">
