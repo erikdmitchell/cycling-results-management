@@ -9,10 +9,6 @@
 
 get_header(); ?>
 
-<pre>
-    <?php print_r( $post ); ?>
-</pre>
-
 <div class="container uci-results uci-results-rider">
 
     <?php if ( $post ) : ?>
@@ -22,29 +18,25 @@ get_header(); ?>
 
                 <div class="country"><span class="">Nationality:</span><?php echo uci_results_get_country_flag( $post->nat ); ?></div>
             </div>
-            
-            <?php foreach ( $rider->stats as $slug => $stats ) : ?>
-                <?php echo uci_results_stats_info( $slug )->name; ?>
-                <div class="rank"><span class="">Ranking:</span> <?php echo $rider->rank->rank; ?></div>
-                <div class="col-md-4 championships">
-                    <h4>Championships</h4>
-    
-                    <div class="world-titles"><span class="">World Titles:</span> <?php crm_display_total( $stats->world_champs ); ?></div>
-                    <div class="world-cup-titles"><span class="">World Cup Titles:</span> <?php crm_display_total( $stats->world_cup_titles ); ?></div>
-                    <div class="superprestige-titles"><span class="">Superprestige Titles:</span> <?php crm_display_total( $stats->superprestige_titles ); ?></div>
-                    <div class="bpost-bank-titles"><span class="">Gva/BPost Bank Titles:</span> <?php crm_display_total( $stats->gva_bpost_bank_titles ); ?></div>
-                </div>
-                <div class="col-md-4 top-results">
-                    <h4>Top Results</h4>
-    
-                    <div class="wins"><span class="">Wins:</span> <?php crm_display_total( $stats->wins ); ?></div>
-                    <div class="podiums"><span class="">Podiums:</span> <?php crm_display_total( $stats->podiums ); ?></div>
-                    <div class="world-cup-wins"><span class="">World Cup Wins:</span> <?php crm_display_total( $stats->world_cup_wins ); ?></div>
-                    <div class="superprestige-wins"><span class="">Superprestige Wins:</span> <?php crm_display_total( $stats->superprestige_wins ); ?></div>
-                    <div class="bpost-bank-wins"><span class="">GvA/BPost Bank Wins:</span> <?php crm_display_total( $stats->gva_bpost_bank_wins ); ?></div>
-                </div>
-            <?php endforeach; ?>
         </div>
+        
+        <div class="row header">
+            <div class="col-md-5 race-season">Season</div>
+            <div class="col-md-1 race-rank">Rank</div>
+            <div class="col-md-1 rider-points">Points</div>
+            <div class="col-md-1 rider-wins">Wins</div>
+            <div class="col-md-1 race-podiums">Podiums</div>
+        </div>
+            
+        <?php foreach ( $rider->rankings as $rankings ) : ?>
+            <div class="row">
+                <div class="col-md-5 race-season"><?php echo $ranking->season; ?></div>
+                <div class="col-md-1 race-rank"><?php echo $ranking->rank; ?></div>
+                <div class="col-md-1 rider-points"><?php echo $ranking->points; ?></div>
+                <div class="col-md-1 rider-wins"><?php echo $ranking->wins; ?></div>
+                <div class="col-md-1 race-podiums"><?php echo $ranking->podiums; ?></div>                
+            </div>
+        <?php endforeach; ?>
 
         <?php if ( isset( $post->results ) && count( $post->results ) ) : ?>
             <div class="single-rider-results">

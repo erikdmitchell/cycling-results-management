@@ -135,8 +135,12 @@ class CRM_Riders {
         return;
     }
 
-    public function get_rider_rank( $rider_id = 0 ) {
-        return 0;
+    public function get_rider_rankings( $rider_id = 0 ) {
+        global $wpdb;
+        
+        $rankings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE rider_id = $rider_id");
+
+        return $rankings;
     }
 
     /**

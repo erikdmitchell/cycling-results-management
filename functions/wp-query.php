@@ -17,17 +17,12 @@ function crm_riders_posts_details( $posts, $query ) {
 
     foreach ( $posts as $post ) :
         $post->nat = crm_get_first_term( $post->ID, 'crm_country' );
-        $post->rank = cycling_results_management()->riders->get_rider_rank( $post->ID );
+        $post->rankings = cycling_results_management()->riders->get_rider_rankings( $post->ID );
         $post->results = crm_get_rider_results(
             array(
                 'rider_id' => $post->ID,
             )
         );
-        /*
-        $post->last_result = $uci_riders->rider_last_race_result( $rider_id );
-        $post->rank = $uci_riders->get_rider_rank( $rider_id );
-        $post->stats = uci_results_get_rider_stats( $rider_id );
-        */
     endforeach;
 
     return $posts;
