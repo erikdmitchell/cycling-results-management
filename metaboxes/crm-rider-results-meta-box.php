@@ -1,31 +1,18 @@
 <?php
-/**
- * Calls the class on the post edit screen.
- */
-function call_UCIResultsRiderResultsMetabox() {
-    new UCIResultsRiderResultsMetabox();
-}
 
-if ( is_admin() ) :
-    add_action( 'load-post.php', 'call_UCIResultsRiderResultsMetabox' );
-    add_action( 'load-post-new.php', 'call_UCIResultsRiderResultsMetabox' );
-endif;
+class CRM_Rider_Results_Meta_Box {
 
-/**
- * The Class.
- */
-class UCIResultsRiderResultsMetabox {
-
-    /**
-     * Hook into the appropriate actions when the class is constructed.
-     */
     public function __construct() {
+        if ( is_admin() ) :
+            add_action( 'load-post.php', array( $this, 'init_metabox' ) );
+            add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
+        endif;
+    }
+
+    public function init_metabox() {
         add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
     }
 
-    /**
-     * Adds the meta box container.
-     */
     public function add_meta_box( $post_type ) {
         // Limit meta box to certain post types.
         $post_types = array( 'riders' );
@@ -42,11 +29,6 @@ class UCIResultsRiderResultsMetabox {
         }
     }
 
-    /**
-     * Render Meta Box content.
-     *
-     * @param WP_Post $post The post object.
-     */
     public function render_meta_box_content( $post ) {
         $results = uci_results_get_rider_results( array( 'rider_id' => $post->ID ) );
         ?>
@@ -79,4 +61,5 @@ class UCIResultsRiderResultsMetabox {
         <?php
     }
 }
-?>
+
+new CRM_Rider_Results_Meta_Box();
