@@ -22,19 +22,6 @@ function crm_get_first_term( $post_id = 0, $taxonomy = '' ) {
 }
 
 /**
- * Get country URL
- *
- * @access public
- * @param string $slug (default: '')
- * @return void
- */
-function crm_country_url( $slug = '' ) {
-    $country = strtolower( $slug );
-
-    echo site_url( 'crm_country/' . $country );
-}
-
-/**
  * crm_pagination function.
  *
  * @access public

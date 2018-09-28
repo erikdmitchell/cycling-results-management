@@ -36,7 +36,7 @@ get_header(); ?>
                     <div class="col-md-1 rider-place"><?php echo $result['result_place']; ?></div>
                     <div class="col-md-4 rider-name"><a href="<?php echo crm_rider_url( $result['slug'] ); ?>"><?php echo $result['name']; ?></a></div>
                     <div class="col-md-1 rider-points"><?php echo $result['result_uci_points']; ?></div>
-                    <div class="col-md-1 rider-nat"><a href="<?php echo crm_country_url( $result['nat'] ); ?>"><?php echo uci_results_get_country_flag( $result['nat'] ); ?></a></div>
+                    <div class="col-md-1 rider-nat"><?php echo uci_results_get_country_flag( $result['nat'] ); ?></div>
                     <div class="col-md-1 rider-age"><?php echo $result['result_age']; ?></div>
                     <div class="col-md-2 rider-time"><?php echo $result['result_result']; ?></div>
                 </div>
