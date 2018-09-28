@@ -28,7 +28,7 @@ get_header(); ?>
             <div class="col-md-1 race-podiums">Podiums</div>
         </div>
             
-        <?php foreach ( $rider->rankings as $rankings ) : ?>
+        <?php foreach ( $post->rankings as $ranking ) : ?>
             <div class="row">
                 <div class="col-md-5 race-season"><?php echo $ranking->season; ?></div>
                 <div class="col-md-1 race-rank"><?php echo $ranking->rank; ?></div>
