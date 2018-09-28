@@ -30,24 +30,23 @@ function uci_get_riders( $args = '' ) {
 function crm_get_rider_results( $args = '' ) {
     $default_args = array(
         'rider_id' => 0,
-        'race_ids' => '',
-        'seasons' => '',
-        'places' => '',
-        'race_classes' => '',
-        'race_series' => '',
-        'start_date' => '',
-        'end_date' => '',
+        //'race_ids' => '',
+        //'seasons' => '',
+        //'places' => '',
+        //'race_classes' => '',
+        //'race_series' => '',
+        //'start_date' => '',
+        //'end_date' => '',
     );
     $args = wp_parse_args( $args, $default_args );
 
-    extract( $args );
-
-    if ( ! $rider_id ) {
+    if ( ! $args['rider_id'] ) {
         return false;
     }
 
     $results = array();
 
+/*
     if ( ! is_array( $race_ids ) && ! empty( $race_ids ) ) {
         $race_ids = explode( ',', $race_ids );
     }
@@ -67,25 +66,30 @@ function crm_get_rider_results( $args = '' ) {
     if ( ! is_array( $race_series ) && ! empty( $race_series ) ) {
         $race_series = explode( ',', $race_series );
     }
+*/
 
-    // get race ids via meta //
+    // get race ids via meta.
     $results_args_meta = array(
         'posts_per_page' => -1,
         'post_type' => 'races',
         'meta_query' => array(
             array(
-                'key' => '_rider_' . $rider_id,
+                'key' => '_rider_' . $args['rider_id'].'_result_place',
+                //'compare' => 'LIKE',
             ),
         ),
         'fields' => 'ids',
     );
 
-    // check specific race ids //
+/*
+    // check specific race ids.
     if ( ! empty( $race_ids ) ) {
         $results_args_meta['post__in'] = $race_ids;
     }
+*/
 
-    // check specific seasons //
+/*
+    // check specific seasons.
     if ( ! empty( $seasons ) ) {
         $results_args_meta['tax_query'][] = array(
             'taxonomy' => 'season',
@@ -93,8 +97,10 @@ function crm_get_rider_results( $args = '' ) {
             'terms' => $seasons,
         );
     }
+*/
 
-    // check specific race_classes //
+/*
+    // check specific race_classes.
     if ( ! empty( $race_classes ) ) {
         $results_args_meta['tax_query'][] = array(
             'taxonomy' => 'race_class',
@@ -102,8 +108,10 @@ function crm_get_rider_results( $args = '' ) {
             'terms' => $race_classes,
         );
     }
+*/
 
-    // check specific race_series //
+/*
+    // check specific race_series.
     if ( ! empty( $race_series ) ) {
         $results_args_meta['tax_query'][] = array(
             'taxonomy' => 'series',
@@ -111,8 +119,10 @@ function crm_get_rider_results( $args = '' ) {
             'terms' => $race_series,
         );
     }
+*/
 
-    // between two dates //
+/*
+    // between two dates.
     if ( ! empty( $start_date ) && ! empty( $end_date ) ) {
         $results_args_meta['meta_query'][] = array(
             'key' => '_race_date',
@@ -121,25 +131,22 @@ function crm_get_rider_results( $args = '' ) {
             'type' => 'DATE',
         );
     }
-    print_r( $results_args_meta );
-    $race_ids = get_posts( $results_args_meta );
+*/
 
+    $race_ids = get_posts( $results_args_meta );
+    
     foreach ( $race_ids as $race_id ) :
-        $result = get_post_meta( $race_id, '_rider_' . $rider_id, true );
+        $result = array();
+        
+        $result['place'] = get_post_meta( $race_id, '_rider_' . $args['rider_id'] . '_result_place', true );
+        $result['uci_points'] = get_post_meta( $race_id, '_rider_' . $args['rider_id'] . '_result_uci_points', true );
         $result['race_id'] = $race_id;
         $result['race_name'] = get_the_title( $race_id );
-        $result['race_date'] = get_post_meta( $race_id, '_race_date', true );
+        $result['race_date'] = date('Y-m-d', strtotime(get_post_meta( $race_id, '_race_start', true )));
         $result['race_class'] = crm_get_first_term( $race_id, 'race_class' );
         $result['race_season'] = crm_get_first_term( $race_id, 'season' );
 
-        // check place //
-        if ( ! empty( $places ) ) :
-            if ( in_array( $result['place'], $places ) ) :
-                $results[] = $result;
-            endif;
-        else :
-            $results[] = $result;
-        endif;
+        $results[] = $result;
     endforeach;
 
     return $results;
