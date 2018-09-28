@@ -18,13 +18,11 @@ function crm_riders_posts_details( $posts, $query ) {
     foreach ( $posts as $post ) :
         $post->nat = crm_get_first_term( $post->ID, 'crm_country' );
         $post->rank = cycling_results_management()->riders->get_rider_rank( $post->ID );
-        /*
         $post->results = crm_get_rider_results(
             array(
                 'rider_id' => $post->ID,
             )
         );
-        */
         /*
         $post->last_result = $uci_riders->rider_last_race_result( $rider_id );
         $post->rank = $uci_riders->get_rider_rank( $rider_id );
