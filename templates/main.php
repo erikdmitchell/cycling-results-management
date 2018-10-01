@@ -26,11 +26,7 @@ $crm_rankings = cycling_results_management()->riders->get_riders_rankings(
     )
 );
 ?>
-<pre>
-    <?php
-        print_r($crm_rankings);  
-    ?>
-</pre>
+
 <div class="crm-results-main container">
     
     <div class="row">
@@ -96,7 +92,7 @@ $crm_rankings = cycling_results_management()->riders->get_riders_rankings(
         
             <div class="riders-list-wrap">
                 <?php if ( count( $crm_rankings ) ) : ?>
-                    <?php foreach ( $crm_rankings as $rider ) : ?>
+                    <?php foreach ( $crm_rankings['riders'] as $rider ) : ?>
                         <div class="row">
                             <div class="col-sm-2"><?php echo $rider->rank; ?></div>
                             <div class="col-sm-7"><a href="<?php echo crm_rider_url( $rider->rider_id ); ?>"><?php echo $rider->name; ?></a></div>
@@ -106,7 +102,7 @@ $crm_rankings = cycling_results_management()->riders->get_riders_rankings(
                 <?php endif; ?>
             </div>
         
-            <a class="view-all" href="#">View More &raquo;</a>
+            <a class="view-all" href="<?php crm_rankings_url( $crm_rankings['discipline'], $crm_rankings['season'] ); ?>">View More &raquo;</a>
         </div>
                 
     </div>
