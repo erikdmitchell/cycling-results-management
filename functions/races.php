@@ -386,7 +386,7 @@ function uci_get_race_slug( $id = 0 ) {
 }
 
 function crm_races_url() {
-    echo site_url('/races');
+    echo site_url( '/races' );
 }
 
 /**

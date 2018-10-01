@@ -77,7 +77,7 @@ function crm_pagination( $numpages = '', $pagerange = '', $paged = '' ) {
 
 /**
  * CRM UCI Rankings url.
- * 
+ *
  * @access public
  * @param string $discipline (default: 'cyclocross').
  * @param string $date (default: '').
@@ -91,7 +91,7 @@ function crm_uci_rankings_url( $discipline = 'cyclocross', $date = '' ) {
 
 /**
  * CRM Rankings url.
- * 
+ *
  * @access public
  * @param string $discipline (default: 'cyclocross').
  * @param string $season (default: '').

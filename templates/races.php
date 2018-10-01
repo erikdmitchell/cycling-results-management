@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 
-get_header(); 
+get_header();
 
 $races = new WP_Query(
     array(
@@ -31,7 +31,10 @@ $races = new WP_Query(
         </div>
 
         <?php if ( $races->posts ) : ?>
-            <?php while ( $races->have_posts() ) : $races->the_post(); ?>
+            <?php
+            while ( $races->have_posts() ) :
+                $races->the_post();
+                ?>
                 <div class="row">
                     <div class="col-sm-6 race-name"><a href="<?php crm_race_url( $post->post_name ); ?>"><?php the_title(); ?></a></div>
                     <div class="col-sm-2 race-date"><?php echo $post->race_date; ?></div>
@@ -46,4 +49,5 @@ $races = new WP_Query(
     <?php crm_pagination( $races->max_num_pages ); ?>
 </div>
 
-<?php get_footer();
+<?php
+get_footer();

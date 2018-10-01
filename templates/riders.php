@@ -31,7 +31,10 @@ $riders = new WP_Query(
         </div>
 
         <?php if ( $riders->posts ) : ?>
-            <?php while ( $riders->have_posts() ) : $riders->the_post(); ?>
+            <?php
+            while ( $riders->have_posts() ) :
+                $riders->the_post();
+                ?>
                 <div class="row">
                     <div class="col-4 rider-name"><a href="<?php crm_rider_url( $post->post_name ); ?>"><?php the_title(); ?></a></div>
                     <div class="col-1 rider-nat"><?php echo crm_get_country_flag( $post->nat ); ?></div>
@@ -44,4 +47,5 @@ $riders = new WP_Query(
 
 </div>
 
-<?php get_footer();
+<?php
+get_footer();

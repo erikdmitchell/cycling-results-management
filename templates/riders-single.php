@@ -14,7 +14,7 @@ get_header(); ?>
     <?php if ( $post ) : ?>
         <div id="rider-<?php echo $post->ID; ?>" class="row rider-stats">
             <div class="col-md-4 general">
-                <?php the_title('<h1 class="page-title">', '</h1>'); ?>
+                <?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
 
                 <div class="country"><span class="">Nationality:</span><?php echo crm_get_country_flag( $post->nat ); ?></div>
             </div>

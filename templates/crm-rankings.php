@@ -12,8 +12,8 @@ get_header(); ?>
 <?php
 $rankings = cycling_results_management()->riders->get_riders_rankings(
     array(
-        'discipline' => get_query_var( 'crm_rankings_discipline' ),        
-        'date' => get_query_var( 'crm_rankings_season' ),        
+        'discipline' => get_query_var( 'crm_rankings_discipline' ),
+        'date' => get_query_var( 'crm_rankings_season' ),
     )
 );
 ?>
@@ -35,4 +35,5 @@ $rankings = cycling_results_management()->riders->get_riders_rankings(
     <?php endforeach; ?>
 </div>
 
-<?php get_footer();
+<?php
+get_footer();

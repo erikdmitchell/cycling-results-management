@@ -46,9 +46,9 @@ final class Cycling_Results_Management {
 
     /**
      * riders
-     * 
+     *
      * (default value: '')
-     * 
+     *
      * @var string
      * @access public
      */
@@ -133,7 +133,6 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'admin/class-crm-update-rider-rankings.php' );
 
         include_once( CRM_PATH . 'class-uci-rankings.php' );
-
 
         include_once( CRM_PATH . 'functions/races.php' ); // races functions
         include_once( CRM_PATH . 'functions/riders.php' ); // riders functions
@@ -227,7 +226,7 @@ final class Cycling_Results_Management {
 
     public function rewrite_rules() {
         add_rewrite_rule( 'uci-rankings/([^/]*)/([^/]*)/?', 'index.php?rankings_discipline=$matches[1]&rankings_date=$matches[2]', 'top' );
-        add_rewrite_rule( 'crm-rankings/([^/]*)/([^/]*)/?', 'index.php?crm_rankings_discipline=$matches[1]&crm_rankings_season=$matches[2]', 'top' );        
+        add_rewrite_rule( 'crm-rankings/([^/]*)/([^/]*)/?', 'index.php?crm_rankings_discipline=$matches[1]&crm_rankings_season=$matches[2]', 'top' );
     }
 
     public function register_query_vars( $vars ) {

@@ -1,9 +1,9 @@
 <?php
-    
+
 class CRM_Shortcodes {
-    
+
     function __construct() {
-        add_shortcode( 'crm_main', array($this, 'crm_main') );        
+        add_shortcode( 'crm_main', array( $this, 'crm_main' ) );
     }
 
     function crm_main( $atts ) {
@@ -13,7 +13,7 @@ class CRM_Shortcodes {
 
         return crm_get_template_part( 'main' );
     }
-    
+
 }
 
 new CRM_Shortcodes();

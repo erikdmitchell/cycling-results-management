@@ -16,7 +16,7 @@ class CRM_Riders {
     public function __construct() {
 
     }
-// check this function -- NOT USED
+    // check this function -- NOT USED
     public function get_riders( $args = '' ) {
         global $wpdb;
 
@@ -75,7 +75,7 @@ class CRM_Riders {
         }
 
         foreach ( $rider_ids as $rider_id ) :
-/*
+            /*
             $riders[] = $this->get_rider(
                 array(
                     'rider_id' => $rider_id,
@@ -87,77 +87,77 @@ class CRM_Riders {
                     'stats' => $stats,
                 )
             );
-*/
+            */
         endforeach;
 
         return $riders;
     }
-    
+
     /**
      * Get riders rankings list.
-     * 
+     *
      * @access public
      * @param string $args (default: '').
      * @return object
      */
-    public function get_riders_rankings($args = '') {
+    public function get_riders_rankings( $args = '' ) {
         global $wpdb;
-        
+
         $rankings = array();
         $default_args = array(
             'limit' => -1,
             'discipline' => 'cyclocross',
             'season' => $this->get_recent_season(),
         );
-        $args = wp_parse_args($args, $default_args);
-        
-        if ($args['limit'] < 0) :
+        $args = wp_parse_args( $args, $default_args );
+
+        if ( $args['limit'] < 0 ) :
             $limit = '';
         else :
             $limit = 'LIMIT ' . $args['limit'];
         endif;
 
-        $rankings_db = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '".$args['discipline']."' AND season = '".$args['season']."' ORDER BY rank $limit" );
-        
+        $rankings_db = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '" . $args['discipline'] . "' AND season = '" . $args['season'] . "' ORDER BY rank $limit" );
+
         // append name.
-        foreach ($rankings_db as $rider) :
-            $rider->name = get_the_title($rider->rider_id);
+        foreach ( $rankings_db as $rider ) :
+            $rider->name = get_the_title( $rider->rider_id );
         endforeach;
-        
+
         // add details for links (possibly pag).
         $rankings['riders'] = $rankings_db;
         $rankings['discipline'] = $args['discipline'];
         $rankings['season'] = $args['season'];
-        
+
         return $rankings;
     }
-    
+
     /**
      * Get recent season from db.
-     * 
+     *
      * @access public
      * @param string $discipline (default: 'cyclocross').
      * @return string
      */
-    public function get_recent_season($discipline = 'cyclocross') {
+    public function get_recent_season( $discipline = 'cyclocross' ) {
         global $wpdb;
-        
-        $season = $wpdb->get_var("SELECT DISTINCT season FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '$discipline' ORDER BY season DESC");
-        
+
+        $season = $wpdb->get_var( "SELECT DISTINCT season FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '$discipline' ORDER BY season DESC" );
+
         return $season;
     }
 
     /**
      * Get rider rankings from db.
-     * 
+     *
      * @access public
      * @param int $rider_id (default: 0).
      * @return object
      */
     public function get_rider_rankings( $rider_id = 0 ) {
         global $wpdb;
-        
-        $rankings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE rider_id = $rider_id");
+
+        $rankings = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE rider_id = $rider_id" );
 
         return $rankings;
     }

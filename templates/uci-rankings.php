@@ -36,4 +36,5 @@ $rankings = cycling_results_management()->uci_rankings->get_rankings(
     <?php endforeach; ?>
 </div>
 
-<?php get_footer();
+<?php
+get_footer();
