@@ -65,15 +65,15 @@ function crm_get_races( $args = '' ) {
  */
 function crm_race_details( $race = '' ) {
     $race->race_date = get_post_meta( $race->ID, '_race_start', true );
-    $race->nat = uci_race_country( $race->ID );
+    $race->nat = crm_race_country( $race->ID );
     $race->class = crm_race_class( $race->ID );
-    $race->season = uci_race_season( $race->ID );
-    $race->series = uci_race_series( $race->ID );
+    $race->season = crm_race_season( $race->ID );
+    $race->series = crm_race_series( $race->ID );
 
     return $race;
 }
 
-function uci_race_country( $race_id = 0 ) {
+function crm_race_country( $race_id = 0 ) {
     $countries = wp_get_post_terms( $race_id, 'country', array( 'fields' => 'names' ) );
 
     if ( isset( $countries[0] ) ) :
@@ -104,7 +104,7 @@ function crm_race_class( $race_id = 0 ) {
     return $class;
 }
 
-function uci_race_season( $race_id = 0 ) {
+function crm_race_season( $race_id = 0 ) {
     $seasons = wp_get_post_terms( $race_id, 'season', array( 'fields' => 'names' ) );
 
     if ( isset( $seasons[0] ) ) :
@@ -116,7 +116,7 @@ function uci_race_season( $race_id = 0 ) {
     return $season;
 }
 
-function uci_race_discipline( $race_id = 0 ) {
+function crm_race_discipline( $race_id = 0 ) {
     $disciplines = wp_get_post_terms( $race_id, 'discipline', array( 'fields' => 'names' ) );
 
     if ( isset( $disciplines[0] ) ) :
@@ -128,7 +128,7 @@ function uci_race_discipline( $race_id = 0 ) {
     return $discipline;
 }
 
-function uci_race_series( $race_id = 0 ) {
+function crm_race_series( $race_id = 0 ) {
     $series_arr = wp_get_post_terms( $race_id, 'series', array( 'fields' => 'names' ) );
 
     if ( isset( $series_arr[0] ) ) :
