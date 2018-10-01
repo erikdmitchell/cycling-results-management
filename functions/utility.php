@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Loades templates from plugins, themes or this plugin.
+ * 
+ * @access public
+ * @param mixed $template string.
+ * @return string
+ */
 function crm_template_loader( $template ) {
     global $wp_query, $post;
 
@@ -49,12 +56,12 @@ function crm_template_loader( $template ) {
 add_filter( 'template_include', 'crm_template_loader' );
 
 /**
- * crm_get_template_part function.
- *
+ * Gets a template and allows params to be passed.
+ * 
  * @access public
- * @param string $template_name (default: '')
- * @param string $atts (default: '')
- * @return void
+ * @param string $template_name (default: '').
+ * @param string $atts (default: '').
+ * @return html
  */
 function crm_get_template_part( $template_name = '', $atts = '' ) {
     if ( empty( $template_name ) ) {
@@ -81,17 +88,17 @@ function crm_get_template_part( $template_name = '', $atts = '' ) {
 }
 
 /**
- * array_to_object function.
- *
+ * Converts an array to an object.
+ * 
  * @access public
- * @param mixed $array
- * @return void
+ * @param mixed $array array.
+ * @return object
  */
-function array_to_object( $array ) {
+function crm_array_to_object( $array ) {
     $object = new stdClass();
     foreach ( $array as $key => $value ) {
         if ( is_array( $value ) ) {
-            $value = array_to_object( $value );
+            $value = crm_array_to_object( $value );
         }
         $object->$key = $value;
     }
@@ -99,27 +106,12 @@ function array_to_object( $array ) {
 }
 
 /**
- * crm_display_total function.
- *
+ * Parse args.
+ * 
  * @access public
- * @param array $arr (default: array())
- * @return void
- */
-function crm_display_total( $arr = array() ) {
-    if ( ! $arr || empty( $arr ) ) :
-        echo 0;
-    else :
-        echo count( $arr );
-    endif;
-}
-
-/**
- * crm_parse_args function.
- *
- * @access public
- * @param mixed &$a
- * @param mixed $b
- * @return void
+ * @param mixed $a array.
+ * @param mixed $b array.
+ * @return array
  */
 function crm_parse_args( &$a, $b ) {
     $a = (array) $a;

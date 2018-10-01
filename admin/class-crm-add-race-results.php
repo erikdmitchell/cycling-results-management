@@ -199,7 +199,7 @@ class CRM_Add_Race_Results {
         $args = wp_parse_args( $args, $default_args );
 
         if ( is_array( $result ) ) {
-            $result = array_to_object( $result );
+            $result = crm_array_to_object( $result );
         }
 
         // essentially converts our object to an array.
@@ -452,7 +452,7 @@ class CRM_Add_Race_Results {
             return;
         }
 
-        $results = array_to_object( $formdata['race']['results'] );
+        $results = crm_array_to_object( $formdata['race']['results'] );
         $race = get_post( $formdata['race']['race_id'] );
         $race->race_id = $race->ID;
         $race->discipline = crm_get_race_discipline( $race->ID );

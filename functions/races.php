@@ -220,7 +220,7 @@ function uci_results_get_race_results( $race_id = 0, $format = 'array' ) {
     endforeach;
 
     if ( $format == 'object' ) {
-        $riders = array_to_object( $riders );
+        $riders = crm_array_to_object( $riders );
     }
 
     return $riders;
