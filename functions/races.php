@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Get races.
+ * 
+ * @access public
+ * @param string $args (default: '').
+ * @return object
+ */
 function crm_get_races( $args = '' ) {
     $default_args = array(
         'id' => '',
@@ -49,6 +56,13 @@ function crm_get_races( $args = '' ) {
     return $races;
 }
 
+/**
+ * Get race details.
+ * 
+ * @access public
+ * @param string $race (default: '').
+ * @return object
+ */
 function crm_race_details( $race = '' ) {
     $race->race_date = get_post_meta( $race->ID, '_race_start', true );
     $race->nat = uci_race_country( $race->ID );
@@ -254,6 +268,13 @@ function uci_get_related_race_id( $race_id = 0 ) {
     return get_post_meta( $race_id, '_race_related', true );
 }
 
+/**
+ * Race URL.
+ * 
+ * @access public
+ * @param string $slug (default: '').
+ * @return url
+ */
 function crm_race_url( $slug = '' ) {
     if ( ! is_numeric( $slug ) ) :
         $post = get_page_by_path( $slug, OBJECT, 'races' );
@@ -265,6 +286,12 @@ function crm_race_url( $slug = '' ) {
     echo get_permalink( $post_id );
 }
 
+/**
+ * Races URL.
+ * 
+ * @access public
+ * @return url
+ */
 function crm_races_url() {
     echo site_url( '/races' );
 }
@@ -286,6 +313,13 @@ function crm_get_race_discipline( $race_id = 0 ) {
     return;
 }
 
+/**
+ * Get race season.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return string
+ */
 function crm_get_race_season( $race_id = 0 ) {
     $seasons = wp_get_post_terms( $race_id, 'season' );
 
