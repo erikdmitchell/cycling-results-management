@@ -2,7 +2,7 @@
 
 /**
  * Loades templates from plugins, themes or this plugin.
- * 
+ *
  * @access public
  * @param mixed $template string.
  * @return string
@@ -57,7 +57,7 @@ add_filter( 'template_include', 'crm_template_loader' );
 
 /**
  * Gets a template and allows params to be passed.
- * 
+ *
  * @access public
  * @param string $template_name (default: '').
  * @param string $atts (default: '').
@@ -89,7 +89,7 @@ function crm_get_template_part( $template_name = '', $atts = '' ) {
 
 /**
  * Converts an array to an object.
- * 
+ *
  * @access public
  * @param mixed $array array.
  * @return object
@@ -107,7 +107,7 @@ function crm_array_to_object( $array ) {
 
 /**
  * Parse args.
- * 
+ *
  * @access public
  * @param mixed $a array.
  * @param mixed $b array.

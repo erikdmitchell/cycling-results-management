@@ -2,7 +2,7 @@
 
 /**
  * Get rider results.
- * 
+ *
  * @access public
  * @param string $args (default: '').
  * @return object
@@ -134,7 +134,7 @@ function crm_get_rider_results( $args = '' ) {
 
 /**
  * Rider URL.
- * 
+ *
  * @access public
  * @param string $slug (default: '').
  * @return url
@@ -152,7 +152,7 @@ function crm_rider_url( $slug = '' ) {
 
 /**
  * Riders URL.
- * 
+ *
  * @access public
  * @param string $slug (default: '').
  * @return url
@@ -163,7 +163,7 @@ function crm_riders_url( $slug = '' ) {
 
 /**
  * Add rider.
- * 
+ *
  * @access public
  * @param string $name (default: '').
  * @param string $country (default: '').
@@ -196,7 +196,7 @@ function crm_results_add_rider( $name = '', $country = '' ) {
 
 /**
  * Search for a rider.
- * 
+ *
  * @access public
  * @param string $name (default: '').
  * @return boolean
@@ -226,7 +226,7 @@ function crm_search_rider( $name = '' ) {
 
 /**
  * Get rider rankings.
- * 
+ *
  * @access public
  * @param string $args (default: '').
  * @return object
@@ -263,7 +263,7 @@ function crm_get_rider_rankings( $args = '' ) {
 
 /**
  * Get rider name by ID.
- * 
+ *
  * @access public
  * @param int $rider_id (default: 0).
  * @return string

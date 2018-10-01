@@ -2,7 +2,7 @@
 
 /**
  * Get races.
- * 
+ *
  * @access public
  * @param string $args (default: '').
  * @return object
@@ -58,7 +58,7 @@ function crm_get_races( $args = '' ) {
 
 /**
  * Get race details.
- * 
+ *
  * @access public
  * @param string $race (default: '').
  * @return object
@@ -270,7 +270,7 @@ function uci_get_related_race_id( $race_id = 0 ) {
 
 /**
  * Race URL.
- * 
+ *
  * @access public
  * @param string $slug (default: '').
  * @return url
@@ -288,7 +288,7 @@ function crm_race_url( $slug = '' ) {
 
 /**
  * Races URL.
- * 
+ *
  * @access public
  * @return url
  */
@@ -315,7 +315,7 @@ function crm_get_race_discipline( $race_id = 0 ) {
 
 /**
  * Get race season.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return string

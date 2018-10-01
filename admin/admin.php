@@ -327,7 +327,7 @@ class CRM_Admin {
 
         wp_die();
     }
-    
+
     private function load_files() {
         $dirs = array(
             'metaboxes',
@@ -338,6 +338,6 @@ class CRM_Admin {
                 include_once( $file );
             endforeach;
         endforeach;
-    }    
+    }
 
 }
