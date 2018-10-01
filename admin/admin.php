@@ -13,7 +13,6 @@ class CRM_Admin {
         add_action( 'admin_init', array( $this, 'save_settings' ) );
         add_action( 'save_post', array( $this, 'assign_parent_terms' ), 10, 2 );
 
-        add_action( 'wp_ajax_uci_results_rider_rankings_dropdown', array( $this, 'ajax_rider_rankings_dropdown' ) );
         add_action( 'wp_ajax_uci_remove_related_race', array( $this, 'ajax_remove_related_race' ) );
         add_action( 'wp_ajax_show_related_races_box', array( $this, 'ajax_show_related_races_box' ) );
         add_action( 'wp_ajax_search_related_races', array( $this, 'ajax_search_related_races' ) );
@@ -142,18 +141,6 @@ class CRM_Admin {
         cycling_results_management()->pages = $pages; // force new pages.
 
         echo '<div class="updated">Settings updated!</div>';
-    }
-
-    /**
-     * ajax_rider_rankings_dropdown function.
-     *
-     * @access public
-     * @return void
-     */
-    public function ajax_rider_rankings_dropdown() {
-        echo uci_get_season_weeks( $_POST['season'] );
-
-        wp_die();
     }
 
     /**
