@@ -1,11 +1,5 @@
 <?php
-/**
- * uci_get_riders function.
- *
- * @access public
- * @param string $args (default: '')
- * @return void
- */
+
 function uci_get_riders( $args = '' ) {
     global $uci_riders;
 
@@ -27,6 +21,13 @@ function uci_get_riders( $args = '' ) {
     return $riders;
 }
 
+/**
+ * Get rider results.
+ * 
+ * @access public
+ * @param string $args (default: '').
+ * @return object
+ */
 function crm_get_rider_results( $args = '' ) {
     $default_args = array(
         'rider_id' => 0,
@@ -152,13 +153,6 @@ function crm_get_rider_results( $args = '' ) {
     return $results;
 }
 
-/**
- * uci_get_riders_by_rank function.
- *
- * @access public
- * @param string $args (default: '')
- * @return void
- */
 function uci_get_riders_by_rank( $args = '' ) {
     $default_args = array(
         'per_page' => 10,
@@ -175,6 +169,13 @@ function uci_get_riders_by_rank( $args = '' ) {
     return $riders->posts;
 }
 
+/**
+ * Rider URL.
+ * 
+ * @access public
+ * @param string $slug (default: '').
+ * @return url
+ */
 function crm_rider_url( $slug = '' ) {
     if ( ! is_numeric( $slug ) ) :
         $post = get_page_by_path( $slug, OBJECT, 'riders' );
@@ -186,18 +187,17 @@ function crm_rider_url( $slug = '' ) {
     echo get_permalink( $post_id );
 }
 
+/**
+ * Riders URL.
+ * 
+ * @access public
+ * @param string $slug (default: '').
+ * @return url
+ */
 function crm_riders_url( $slug = '' ) {
     echo site_url( '/riders' );
 }
 
-
-/**
- * uci_get_rider_id function.
- *
- * @access public
- * @param string $slug (default: '')
- * @return void
- */
 function uci_get_rider_id( $slug = '' ) {
     global $wpdb;
 
@@ -206,13 +206,6 @@ function uci_get_rider_id( $slug = '' ) {
     return $id;
 }
 
-/**
- * uci_get_rider_id_by_name function.
- *
- * @access public
- * @param string $name (default: '')
- * @return void
- */
 function uci_get_rider_id_by_name( $name = '' ) {
     global $wpdb;
 
@@ -221,14 +214,6 @@ function uci_get_rider_id_by_name( $name = '' ) {
     return $id;
 }
 
-/**
- * uci_results_add_rider function.
- *
- * @access public
- * @param string $name (default: '')
- * @param string $country (default: '')
- * @return void
- */
 function uci_results_add_rider( $name = '', $country = '' ) {
     if ( empty( $name ) ) {
         return 0;
@@ -254,13 +239,6 @@ function uci_results_add_rider( $name = '', $country = '' ) {
     return $rider_id;
 }
 
-/**
- * uci_results_search_rider function.
- *
- * @access public
- * @param string $name (default: '')
- * @return void
- */
 function uci_results_search_rider( $name = '' ) {
     $rider = get_page_by_title( $name, OBJECT, 'riders' );
 
@@ -284,14 +262,6 @@ function uci_results_search_rider( $name = '' ) {
     return false;
 }
 
-/**
- * uci_results_get_rider_stats function.
- *
- * @access public
- * @param int    $rider_id (default: 0)
- * @param string $discipline (default: '')
- * @return void
- */
 function uci_results_get_rider_stats( $rider_id = 0, $discipline = '' ) {
     global $uci_rider_stats;
 
@@ -312,13 +282,6 @@ function uci_results_get_rider_stats( $rider_id = 0, $discipline = '' ) {
     return $stats;
 }
 
-/**
- * uci_results_stats_info function.
- *
- * @access public
- * @param string $slug (default: '')
- * @return void
- */
 function uci_results_stats_info( $slug = '' ) {
     global $uci_rider_stats;
 
@@ -329,14 +292,6 @@ function uci_results_stats_info( $slug = '' ) {
     return;
 }
 
-/**
- * uci_rider_country function.
- *
- * @access public
- * @param int  $rider_id (default: 0)
- * @param bool $echo (default: true)
- * @return void
- */
 function uci_rider_country( $rider_id = 0, $echo = true ) {
     $country = crm_get_first_term( 1429, 'country' );
 
@@ -347,20 +302,19 @@ function uci_rider_country( $rider_id = 0, $echo = true ) {
     return $country;
 }
 
-/**
- * uci_results_get_uci_rank function.
- *
- * @access public
- * @param int    $rider_id (default: 0)
- * @param string $discipline (default: '')
- * @return void
- */
 function uci_results_get_uci_rank( $rider_id = 0, $discipline = '' ) {
     global $uci_rankings;
 
     return $uci_rankings->get_rank( $rider_id, $discipline );
 }
 
+/**
+ * Get rider rankings.
+ * 
+ * @access public
+ * @param string $args (default: '').
+ * @return object
+ */
 function crm_get_rider_rankings( $args = '' ) {
     global $wpdb;
 
@@ -391,6 +345,13 @@ function crm_get_rider_rankings( $args = '' ) {
     return $db_results;
 }
 
+/**
+ * Get rider name by ID.
+ * 
+ * @access public
+ * @param int $rider_id (default: 0).
+ * @return string
+ */
 function crm_get_rider_name( $rider_id = 0 ) {
     return get_the_title( $rider_id );
 }
