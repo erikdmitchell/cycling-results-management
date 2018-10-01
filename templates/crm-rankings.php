@@ -10,16 +10,15 @@
 get_header(); ?>
 
 <?php
-$rankings = cycling_results_management()->uci_rankings->get_rankings(
+$rankings = cycling_results_management()->riders->get_riders_rankings(
     array(
-        'order_by' => 'rank',
-        'date' => get_query_var( 'rankings_date' ),
-        'discipline' => get_query_var( 'rankings_discipline' ),
+        'discipline' => get_query_var( 'crm_rankings_discipline' ),        
+        'date' => get_query_var( 'crm_rankings_season' ),        
     )
 );
 ?>
-<div class="container uci-results uci-rankings">
-    <h1>UCI Rankings <span class="date"><?php echo get_query_var( 'rankings_date' ); ?></span></h1>
+<div class="container crm-rankings">
+    <h1>CRM Rankings <span class="date"><?php echo get_query_var( 'crm_rankings_season' ); ?></span></h1>
     
     <div class="row header">
         <div class="col-sm-2">Rank</div>
@@ -27,7 +26,7 @@ $rankings = cycling_results_management()->uci_rankings->get_rankings(
         <div class="col-sm-3">Points</div>       
     </div>
         
-    <?php foreach ( $rankings as $rank ) : ?>
+    <?php foreach ( $rankings['riders'] as $rank ) : ?>
         <div class="row">
             <div class="col-sm-2"><?php echo $rank->rank; ?></div>
             <div class="col-sm-7"><a href="<?php echo crm_rider_url( $rank->rider_id ); ?>"><?php echo $rank->name; ?></a></div>
