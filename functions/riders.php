@@ -1,26 +1,5 @@
 <?php
 
-function uci_get_riders( $args = '' ) {
-    global $uci_riders;
-
-    $default_args = array(
-        'per_page' => -1,
-        'rider_ids' => '',
-        'results' => false,
-        'last_result' => false,
-        'race_ids' => '',
-        'results_season' => '',
-        'ranking' => false,
-        'stats' => false,
-        'nat' => '',
-        'page' => '',
-    );
-    $args = wp_parse_args( $args, $default_args );
-    $riders = $uci_riders->get_riders( $args );
-
-    return $riders;
-}
-
 /**
  * Get rider results.
  * 
@@ -182,12 +161,20 @@ function crm_riders_url( $slug = '' ) {
     echo site_url( '/riders' );
 }
 
+/**
+ * Add rider.
+ * 
+ * @access public
+ * @param string $name (default: '').
+ * @param string $country (default: '').
+ * @return integer
+ */
 function crm_results_add_rider( $name = '', $country = '' ) {
     if ( empty( $name ) ) {
         return 0;
     }
 
-    $rider_id = uci_results_search_rider( $name );
+    $rider_id = crm_search_rider( $name );
 
     // check if we have a rider id, otherwise create one //
     if ( ! $rider_id ) :
@@ -207,7 +194,14 @@ function crm_results_add_rider( $name = '', $country = '' ) {
     return $rider_id;
 }
 
-function uci_results_search_rider( $name = '' ) {
+/**
+ * Search for a rider.
+ * 
+ * @access public
+ * @param string $name (default: '').
+ * @return boolean
+ */
+function crm_search_rider( $name = '' ) {
     $rider = get_page_by_title( $name, OBJECT, 'riders' );
 
     if ( $rider === null || empty( $rider->ID ) ) :
@@ -228,52 +222,6 @@ function uci_results_search_rider( $name = '' ) {
     endif;
 
     return false;
-}
-
-function uci_results_get_rider_stats( $rider_id = 0, $discipline = '' ) {
-    global $uci_rider_stats;
-
-    $stats = array();
-
-    if ( ! $rider_id ) {
-        return;
-    }
-
-    foreach ( $uci_rider_stats as $id => $class ) :
-        $stats[ $class->discipline ] = $class->get_stats( $rider_id );
-    endforeach;
-
-    if ( ! empty( $discipline ) && isset( $stats[ $discipline ] ) ) {
-        return $stats[ $discipline ];
-    }
-
-    return $stats;
-}
-
-function uci_results_stats_info( $slug = '' ) {
-    global $uci_rider_stats;
-
-    if ( isset( $uci_rider_stats[ $slug ] ) ) {
-        return $uci_rider_stats[ $slug ];
-    }
-
-    return;
-}
-
-function uci_rider_country( $rider_id = 0, $echo = true ) {
-    $country = crm_get_first_term( 1429, 'country' );
-
-    if ( $echo ) {
-        echo $country;
-    }
-
-    return $country;
-}
-
-function uci_results_get_uci_rank( $rider_id = 0, $discipline = '' ) {
-    global $uci_rankings;
-
-    return $uci_rankings->get_rank( $rider_id, $discipline );
 }
 
 /**
