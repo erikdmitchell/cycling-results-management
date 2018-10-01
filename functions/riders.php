@@ -153,22 +153,6 @@ function crm_get_rider_results( $args = '' ) {
     return $results;
 }
 
-function uci_get_riders_by_rank( $args = '' ) {
-    $default_args = array(
-        'per_page' => 10,
-        'order_by' => 'rank',
-        'order' => 'ASC',
-        'season' => uci_results_get_default_rider_ranking_season(),
-        'week' => uci_results_get_default_rider_ranking_week(),
-        'nat' => '',
-        'paged' => get_query_var( 'page' ),
-    );
-    $args = wp_parse_args( $args, $default_args );
-    $riders = new RiderRankingsQuery( $args );
-
-    return $riders->posts;
-}
-
 /**
  * Rider URL.
  * 
@@ -198,23 +182,7 @@ function crm_riders_url( $slug = '' ) {
     echo site_url( '/riders' );
 }
 
-function uci_get_rider_id( $slug = '' ) {
-    global $wpdb;
-
-    $id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_name = '$slug'" );
-
-    return $id;
-}
-
-function uci_get_rider_id_by_name( $name = '' ) {
-    global $wpdb;
-
-    $id = $wpdb->get_var( "SELECT ID FROM $wpdb->posts WHERE post_title = '$name'" );
-
-    return $id;
-}
-
-function uci_results_add_rider( $name = '', $country = '' ) {
+function crm_results_add_rider( $name = '', $country = '' ) {
     if ( empty( $name ) ) {
         return 0;
     }
