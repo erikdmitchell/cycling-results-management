@@ -327,5 +327,17 @@ class CRM_Admin {
 
         wp_die();
     }
+    
+    private function load_files() {
+        $dirs = array(
+            'metaboxes',
+        );
+
+        foreach ( $dirs as $dir ) :
+            foreach ( glob( CRM_ADMIN_PATH . $dir . '/*.php' ) as $file ) :
+                include_once( $file );
+            endforeach;
+        endforeach;
+    }    
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class CRM_Race_Results {
+class CRM_Race_Results_Meta_Box {
 
     public function __construct() {
         if ( is_admin() ) :
@@ -79,4 +79,4 @@ class CRM_Race_Results {
 
 }
 
-new CRM_Race_Results();
+new CRM_Race_Results_Meta_Box();

@@ -214,7 +214,6 @@ final class Cycling_Results_Management {
         $dirs = array(
             'post-types',
             'taxonomies',
-            'metaboxes',
         );
 
         foreach ( $dirs as $dir ) :
