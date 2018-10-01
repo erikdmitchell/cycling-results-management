@@ -129,7 +129,7 @@ class UCI_Rankings_Admin {
             endif;
             // end nation check.
             $data[ $key ]['rank'] = $rank_arr[0];
-            $data[ $key ]['rider_id'] = uci_results_add_rider( $name, $country );
+            $data[ $key ]['rider_id'] = crm_results_add_rider( $name, $country );
             $data[ $key ]['date'] = $date;
             $data[ $key ]['name'] = $name;
             $data[ $key ]['discipline'] = $discipline;
