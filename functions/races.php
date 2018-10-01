@@ -1,28 +1,4 @@
 <?php
-/**
- * uci_results_race_has_results function.
- *
- * @access public
- * @param string $code (default: '')
- * @return void
- */
-function uci_results_race_has_results( $code = '' ) {
-    global $wpdb;
-
-    $race = get_page_by_path( $code, OBJECT, 'races' );
-
-    // no race id, we out //
-    if ( $race === null ) {
-        return false;
-    }
-
-    // do we have results? //
-    if ( uci_race_has_results( $race->ID ) ) {
-        return true;
-    }
-
-    return false;
-}
 
 function crm_get_races( $args = '' ) {
     $default_args = array(
@@ -83,13 +59,6 @@ function crm_race_details( $race = '' ) {
     return $race;
 }
 
-/**
- * uci_race_country function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_race_country( $race_id = 0 ) {
     $countries = wp_get_post_terms( $race_id, 'country', array( 'fields' => 'names' ) );
 
@@ -121,13 +90,6 @@ function crm_race_class( $race_id = 0 ) {
     return $class;
 }
 
-/**
- * uci_race_season function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_race_season( $race_id = 0 ) {
     $seasons = wp_get_post_terms( $race_id, 'season', array( 'fields' => 'names' ) );
 
@@ -140,13 +102,6 @@ function uci_race_season( $race_id = 0 ) {
     return $season;
 }
 
-/**
- * uci_race_discipline function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_race_discipline( $race_id = 0 ) {
     $disciplines = wp_get_post_terms( $race_id, 'discipline', array( 'fields' => 'names' ) );
 
@@ -159,14 +114,6 @@ function uci_race_discipline( $race_id = 0 ) {
     return $discipline;
 }
 
-
-/**
- * uci_race_series function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_race_series( $race_id = 0 ) {
     $series_arr = wp_get_post_terms( $race_id, 'series', array( 'fields' => 'names' ) );
 
@@ -179,14 +126,6 @@ function uci_race_series( $race_id = 0 ) {
     return $series;
 }
 
-/**
- * uci_results_get_race_results function.
- *
- * @access public
- * @param int    $race_id (default: 0)
- * @param string $format (default: 'array')
- * @return void
- */
 function uci_results_get_race_results( $race_id = 0, $format = 'array' ) {
     $riders = array();
     $rider_ids = uci_race_results_rider_ids( $race_id );
@@ -226,13 +165,6 @@ function uci_results_get_race_results( $race_id = 0, $format = 'array' ) {
     return $riders;
 }
 
-/**
- * uci_race_results_columns function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_race_results_columns( $race_id = 0 ) {
     global $wpdb;
 
@@ -249,13 +181,6 @@ function uci_race_results_columns( $race_id = 0 ) {
     return $cols;
 }
 
-/**
- * uci_race_results_rider_ids function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_race_results_rider_ids( $race_id = 0 ) {
     global $wpdb;
 
@@ -264,13 +189,6 @@ function uci_race_results_rider_ids( $race_id = 0 ) {
     return $ids;
 }
 
-/**
- * uci_race_has_results function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_race_has_results( $race_id = 0 ) {
     $meta = get_post_meta( $race_id, '_races_results', true );
 
@@ -281,13 +199,6 @@ function uci_race_has_results( $race_id = 0 ) {
     return true;
 }
 
-/**
- * uci_get_related_races function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_get_related_races( $race_id = 0 ) {
     global $wpdb;
 
@@ -321,13 +232,6 @@ function uci_get_related_races( $race_id = 0 ) {
     return $related_races;
 }
 
-/**
- * uci_get_related_races_ids function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_get_related_races_ids( $race_id = 0 ) {
     global $wpdb;
 
@@ -346,13 +250,6 @@ function uci_get_related_races_ids( $race_id = 0 ) {
     return $related_races_ids;
 }
 
-/**
- * uci_get_related_race_id function.
- *
- * @access public
- * @param int $race_id (default: 0)
- * @return void
- */
 function uci_get_related_race_id( $race_id = 0 ) {
     return get_post_meta( $race_id, '_race_related', true );
 }
@@ -366,23 +263,6 @@ function crm_race_url( $slug = '' ) {
     endif;
 
     echo get_permalink( $post_id );
-}
-
-/**
- * uci_get_race_slug function.
- *
- * @access public
- * @param int $id (default: 0)
- * @return void
- */
-function uci_get_race_slug( $id = 0 ) {
-    $race = get_post( absint( $id ) );
-
-    if ( isset( $race->post_name ) ) {
-        return $race->post_name;
-    }
-
-    return false;
 }
 
 function crm_races_url() {
