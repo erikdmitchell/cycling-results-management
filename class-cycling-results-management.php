@@ -227,11 +227,14 @@ final class Cycling_Results_Management {
 
     public function rewrite_rules() {
         add_rewrite_rule( 'uci-rankings/([^/]*)/([^/]*)/?', 'index.php?rankings_discipline=$matches[1]&rankings_date=$matches[2]', 'top' );
+        add_rewrite_rule( 'crm-rankings/([^/]*)/([^/]*)/?', 'index.php?crm_rankings_discipline=$matches[1]&crm_rankings_season=$matches[2]', 'top' );        
     }
 
     public function register_query_vars( $vars ) {
         $vars[] = 'rankings_date';
         $vars[] = 'rankings_discipline';
+        $vars[] = 'crm_rankings_season';
+        $vars[] = 'crm_rankings_discipline';
 
         return $vars;
     }
