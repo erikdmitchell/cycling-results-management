@@ -26,6 +26,10 @@ function crm_template_loader( $template ) {
         $template_slug = 'uci-rankings';
     }
 
+    if ( get_query_var( 'crm_rankings_discipline' ) && get_query_var( 'crm_rankings_season' ) ) {
+        $template_slug = 'crm-rankings';
+    }
+
     // check theme(s), then plugin.
     if ( file_exists( get_stylesheet_directory() . '/crm/' . $template_slug . '.php' ) ) :
         $located = get_stylesheet_directory() . '/crm/' . $template_slug . '.php';
@@ -59,7 +63,7 @@ function crm_get_template_part( $template_name = '', $atts = '' ) {
 
     ob_start();
 
-    do_action( 'uci_results_get_template_part' . $template_name );
+    do_action( 'crm_get_template_part' . $template_name );
 
     if ( file_exists( get_stylesheet_directory() . '/crm/' . $template_name . '.php' ) ) :
         include( get_stylesheet_directory() . '/crm/' . $template_name . '.php' );
