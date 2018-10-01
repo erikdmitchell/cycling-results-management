@@ -20,7 +20,11 @@ $uci_rankings = cycling_results_management()->uci_rankings->get_rankings(
     )
 );
 
-$crm_rankings = cycling_results_management()->riders->get_riders();
+$crm_rankings = cycling_results_management()->riders->get_riders_rankings(
+    array(
+        'limit' => 10,
+    )
+);
 ?>
 <pre>
     <?php
@@ -53,7 +57,7 @@ $crm_rankings = cycling_results_management()->riders->get_riders();
         
     </div>
     
-    <div class="row crm-uci-rankings">
+    <div class="row crm-rankings-wrap">
         
         <div class="col-sm-12 col-md-6">
             
@@ -77,7 +81,32 @@ $crm_rankings = cycling_results_management()->riders->get_riders();
                 <?php endif; ?>
             </div>
         
-            <a class="view-all" href="<?php crm_riders_url(); ?>">View All Riders &raquo;</a>
+            <a class="view-all" href="<?php crm_riders_url(); ?>">View More &raquo;</a>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            
+            <h3>Rankings</h3>
+            
+            <div class="row header">
+                <div class="col-sm-2">Rank</div>
+                <div class="col-sm-7">Name</div>
+                <div class="col-sm-3">Points</div>       
+            </div>
+        
+            <div class="riders-list-wrap">
+                <?php if ( count( $crm_rankings ) ) : ?>
+                    <?php foreach ( $crm_rankings as $rider ) : ?>
+                        <div class="row">
+                            <div class="col-sm-2"><?php echo $rider->rank; ?></div>
+                            <div class="col-sm-7"><a href="<?php echo crm_rider_url( $rider->rider_id ); ?>"><?php echo $rider->name; ?></a></div>
+                            <div class="col-sm-3"><?php echo $rider->points; ?></div> 
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        
+            <a class="view-all" href="#">View More &raquo;</a>
         </div>
                 
     </div>
