@@ -163,15 +163,4 @@ class CRM_Riders {
         return $rank;
     }
 
-    /**
-     * get_twitter function.
-     *
-     * @access public
-     * @param int $rider_id (default: 0)
-     * @return void
-     */
-    public function get_twitter( $rider_id = 0 ) {
-        return get_post_meta( $rider_id, '_rider_twitter', true );
-    }
-
 }
