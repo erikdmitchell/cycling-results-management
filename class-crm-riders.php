@@ -103,6 +103,7 @@ class CRM_Riders {
     public function get_riders_rankings($args = '') {
         global $wpdb;
         
+        $rankings = array();
         $default_args = array(
             'limit' => -1,
             'discipline' => 'cyclocross',
@@ -116,12 +117,17 @@ class CRM_Riders {
             $limit = 'LIMIT ' . $args['limit'];
         endif;
 
-        $rankings = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '".$args['discipline']."' AND season = '".$args['season']."' ORDER BY rank $limit" );
+        $rankings_db = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '".$args['discipline']."' AND season = '".$args['season']."' ORDER BY rank $limit" );
         
         // append name.
-        foreach ($rankings as $rider) :
+        foreach ($rankings_db as $rider) :
             $rider->name = get_the_title($rider->rider_id);
         endforeach;
+        
+        // add details for links (possibly pag).
+        $rankings['riders'] = $rankings_db;
+        $rankings['discipline'] = $args['discipline'];
+        $rankings['season'] = $args['season'];
         
         return $rankings;
     }
