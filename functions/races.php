@@ -385,18 +385,8 @@ function uci_get_race_slug( $id = 0 ) {
     return false;
 }
 
-/**
- * uci_results_races_url function.
- *
- * @access public
- * @return void
- */
-function uci_results_races_url() {
-    global $uci_results_pages;
-
-    $url = get_permalink( $uci_results_pages['races'] );
-
-    echo $url;
+function crm_races_url() {
+    echo site_url('/races');
 }
 
 /**
