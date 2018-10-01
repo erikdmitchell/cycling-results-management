@@ -1,6 +1,6 @@
 <?php
     
-class CRM_Shortcodes() {
+class CRM_Shortcodes {
     
     function __construct() {
         add_shortcode( 'crm_main', array($this, 'crm_main') );        
@@ -15,3 +15,5 @@ class CRM_Shortcodes() {
     }
     
 }
+
+new CRM_Shortcodes();
