@@ -38,7 +38,7 @@ $riders = new RiderRankingsQuery(
             <div class="em-row">
                 <div class="em-col-sm-1 rider-rank"><?php echo $rider_rankings_post->rank; ?></div>
                 <div class="em-col-sm-4 rider-name"><a href="<?php crm_rider_url( $rider_rankings_post->post_name ); ?>"><?php echo $rider_rankings_post->post_title; ?></a></div>
-                <div class="em-col-sm-1 rider-nat"><?php echo uci_results_get_country_flag( $rider_rankings_post->nat ); ?></div>
+                <div class="em-col-sm-1 rider-nat"><?php echo crm_get_country_flag( $rider_rankings_post->nat ); ?></div>
                 <div class="em-col-sm-2 rider-points"><?php echo $rider_rankings_post->points; ?></div>
             </div>
                     <?php

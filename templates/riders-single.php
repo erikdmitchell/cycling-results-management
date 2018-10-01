@@ -16,7 +16,7 @@ get_header(); ?>
             <div class="col-md-4 general">
                 <?php the_title('<h1 class="page-title">', '</h1>'); ?>
 
-                <div class="country"><span class="">Nationality:</span><?php echo uci_results_get_country_flag( $post->nat ); ?></div>
+                <div class="country"><span class="">Nationality:</span><?php echo crm_get_country_flag( $post->nat ); ?></div>
             </div>
         </div>
         

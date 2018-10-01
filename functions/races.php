@@ -357,25 +357,15 @@ function uci_get_related_race_id( $race_id = 0 ) {
     return get_post_meta( $race_id, '_race_related', true );
 }
 
-/**
- * uci_results_race_url function.
- *
- * @access public
- * @param string $slug (default: '')
- * @return void
- */
-function uci_results_race_url( $slug = '' ) {
-    global $uci_results_pages;
+function crm_race_url( $slug = '' ) {
+    if ( ! is_numeric( $slug ) ) :
+        $post = get_page_by_path( $slug, OBJECT, 'races' );
+        $post_id = $post->ID;
+    else :
+        $post_id = $slug;
+    endif;
 
-    // check if id, not slug //
-    if ( is_numeric( $slug ) ) {
-        $slug = uci_get_race_slug( $slug );
-    }
-
-    $base_url = get_permalink( $uci_results_pages['single_race'] );
-    $url = $base_url . $slug;
-
-    echo $url;
+    echo get_permalink( $post_id );
 }
 
 /**

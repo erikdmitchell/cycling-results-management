@@ -255,15 +255,7 @@ function uci_results_flags_css( $hook ) {
 }
 add_action( 'wp_enqueue_scripts', 'uci_results_flags_css' );
 
-/**
- * uci_results_get_country_flag function.
- *
- * @access public
- * @param bool $country (default: false)
- * @param bool $addon (default: false)
- * @return void
- */
-function uci_results_get_country_flag( $country = false, $addon = false ) {
+function crm_get_country_flag( $country = false, $addon = false ) {
     global $flags_countries_arr;
 
     if ( ! $country ) {

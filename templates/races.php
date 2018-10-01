@@ -39,7 +39,7 @@ $races = new WP_Query(
             <div class="em-row">
                 <div class="em-col-sm-6 race-name"><a href="<?php uci_results_race_url( $post->post_name ); ?>"><?php the_title(); ?></a></div>
                 <div class="em-col-sm-2 race-date"><?php echo $post->race_date; ?></div>
-                <div class="em-col-sm-1 race-nat"><?php echo uci_results_get_country_flag( $post->nat ); ?></div>
+                <div class="em-col-sm-1 race-nat"><?php echo crm_get_country_flag( $post->nat ); ?></div>
                 <div class="em-col-sm-1 race-class"><?php echo $post->class; ?></div>
             </div>
                     <?php
