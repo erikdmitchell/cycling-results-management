@@ -75,8 +75,30 @@ function crm_pagination( $numpages = '', $pagerange = '', $paged = '' ) {
     echo $html;
 }
 
+/**
+ * CRM UCI Rankings url.
+ * 
+ * @access public
+ * @param string $discipline (default: 'cyclocross').
+ * @param string $date (default: '').
+ * @return url
+ */
 function crm_uci_rankings_url( $discipline = 'cyclocross', $date = '' ) {
     $url = site_url( 'uci-rankings/' . strtolower( $discipline ) . '/' . $date );
+
+    echo $url;
+}
+
+/**
+ * CRM Rankings url.
+ * 
+ * @access public
+ * @param string $discipline (default: 'cyclocross').
+ * @param string $season (default: '').
+ * @return url
+ */
+function crm_rankings_url( $discipline = 'cyclocross', $season = '' ) {
+    $url = site_url( 'crm-rankings/' . strtolower( $discipline ) . '/' . $season );
 
     echo $url;
 }
