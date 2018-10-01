@@ -1,74 +1,58 @@
 <?php
 /**
- * template for main page
+ * template for main page (via shortcode)
  *
  * It can be overriden
  *
- * @since 2.0.0
+ * @since 1.0.0
  */
-
-global $uci_results_post, $uci_rankings;
-
-$selected_discipline = 89;
-$selected_date = $uci_rankings->recent_date( $selected_discipline );
-
-$riders = $uci_rankings->get_rankings(
-    array(
-        'order_by' => 'rank',
-        'discipline' => $selected_discipline,
-        'limit' => 10,
-    )
-);
 
 $races = crm_get_races(
     array(
         'per_page' => 10,
     )
 );
+$uci_rankings = cycling_results_management()->uci_rankings->get_rankings();
+$crm_rankings = cycling_results_management()->riders->get_riders();
 ?>
-
-<div class="uci-results uci-results-main em-container">
+<pre>
+    <?php
+        //print_r($races);
+        print_r($uci_rankings);
+        print_r($crm_rankings);  
+    ?>
+</pre>
+<div class="crm-results-main container">
     
-    <div class="em-row">
-        <div class="em-col-md-6">
+    <div class="row">
+        <div class="col-12">
         
-        <div class="uci-results-races">
-            <h3>Race Results</h3>
-    Filters for Discipline / Date
-            <div class="em-row header">
-                <div class="em-col-md-6 race-name">Name</div>
-                <div class="em-col-md-2 race-date">Date</div>
-                <div class="em-col-md-2 race-nat">Nat</div>
-                <div class="em-col-md-2 race-class">Class</div>
-            </div>
+        <div class="crm-recent-race-results">
+            <h3>Recent Race Results</h3>
     
-            <?php
-            if ( count( $races ) ) :
-                foreach ( $races as $race ) :
-                    ?>
-                <div class="em-row">
-                    <div class="em-col-md-6 race-name"><a href="<?php uci_results_race_url( $race->post_name ); ?>"><?php echo $race->post_title; ?></a></div>
-                    <div class="em-col-md-2 race-date"><?php echo $race->race_date; ?></div>
-                    <div class="em-col-md-2 race-nat"><?php echo uci_results_get_country_flag( $race->nat ); ?></div>
-                    <div class="em-col-md-2 race-class"><?php echo $race->class; ?></div>
-                </div>
-                            <?php
-            endforeach;
-endif;
-            ?>
+            <?php if ( count( $races ) ) : ?>
+                <?php foreach ( $races as $race ) : ?>
+                    <div class="row">
+                        <div class="col-md-6 race-name"><a href="<?php crm_race_url( $race->post_name ); ?>"><?php echo $race->post_title; ?></a></div>
+                        <div class="col-md-2 race-date"><?php echo $race->race_date; ?></div>
+                        <div class="col-md-2 race-nat"><?php echo crm_get_country_flag( $race->nat ); ?></div>
+                        <div class="col-md-2 race-class"><?php echo $race->class; ?></div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
     
-            <a class="view-all" href="<?php uci_results_races_url(); ?>">View All Races &raquo;</a>
+            <a class="view-all" href="<?php crm_races_url(); ?>">View All Races &raquo;</a>
         </div>
     
         </div>
         
-        <div class="em-col-md-6">
+        <div class="col-md-6">
             
             <div class="uci-rankings">
                 <h3>UCI Rankings</h3>
                 
                 <div class="row filters">
-                    <div class="em-col-md-3">
+                    <div class="col-md-3">
                         
                         <select name="discipline" id="uci-rankings-discipline">
                             
@@ -80,7 +64,7 @@ endif;
                         </select>
                         
                     </div>
-                    <div class="em-col-md-3">
+                    <div class="col-md-3">
 
                         <select name="date" id="uci-rankings-date">
                             
@@ -94,11 +78,11 @@ endif;
                     </div>
                 </div>
 
-                <div class="em-row header">
-                    <div class="em-col-md-1 rider-rank">Rank</div>
-                    <div class="em-col-md-5 rider-name">Rider</div>
-                    <div class="em-col-md-1 rider-nat">Nat</div>
-                    <div class="em-col-md-2 rider-points">Points</div>
+                <div class="row header">
+                    <div class="col-md-1 rider-rank">Rank</div>
+                    <div class="col-md-5 rider-name">Rider</div>
+                    <div class="col-md-1 rider-nat">Nat</div>
+                    <div class="col-md-2 rider-points">Points</div>
                 </div>
         
                 <div class="riders-list-wrap">
