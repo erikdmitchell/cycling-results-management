@@ -186,6 +186,11 @@ function crm_rider_url( $slug = '' ) {
     echo get_permalink( $post_id );
 }
 
+function crm_riders_url( $slug = '' ) {
+    echo site_url('/riders');
+}
+
+
 /**
  * uci_get_rider_id function.
  *
