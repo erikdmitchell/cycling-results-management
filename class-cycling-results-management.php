@@ -147,7 +147,7 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'admin/custom-columns.php' ); // custom columns for our admin pages
 
         include_once( CRM_PATH . 'lib/name-parser.php' ); // a php nameparser
-        include_once( CRM_PATH . 'shortcode.php' ); // our shortcodes
+        include_once( CRM_PATH . 'class-crm-shortcodes.php' ); // our shortcodes
         include_once( CRM_PATH . 'lib/flags.php' ); // our flag stuff
 
         // discipline classes //
