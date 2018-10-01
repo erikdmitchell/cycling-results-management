@@ -16,14 +16,7 @@ class CRM_Riders {
     public function __construct() {
 
     }
-
-    /**
-     * get_riders function.
-     *
-     * @access public
-     * @param string $args (default: '')
-     * @return void
-     */
+// check this function -- NOT USED
     public function get_riders( $args = '' ) {
         global $wpdb;
 
@@ -82,6 +75,7 @@ class CRM_Riders {
         }
 
         foreach ( $rider_ids as $rider_id ) :
+/*
             $riders[] = $this->get_rider(
                 array(
                     'rider_id' => $rider_id,
@@ -93,74 +87,73 @@ class CRM_Riders {
                     'stats' => $stats,
                 )
             );
+*/
         endforeach;
 
         return $riders;
     }
-
+    
     /**
-     * rider_last_race_result function.
-     *
+     * Get riders rankings list.
+     * 
      * @access public
-     * @param int $rider_id (default: 0)
-     * @return void
+     * @param string $args (default: '').
+     * @return object
      */
-    public function rider_last_race_result( $rider_id = 0 ) {
-        // get race ids via meta //
-        $results_args_meta = array(
-            'posts_per_page' => 1,
-            'post_type' => 'races',
-            'orderby' => 'meta_value',
-            'meta_key' => '_race_date',
-            'meta_query' => array(
-                array(
-                    'key' => '_rider_' . $rider_id,
-                ),
-            ),
-            'fields' => 'ids',
+    public function get_riders_rankings($args = '') {
+        global $wpdb;
+        
+        $default_args = array(
+            'limit' => -1,
+            'discipline' => 'cyclocross',
+            'season' => $this->get_recent_season(),
         );
-        $race_ids = get_posts( $results_args_meta );
+        $args = wp_parse_args($args, $default_args);
+        
+        if ($args['limit'] < 0) :
+            $limit = '';
+        else :
+            $limit = 'LIMIT ' . $args['limit'];
+        endif;
 
-        $last_race = uci_results_get_rider_results(
-            array(
-                'rider_id' => $rider_id,
-                'race_ids' => $race_ids,
-            )
-        );
-
-        if ( isset( $last_race[0] ) ) {
-            return $last_race[0];
-        }
-
-        return;
+        $rankings = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '".$args['discipline']."' AND season = '".$args['season']."' ORDER BY rank $limit" );
+        
+        // append name.
+        foreach ($rankings as $rider) :
+            $rider->name = get_the_title($rider->rider_id);
+        endforeach;
+        
+        return $rankings;
+    }
+    
+    /**
+     * Get recent season from db.
+     * 
+     * @access public
+     * @param string $discipline (default: 'cyclocross').
+     * @return string
+     */
+    public function get_recent_season($discipline = 'cyclocross') {
+        global $wpdb;
+        
+        $season = $wpdb->get_var("SELECT DISTINCT season FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '$discipline' ORDER BY season DESC");
+        
+        return $season;
     }
 
+    /**
+     * Get rider rankings from db.
+     * 
+     * @access public
+     * @param int $rider_id (default: 0).
+     * @return object
+     */
     public function get_rider_rankings( $rider_id = 0 ) {
         global $wpdb;
         
         $rankings = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}crm_rider_rankings WHERE rider_id = $rider_id");
 
         return $rankings;
-    }
-
-    /**
-     * blank_rank function.
-     *
-     * @access protected
-     * @param string $season (default: '')
-     * @return void
-     */
-    protected function blank_rank( $season = '' ) {
-        $rank = new stdClass();
-
-        $rank->id = 0;
-        $rank->points = 0;
-        $rank->season = $season;
-        $rank->rank = 0;
-        $rank->week = 0;
-        $rank->status = '';
-
-        return $rank;
     }
 
 }
