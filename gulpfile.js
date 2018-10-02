@@ -226,7 +226,7 @@ gulp.task('zip', function () {
 
 // Package Distributable - sort of
 gulp.task('build', function (cb) {
-    runSequence('styles', 'scripts', cb);
+    runSequence('styles', 'scripts', 'zip', cb);
 });
 
 // Styles task
