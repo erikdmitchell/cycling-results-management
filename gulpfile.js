@@ -18,7 +18,7 @@ var buildInclude = [
 
         // exclude files and folders
         '!./composer.json', 
-        '!./composer.lock'
+        '!./composer.lock',
         '!./gulpfile.js',
         '!./node_modules/**/*',
         '!./phpcs.ruleset.xml',
