@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Riders post type.
+ * 
+ * @access public
+ * @return void
+ */
 function riders_init() {
     register_post_type(
         'riders', array(
@@ -35,6 +42,13 @@ function riders_init() {
 }
 add_action( 'init', 'riders_init' );
 
+/**
+ * Riders post type messages.
+ * 
+ * @access public
+ * @param mixed $messages
+ * @return void
+ */
 function riders_updated_messages( $messages ) {
     global $post;
 

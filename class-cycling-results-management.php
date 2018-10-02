@@ -3,7 +3,7 @@
  * Main CRM class
  *
  * @package CRM
- * @since   1.0.0
+ * @since   0.1.0
  */
 
 /**
@@ -16,12 +16,12 @@ final class Cycling_Results_Management {
     /**
      * version
      *
-     * (default value: '1.0.0')
+     * (default value: '0.1.0')
      *
      * @var string
      * @access public
      */
-    public $version = '1.0.0';
+    public $version = '0.1.0';
 
     /**
      * admin
@@ -140,7 +140,7 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'functions/wp-query.php' ); // modify wp query functions
         include_once( CRM_PATH . 'functions.php' ); // generic functions
 
-        include_once( CRM_PATH . 'admin/admin.php' ); // admin page
+        include_once( CRM_PATH . 'admin/class-crm-admin.php' ); // admin page
         include_once( CRM_PATH . 'admin/notices.php' ); // admin notices function
         include_once( CRM_PATH . 'admin/class-crm-add-race-results.php' ); // add races/results to db
         include_once( CRM_PATH . 'admin/custom-columns.php' ); // custom columns for our admin pages

@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Series taxonomy.
+ * 
+ * @access public
+ * @return void
+ */
 function series_init() {
     register_taxonomy(
         'series', array( 'races' ), array(

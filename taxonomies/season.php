@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Season taxonomy.
+ * 
+ * @access public
+ * @return void
+ */
 function season_init() {
     register_taxonomy(
         'season', array( 'races' ), array(

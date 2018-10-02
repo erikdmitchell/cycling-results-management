@@ -4,6 +4,16 @@
  * Registers the `crm_country` taxonomy,
  * for use with 'riders', 'races'.
  */
+ 
+ 
+/**
+ * CRM country taxonomy.
+ * 
+ * Registers the `crm_country` taxonomy, for use with 'riders', 'races'.
+ *
+ * @access public
+ * @return void
+ */
 function crm_country_init() {
     register_taxonomy(
         'crm_country', array( 'riders', 'races' ), array(

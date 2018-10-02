@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Discipline taxonomy.
+ * 
+ * @access public
+ * @return void
+ */
 function discipline_init() {
     register_taxonomy(
         'discipline', array( 'races' ), array(

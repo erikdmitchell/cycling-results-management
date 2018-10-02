@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Races post type.
+ * 
+ * @access public
+ * @return void
+ */
 function races_init() {
     register_post_type(
         'races', array(
@@ -35,6 +42,13 @@ function races_init() {
 }
 add_action( 'init', 'races_init' );
 
+/**
+ * Race post type messages.
+ * 
+ * @access public
+ * @param mixed $messages
+ * @return void
+ */
 function races_updated_messages( $messages ) {
     global $post;
 

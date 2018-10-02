@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Race class taxonomy.
+ * 
+ * @access public
+ * @return void
+ */
 function race_class_init() {
     register_taxonomy(
         'race_class', array( 'races' ), array(
