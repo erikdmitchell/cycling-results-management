@@ -163,24 +163,6 @@ gulp.task('lintjs', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-/*
-gulp.task('scripts', function () {
-    return gulp.src('./js/*.js')
-        .pipe(concat('custom.js'))
-        .pipe(gulp.dest('./assets/js'))
-        .pipe(rename({
-            basename: "custom",
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('./assets/js/'))
-        .pipe(notify({
-            message: 'Custom scripts task complete',
-            onLast: true
-        }));
-});
-*/
-
 /**
  * PHP
  */
