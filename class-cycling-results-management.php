@@ -154,6 +154,7 @@ final class Cycling_Results_Management {
 
         include_once( CRM_PATH . 'class-crm-install.php' );
         include_once( CRM_PATH . 'crm-update-functions.php' );
+        include_once( CRM_PATH . 'class-crm-yoast-seo-mods.php' );
     }
 
     /**
