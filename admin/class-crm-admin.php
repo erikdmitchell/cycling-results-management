@@ -10,6 +10,7 @@ class CRM_Admin {
     public function __construct() {
         add_action( 'admin_menu', array( $this, 'register_menu_page' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_styles' ) );
+        add_action( 'admin_init', array( $this, 'init' ) );
         add_action( 'admin_init', array( $this, 'save_settings' ) );
         add_action( 'save_post', array( $this, 'assign_parent_terms' ), 10, 2 );
 
@@ -121,6 +122,16 @@ class CRM_Admin {
         ob_end_clean();
 
         return $html;
+    }
+    
+    /**
+     * Init.
+     * 
+     * @access public
+     * @return void
+     */
+    public function init() {
+        $this->load_files();
     }
 
     /**
