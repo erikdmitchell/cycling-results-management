@@ -213,7 +213,7 @@ function uci_race_has_results( $race_id = 0 ) {
     return true;
 }
 
-function uci_get_related_races( $race_id = 0 ) {
+function crm_get_related_races( $race_id = 0 ) {
     global $wpdb;
 
     $related_races = array();
@@ -246,7 +246,7 @@ function uci_get_related_races( $race_id = 0 ) {
     return $related_races;
 }
 
-function uci_get_related_races_ids( $race_id = 0 ) {
+function crm_get_related_races_ids( $race_id = 0 ) {
     global $wpdb;
 
     $related_race_id = uci_get_related_race_id( $race_id );
@@ -264,7 +264,7 @@ function uci_get_related_races_ids( $race_id = 0 ) {
     return $related_races_ids;
 }
 
-function uci_get_related_race_id( $race_id = 0 ) {
+function crm_get_related_race_id( $race_id = 0 ) {
     return get_post_meta( $race_id, '_race_related', true );
 }
 
