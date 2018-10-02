@@ -73,6 +73,13 @@ function crm_race_details( $race = '' ) {
     return $race;
 }
 
+/**
+ * Get race country.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return string
+ */
 function crm_race_country( $race_id = 0 ) {
     $countries = wp_get_post_terms( $race_id, 'country', array( 'fields' => 'names' ) );
 
@@ -104,6 +111,13 @@ function crm_race_class( $race_id = 0 ) {
     return $class;
 }
 
+/**
+ * Get race season.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return string
+ */
 function crm_race_season( $race_id = 0 ) {
     $seasons = wp_get_post_terms( $race_id, 'season', array( 'fields' => 'names' ) );
 
@@ -116,6 +130,13 @@ function crm_race_season( $race_id = 0 ) {
     return $season;
 }
 
+/**
+ * Get race discipline.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return string
+ */
 function crm_race_discipline( $race_id = 0 ) {
     $disciplines = wp_get_post_terms( $race_id, 'discipline', array( 'fields' => 'names' ) );
 
@@ -128,6 +149,13 @@ function crm_race_discipline( $race_id = 0 ) {
     return $discipline;
 }
 
+/**
+ * Get race series.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return string
+ */
 function crm_race_series( $race_id = 0 ) {
     $series_arr = wp_get_post_terms( $race_id, 'series', array( 'fields' => 'names' ) );
 
