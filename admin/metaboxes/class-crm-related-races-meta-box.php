@@ -8,6 +8,7 @@ class CRM_Related_Races_Meta_Box {
             add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
         endif;
         
+        add_action( 'wp_ajax_search_related_races', array( $this, 'ajax_search_related_races' ) );
         add_action( 'wp_ajax_show_related_races_box', array( $this, 'ajax_show_related_races_box' ) );
     }
 
@@ -87,7 +88,46 @@ class CRM_Related_Races_Meta_Box {
         echo cycling_results_management()->admin->get_admin_page( 'add-related-races' );
 
         wp_die();
-    }    
+    } 
+    
+    /**
+     * AJAX search related races.
+     *
+     * @access public
+     * @return void
+     */
+    public function ajax_search_related_races() {
+        global $wpdb;
+
+        $html = null;
+        $query = $_POST['query'];       
+        $races = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_title LIKE '%$query%' AND post_type = 'races'");
+        $related_races_ids = crm_get_related_races_ids( $_POST['id'] );
+
+        // build out html //
+        foreach ( $races as $race ) :
+            if ( $race->ID == $_POST['id'] || in_array( $race->ID, $related_races_ids ) ) {
+                continue; // skip if current race or already linked
+            }
+
+            $country = array_pop( wp_get_post_terms( $race->ID, 'country' ) );
+            $class = array_pop( wp_get_post_terms( $race->ID, 'race_class' ) );
+            $season = array_pop( wp_get_post_terms( $race->ID, 'season' ) );
+
+            $html .= '<tr>';
+                $html .= '<th scope="row" class="check-column"><input id="cb-select-' . $race->ID . '" type="checkbox" name="races[]" value="' . $race->ID . '"></th>';
+                $html .= '<td class="race-date">' . date( get_option( 'date_format' ), strtotime( get_post_meta( $race->ID, '_race_start', true ) ) ) . '</td>';
+                $html .= '<td class="race-name">' . $race->post_title . '</td>';
+                $html .= '<td class="race-nat">' . $country->name . '</td>';
+                $html .= '<td class="race-class">' . $class->name . '</td>';
+                $html .= '<td class="race-season">' . $season->name . '</td>';
+            $html .= '</tr>';
+        endforeach;
+
+        echo $html;
+
+        wp_die();
+    }       
 
 }
 

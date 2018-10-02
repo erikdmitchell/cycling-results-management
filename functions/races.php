@@ -253,17 +253,17 @@ function crm_race_results_rider_ids( $race_id = 0 ) {
     return $ids;
 }
 
-function crm_get_related_races( $race_id = 0 ) {
+function crm_get_related_races( $race_id = 0 ) { // USED
     global $wpdb;
 
     $related_races = array();
-    $related_race_id = uci_get_related_race_id( $race_id );
+    $related_race_id = crm_get_related_race_id( $race_id );
 
     if ( ! $related_race_id ) {
         return array();
     }
 
-    $related_races_ids = uci_get_related_races_ids( $race_id );
+    $related_races_ids = crm_get_related_races_ids( $race_id );
 
     if ( is_wp_error( $related_races_ids ) || $related_races_ids === null ) {
         return false;
@@ -286,10 +286,10 @@ function crm_get_related_races( $race_id = 0 ) {
     return $related_races;
 }
 
-function crm_get_related_races_ids( $race_id = 0 ) {
+function crm_get_related_races_ids( $race_id = 0 ) { // USED
     global $wpdb;
 
-    $related_race_id = uci_get_related_race_id( $race_id );
+    $related_race_id = crm_get_related_race_id( $race_id );
 
     if ( ! $related_race_id ) {
         return array();
@@ -304,7 +304,7 @@ function crm_get_related_races_ids( $race_id = 0 ) {
     return $related_races_ids;
 }
 
-function crm_get_related_race_id( $race_id = 0 ) {
+function crm_get_related_race_id( $race_id = 0 ) { // USED
     return get_post_meta( $race_id, '_race_related', true );
 }
 
