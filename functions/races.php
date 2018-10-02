@@ -44,7 +44,7 @@ function crm_get_races( $args = '' ) {
         $race = crm_race_details( $race );
 
         if ( $results ) {
-            $race->results = uci_results_get_race_results( $race->ID );
+            $race->results = crm_results_get_race_results( $race->ID );
         }
     endforeach;
 
@@ -140,10 +140,18 @@ function crm_race_series( $race_id = 0 ) {
     return $series;
 }
 
-function uci_results_get_race_results( $race_id = 0, $format = 'array' ) {
+/**
+ * Get race results.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @param string $format (default: 'array').
+ * @return object
+ */
+function crm_results_get_race_results( $race_id = 0, $format = 'array' ) {
     $riders = array();
-    $rider_ids = uci_race_results_rider_ids( $race_id );
-    $cols = uci_race_results_columns( $race_id );
+    $rider_ids = crm_race_results_rider_ids( $race_id );
+    $cols = crm_race_results_columns( $race_id );
 
     // add rider details //
     foreach ( $rider_ids as $id ) :
@@ -179,7 +187,14 @@ function uci_results_get_race_results( $race_id = 0, $format = 'array' ) {
     return $riders;
 }
 
-function uci_race_results_columns( $race_id = 0 ) {
+/**
+ * Get race columns.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return array
+ */
+function crm_race_results_columns( $race_id = 0 ) {
     global $wpdb;
 
     $meta_keys = $wpdb->get_col( "SELECT meta_key FROM $wpdb->postmeta WHERE post_id = $race_id AND meta_key LIKE '_rider_%'" );
@@ -195,22 +210,19 @@ function uci_race_results_columns( $race_id = 0 ) {
     return $cols;
 }
 
-function uci_race_results_rider_ids( $race_id = 0 ) {
+/**
+ * Race results rider ids.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return object
+ */
+function crm_race_results_rider_ids( $race_id = 0 ) {
     global $wpdb;
 
     $ids = $wpdb->get_col( "SELECT REPLACE (REPLACE (meta_key, '_rider_', ''), '_result_place', '') AS id FROM $wpdb->postmeta WHERE post_id = $race_id AND meta_key LIKE '_rider_%_result_place'" );
 
     return $ids;
-}
-
-function uci_race_has_results( $race_id = 0 ) {
-    $meta = get_post_meta( $race_id, '_races_results', true );
-
-    if ( $meta === null ) {
-        return false;
-    }
-
-    return true;
 }
 
 function crm_get_related_races( $race_id = 0 ) {
