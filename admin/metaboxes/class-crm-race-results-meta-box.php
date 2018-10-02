@@ -38,9 +38,6 @@ class CRM_Race_Results_Meta_Box {
      * @param WP_Post $post The post object.
      */
     public function render_meta_box_content( $post ) {
-        // Add an nonce field so we can check for it later.
-        wp_nonce_field( 'update_race_results_meta', 'uci_results_admin' );
-
         $riders = crm_results_get_race_results( $post->ID );
         $discipline = strtolower( crm_get_first_term( $post->ID, 'discipline' ) );
 
