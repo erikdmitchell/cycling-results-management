@@ -295,7 +295,7 @@ function crm_get_related_races_ids( $race_id = 0 ) { // USED
         return array();
     }
 
-    $related_races_ids = $wpdb->get_col( "SELECT race_id FROM $wpdb->uci_results_related_races WHERE related_race_id = $related_race_id" );
+    $related_races_ids = $wpdb->get_col( "SELECT race_id FROM {$wpdb->prefix}crm_related_races WHERE related_race_id = $related_race_id" );
 
     if ( is_wp_error( $related_races_ids ) || $related_races_ids === null ) {
         return false;

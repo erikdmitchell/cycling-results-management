@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 		
 		$.post(ajaxurl, data, function(response) {
 			$('#TB_ajaxContent').append(response);
-console.log(response);			
+			
 			$('#TB_ajaxContent #race_id').val(raceID);
 			
 			hideLoader();			
@@ -85,9 +85,9 @@ console.log(response);
 		
 		$.post(ajaxurl, data, function(response) {
 			hideLoader();
-console.log(response);			
+			
 			var data=$.parseJSON(response);
-console.log(data);			
+			
 			$('#related-races-id').val(data.related_race_id);
 			$(data.html).insertBefore('.row.add-race');
 			

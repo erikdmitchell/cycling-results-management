@@ -16,7 +16,6 @@ class CRM_Admin {
 
         add_action( 'wp_ajax_uci_remove_related_race', array( $this, 'ajax_remove_related_race' ) );
         add_action( 'wp_ajax_show_related_races_box', array( $this, 'ajax_show_related_races_box' ) );
-        add_action( 'wp_ajax_add_related_races_to_race', array( $this, 'ajax_add_related_races_to_race' ) );
         add_action( 'wp_ajax_race_id_search', array( $this, 'ajax_race_id_search' ) );
     }
 
@@ -162,55 +161,6 @@ class CRM_Admin {
         );
 
         echo true;
-
-        wp_die();
-    }
-
-    /**
-     * ajax_add_related_races_to_race function.
-     *
-     * @access public
-     * @return void
-     */
-    public function ajax_add_related_races_to_race() {
-        global $wpdb;
-
-        parse_str( $_POST['form'], $form );
-
-        $html = null;
-        $races = $form['races'];
-        $related_race_id = uci_get_related_race_id( $_POST['id'] );
-        $last_related_race_id = $wpdb->get_var( "SELECT MAX(related_race_id) FROM $wpdb->uci_results_related_races" );
-
-        // if no rr id - increase last by 1 //
-        if ( ! $related_race_id ) :
-            $related_race_id = $last_related_race_id + 1;
-            update_post_meta( $_POST['id'], '_race_related', $related_race_id );
-        endif;
-
-        foreach ( $races as $race_id ) :
-            $data = array(
-                'race_id' => $race_id,
-                'related_race_id' => $related_race_id,
-            );
-            $wpdb->insert( $wpdb->uci_results_related_races, $data );
-        endforeach;
-
-        // get races information //
-        foreach ( $races as $race_id ) :
-            $html .= '<div id="race-' . $race_id . '" class="row">';
-                $html .= '<div class="race-name">' . get_the_title( $race_id ) . '</div>';
-                $html .= '<div class="race-date">' . date( get_option( 'date_format' ), strtotime( get_post_meta( $race_id, '_race_date', true ) ) ) . '</div>';
-                $html .= '<div class="action-icons"><a href="#" class="remove-related-race" data-id="' . $race_id . '" data-rrid="' . $related_race_id . '"><span class="dashicons dashicons-dismiss"></span></a></div>';
-            $html .= '</div>';
-        endforeach;
-
-        $return = array(
-            'related_race_id' => $related_race_id,
-            'html' => $html,
-        );
-
-        echo json_encode( $return );
 
         wp_die();
     }
