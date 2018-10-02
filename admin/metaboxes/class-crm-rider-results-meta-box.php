@@ -31,28 +31,25 @@ class CRM_Rider_Results_Meta_Box {
 
     public function render_meta_box_content( $post ) {
         $results = crm_get_rider_results( array( 'rider_id' => $post->ID ) );
+        $output = apply_filters( 'rider_metabox_rider_output', array( 'race_name', 'place', 'uci_points', 'race_date', 'race_season' ), $post->ID );        
         ?>
         
         <table class="uci-results-rider-results widefat fixed striped">
             <thead>
-                <tr>
-                    <th class="place">Place</th>
-                    <th class="race">Race</th>
-                    <th class="age">Age</th>
-                    <th class="result">Result</th>
-                    <th class="par">Par</th>
-                    <th class="pcr">Pacr</th>
-                </tr>
+                <?php foreach ( $output as $slug ) : ?>
+                    <th class="<?php echo $slug; ?>"><?php echo ucwords( str_replace( '_', ' ', $slug ) ); ?></th>
+                <?php endforeach; ?>
             </thead>
             <tbody>
                 <?php foreach ( $results as $result ) : ?>
-                    <tr id="rider-">
-                        <td class="place"><?php echo $result['place']; ?></td>
-                        <td class="name"><?php echo $result['race_name']; ?></td>
-                        <td class="age"><?php echo $result['age']; ?></td>
-                        <td class="result"><?php echo $result['result']; ?></td>
-                        <td class="par"><?php echo $result['par']; ?></td>
-                        <td class="pcr"><?php echo $result['pcr']; ?></td> 
+                    <tr>
+                        <?php foreach ( $output as $slug ) : ?>
+                            <?php if ( isset( $result[ $slug ] ) ) : ?>
+                                <td class="<?php echo $slug; ?>"><?php echo $result[ $slug ]; ?></td>
+                            <?php else : ?>
+                                <td class="<?php echo $slug; ?>">&nbsp;</td>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
