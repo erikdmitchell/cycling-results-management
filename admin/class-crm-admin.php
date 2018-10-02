@@ -144,14 +144,6 @@ class CRM_Admin {
         if ( ! isset( $_POST['crm_admin_settings'] ) || ! wp_verify_nonce( $_POST['crm_admin_settings'], 'update_settings' ) ) {
             return;
         }
-
-        $pages = wp_parse_args( $_POST['crm_pages'], cycling_results_management()->pages );
-
-        update_option( 'crm_pages', $pages ); // update option.
-
-        cycling_results_management()->pages = $pages; // force new pages.
-
-        echo '<div class="updated">Settings updated!</div>';
     }
 
     /**
@@ -171,18 +163,6 @@ class CRM_Admin {
         );
 
         echo true;
-
-        wp_die();
-    }
-
-    /**
-     * ajax_show_related_races_box function.
-     *
-     * @access public
-     * @return void
-     */
-    public function ajax_show_related_races_box() {
-        echo $this->get_admin_page( 'add-related-races' );
 
         wp_die();
     }

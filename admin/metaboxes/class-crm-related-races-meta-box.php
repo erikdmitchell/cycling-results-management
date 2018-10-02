@@ -7,11 +7,12 @@ class CRM_Related_Races_Meta_Box {
             add_action( 'load-post.php', array( $this, 'init_metabox' ) );
             add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
         endif;
+        
+        add_action( 'wp_ajax_show_related_races_box', array( $this, 'ajax_show_related_races_box' ) );
     }
 
     public function init_metabox() {
         add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
-        //add_action( 'save_post', array( $this, 'save' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_styles' ) );
     }
 
@@ -56,8 +57,8 @@ class CRM_Related_Races_Meta_Box {
         wp_nonce_field( 'update_related_races', 'uci_results_admin_related_races' );
         add_thickbox();
 
-        $related_races = uci_get_related_races( $post->ID );
-        $related_race_id = uci_get_related_race_id( $post->ID );
+        $related_races = crm_get_related_races( $post->ID );
+        $related_race_id = crm_get_related_race_id( $post->ID );
         ?>
         
         <div class="uci-results-metabox related-races">
@@ -75,6 +76,18 @@ class CRM_Related_Races_Meta_Box {
         
         <?php
     }
+    
+    /**
+     * AJAX shore related races box.
+     *
+     * @access public
+     * @return void
+     */
+    public function ajax_show_related_races_box() {        
+        echo cycling_results_management()->admin->get_admin_page( 'add-related-races' );
+
+        wp_die();
+    }    
 
 }
 
