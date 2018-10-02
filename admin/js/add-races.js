@@ -4,7 +4,7 @@ var races=[];
 
 jQuery(document).ready(function($) {
 	
-	// upload startlist button - opens media uploader, runs ajax on insert into post //
+	// upload startlist button - opens media uploader, runs ajax on insert into post
 	$('.button#add-file').click(function(e) {
 		e.preventDefault();
 	
@@ -69,6 +69,9 @@ jQuery(document).ready(function($) {
 		});
 	});
 	
+	/**
+     * Add csv results button click.
+     */
 	$('#csv-data #add-results').on('click', function(e) {
 		e.preventDefault();	
 		

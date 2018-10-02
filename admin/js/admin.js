@@ -1,7 +1,6 @@
 jQuery(document).ready(function($) {
 	var $modal=$('.loading-modal');
 
-
 	/**
 	 * select all
 	 */
@@ -23,24 +22,6 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	$('#rankings-filter #season').change(function(e) {
-		showLoader('#wpcontent');
-
-		e.preventDefault();
-
-		var data={
-			'action' : 'uci_results_rider_rankings_dropdown',
-			'season' : $(this).val()
-		};
-
-		$.post(ajaxurl, data, function(response) {
-			$('#rankings-filter #week').html(response); //add our new weeks
-			$('table.riders').html(''); // clear table
-
-			hideLoader();
-		});
-	});
-	
 	/* admin menu mod */
 	if ($('body.post-type-riders').length || $('body.post-type-races').length) {
 		$('#toplevel_page_uci-results').removeClass('wp-not-current-submenu').addClass('wp-has-current-submenu wp-menu-open');	

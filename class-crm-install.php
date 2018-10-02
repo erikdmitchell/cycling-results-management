@@ -3,7 +3,7 @@
  * CRM install class
  *
  * @package CRM
- * @since   1.0.0
+ * @since   0.1.0
  */
 
 /**
@@ -18,7 +18,12 @@ class CRM_Install {
      * @access private
      * @static
      */
-    private static $updates = array();
+    private static $db_updates = array(
+        '1.1.0' => array(
+            'crm_update_110_rider_rankings',
+            'crm_update_110_db_version',
+        ),
+    );
 
     /**
      * Init
@@ -58,89 +63,141 @@ class CRM_Install {
 
         // Check if we are not already running this routine.
         if ( 'yes' === get_transient( 'crm_installing' ) ) {
-            return;
+            // return;
         }
 
         // If we made it till here nothing is running yet, lets set the transient now.
         set_transient( 'crm_installing', 'yes', MINUTE_IN_SECONDS * 10 );
 
-        self::create_pages();
+        self::create_tables();
         self::update_version();
+        self::maybe_update_db_version();
         self::update();
 
         delete_transient( 'crm_installing' );
     }
 
     /**
-     * Create pages.
+     * Create db tables.
      *
-     * @access public
+     * @access private
      * @static
      * @return void
      */
-    public static function create_pages() {
-        $pages_arr = array();
-        
-        // Information needed for creating the plugin's pages.
-        $page_definitions = array(
-            'single-rider' => array(
-                'title' => __( 'Rider', 'crm' ),
-                'content' => '',
-            ),
-            'single-race' => array(
-                'title' => __( 'Forgot Password', 'crm' ),
-                'content' => '',
-            ),
-            'country' => array(
-                'title' => __( 'Login', 'crm' ),
-                'content' => '',
-            ),
-            'riders' => array(
-                'title' => __( 'Profile', 'crm' ),
-                'content' => '',
-            ),
-            'races' => array(
-                'title' => __( 'Register', 'crm' ),
-                'content' => '',
-            ),
-            'search' => array(
-                'title' => __( 'Reset Password', 'crm' ),
-                'content' => '',
-            ),
-            'rankings' => array(
-                'title' => __( 'Reset Password', 'crm' ),
-                'content' => '',
-            ),            
-        );
+    private static function create_tables() {
+        global $wpdb;
 
-        foreach ( $page_definitions as $slug => $page ) :
-            // Check that the page doesn't exist already.
-            $query = new WP_Query( 'pagename=' . $slug );
+        $wpdb->hide_errors();
 
-            if ( ! $query->have_posts() ) :
-                // Add the page using the data from the array above.
-                $post_id = wp_insert_post(
-                    array(
-                        'post_content'   => $page['content'],
-                        'post_name'      => $slug,
-                        'post_title'     => $page['title'],
-                        'post_status'    => 'publish',
-                        'post_type'      => 'page',
-                        'ping_status'    => 'closed',
-                        'comment_status' => 'closed',
-                    )
-                );
-            else :
-                $post_id = $query->queried_object_id;
-            endif;
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-            $pages_arr[ $slug ] = $post_id;
-        endforeach;
+        dbDelta( self::get_schema() );
+    }
 
-        // if this plugin existed before, keep their settings.
-        if ( ! get_option( 'crm_pages' ) ) {
-            update_option( 'crm_pages', $pages_arr );
+    /**
+     * Get db schema.
+     *
+     * @access private
+     * @static
+     * @return void
+     */
+    private static function get_schema() {
+        global $wpdb;
+
+        $collate = '';
+
+        if ( $wpdb->has_cap( 'collation' ) ) {
+            $collate = $wpdb->get_charset_collate();
         }
+
+        $tables = "
+    		CREATE TABLE {$wpdb->prefix}crm_rider_rankings (
+    		  id bigint(20) NOT NULL AUTO_INCREMENT,
+    			rider_id bigint(20) NOT NULL,
+                points bigint(20) NOT NULL DEFAULT '0',
+    			rank bigint(20) NOT NULL DEFAULT '0',    			
+    			season VARCHAR(50) NOT NULL,
+    			discipline VARCHAR(50) NOT NULL,
+    			wins bigint(20) NOT NULL DEFAULT '0',
+    			podiums bigint(20) NOT NULL DEFAULT '0',
+    			PRIMARY KEY (`id`)
+    		) $collate;
+    	
+    		CREATE TABLE {$wpdb->prefix}crm_related_races (			
+    			id bigint(20) NOT NULL AUTO_INCREMENT,
+    			race_id bigint(20) NOT NULL DEFAULT '0',
+    			related_race_id bigint(20) NOT NULL DEFAULT '0',
+    			PRIMARY KEY (`id`)
+    		) $collate;
+    
+    		CREATE TABLE {$wpdb->prefix}crm_uci_rankings (
+    			id bigint(20) NOT NULL AUTO_INCREMENT,
+    			name TEXT NOT NULL,
+    			rider_id bigint(20) NOT NULL DEFAULT '0',
+    			rank bigint(20) NOT NULL DEFAULT '0',
+    			age bigint(20) NOT NULL DEFAULT '0',
+    			points bigint(20) NOT NULL DEFAULT '0',
+    			discipline bigint(20) NOT NULL DEFAULT '0',
+    			date DATE NOT NULL,
+    			PRIMARY KEY (`id`)
+    		) $collate;	
+		";
+
+        return $tables;
+    }
+
+    /**
+     * Update db version if need ebe.
+     *
+     * @access private
+     * @static
+     * @return void
+     */
+    private static function maybe_update_db_version() {
+        if ( self::needs_db_update() ) {
+            self::update();
+        } else {
+            self::update_db_version();
+        }
+    }
+
+    /**
+     * Check if db update is needed.
+     *
+     * @access private
+     * @static
+     * @return void
+     */
+    private static function needs_db_update() {
+        $current_db_version = get_option( 'crm_db_version', null );
+        $updates            = self::get_db_update_callbacks();
+
+        return ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( $updates ) ), '<' );
+    }
+
+    /**
+     * Get db update callbacks.
+     *
+     * @access private
+     * @static
+     * @return void
+     */
+    private static function get_db_update_callbacks() {
+        return self::$db_updates;
+    }
+
+    /**
+     * Update db version.
+     *
+     * @access public
+     * @static
+     * @param mixed $version (default: null)
+     * @return void
+     */
+    public static function update_db_version( $version = null ) {
+        delete_option( 'crm_db_version' );
+
+        add_option( 'crm_db_version', is_null( $version ) ? cycling_results_management()->version : $version );
     }
 
     /**
@@ -151,26 +208,15 @@ class CRM_Install {
      * @return void
      */
     private static function update() {
-        $current_version = get_option( 'crm_version' );
+        $current_version = get_option( 'crm_db_version' );
 
-        foreach ( self::get_update_callbacks() as $version => $update_callbacks ) :
+        foreach ( self::get_db_update_callbacks() as $version => $update_callbacks ) :
             if ( version_compare( $current_version, $version, '<' ) ) :
                 foreach ( $update_callbacks as $update_callback ) :
                     $update_callback();
                 endforeach;
             endif;
         endforeach;
-    }
-
-    /**
-     * Get update callbacks.
-     *
-     * @access public
-     * @static
-     * @return updates
-     */
-    public static function get_update_callbacks() {
-        return self::$updates;
     }
 
     /**

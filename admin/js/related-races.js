@@ -1,13 +1,13 @@
 jQuery(document).ready(function($) {
 	
-	// remove related race //
+	// remove related race.
 	$('.remove-related-race').on('click', function(e) {
 		e.preventDefault();
 		
 		var raceID=$(this).data('id');
 		
 		var data={
-			'action' : 'uci_remove_related_race',
+			'action' : 'remove_related_race',
 			'id' : raceID,
 			'rrid' : $(this).data('rrid')
 		};	
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 		});
 	});
 	
-	// add related race //
+	// add related race.
 	$('#add-related-race').on('click', function(e) {
 		e.preventDefault();
 
@@ -29,8 +29,9 @@ jQuery(document).ready(function($) {
 		showLoader('#TB_ajaxContent');
 		
 		var raceID=$(this).data('id');
-		var data={
-			'action' : 'show_related_races_box'	
+		var data = {
+			'action': 'show_related_races_box',
+			'race_id': raceID,	
 		};
 		
 		$.post(ajaxurl, data, function(response) {
@@ -70,7 +71,7 @@ jQuery(document).ready(function($) {
 	  return false;
 	});
 	
-	// truly add related race //
+	// truly add related race.
 	$('body').on('click', '.add-related-race #add', function(e) {
 		e.preventDefault();
 		
@@ -84,9 +85,9 @@ jQuery(document).ready(function($) {
 		
 		$.post(ajaxurl, data, function(response) {
 			hideLoader();
-console.log(response);			
+			
 			var data=$.parseJSON(response);
-console.log(data);			
+			
 			$('#related-races-id').val(data.related_race_id);
 			$(data.html).insertBefore('.row.add-race');
 			

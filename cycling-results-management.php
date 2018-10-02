@@ -3,13 +3,13 @@
  * Plugin Name: Cycling Results Management
  * Plugin URI: http://therunup.com
  * Description: A WordPress plugin to manage cycling results. Designed to manage UCI race results and riders.
- * Version: 1.0.0
+ * Version: 0.1.0
  * Author: Erik Mitchell
  * Author URI: http://erikmitchell.net
  * Text Domain: crm
- * @package CRM
  *
-*/
+ * @package CRM
+ */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {

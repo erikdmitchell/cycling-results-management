@@ -1,26 +1,31 @@
 // Project configuration
 var buildInclude = [
         // include common file types
-        '**/*.php',
-        '**/*.html',
-        '**/*.css',
-        '**/*.js',
-        '**/*.svg',
-        '**/*.ttf',
-        '**/*.otf',
-        '**/*.eot',
-        '**/*.woff',
-        '**/*.woff2',
-
+        //'**/*.php',
+        //'**/*.html',
+        //'**/*.css',
+        //'**/*.js',
+        //'**/*.svg',
+        //'**/*.ttf',
+        //'**/*.otf',
+        //'**/*.eot',
+        //'**/*.woff',
+        //'**/*.woff2',
+        
+        './**/*',
+        
         // include specific files and folders
-        'screenshot.png',
 
         // exclude files and folders
-        '!node_modules/**/*',
-        '!style.css.map',
-        '!assets/js/custom/*',
-        '!assets/css/patrials/*'
-
+        '!./composer.json', 
+        '!./composer.lock',
+        '!./gulpfile.js',
+        '!./{node_modules,node_modules/**/*}',
+        '!./package.json',
+        '!./phpcs.ruleset.xml',
+        '!./{sass,sass/**/*}',
+        '!./.stylelintrc',
+        '!./{vendor,vendor/**/*}',
     ];
     
 var phpSrc = [
@@ -77,6 +82,7 @@ var gulp = require('gulp'),
     phpcs = require('gulp-phpcs'); // Gulp plugin for running PHP Code Sniffer.
     phpcbf = require('gulp-phpcbf'); // PHP Code Beautifier
     gutil = require('gulp-util'); // gulp util
+    zip = require('gulp-zip'); // gulp zip
 
 /**
  * Styles
@@ -84,7 +90,7 @@ var gulp = require('gulp'),
  
 // compile sass
 gulp.task('sass', function () {
-    gulp.src('**/sass/*.scss')
+    gulp.src('./sass/*.scss')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass({
@@ -101,7 +107,7 @@ gulp.task('sass', function () {
         .pipe(autoprefixer('last 2 version', '> 1%', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(sourcemaps.write('.'))
         .pipe(plumber.stop())
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./css/'))
 });
 
 // minify all css
@@ -157,24 +163,6 @@ gulp.task('lintjs', function() {
     .pipe(jshint.reporter(stylish));
 });
 
-/*
-gulp.task('scripts', function () {
-    return gulp.src('./js/*.js')
-        .pipe(concat('custom.js'))
-        .pipe(gulp.dest('./assets/js'))
-        .pipe(rename({
-            basename: "custom",
-            suffix: '.min'
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest('./assets/js/'))
-        .pipe(notify({
-            message: 'Custom scripts task complete',
-            onLast: true
-        }));
-});
-*/
-
 /**
  * PHP
  */
@@ -211,9 +199,16 @@ gulp.task('phpcbf', function () {
  *
  */
 
+// gulp zip (build)
+gulp.task('zip', function () {
+  return gulp.src(buildInclude)
+    .pipe(zip('cycling-results-management.zip'))
+    .pipe(gulp.dest('./'));
+});
+
 // Package Distributable - sort of
 gulp.task('build', function (cb) {
-    runSequence('styles', 'scripts', cb);
+    runSequence('styles', 'scripts', 'zip', cb);
 });
 
 // Styles task
