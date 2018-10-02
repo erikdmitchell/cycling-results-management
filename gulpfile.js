@@ -1,26 +1,30 @@
 // Project configuration
 var buildInclude = [
         // include common file types
-        '**/*.php',
-        '**/*.html',
-        '**/*.css',
-        '**/*.js',
-        '**/*.svg',
-        '**/*.ttf',
-        '**/*.otf',
-        '**/*.eot',
-        '**/*.woff',
-        '**/*.woff2',
-
+        //'**/*.php',
+        //'**/*.html',
+        //'**/*.css',
+        //'**/*.js',
+        //'**/*.svg',
+        //'**/*.ttf',
+        //'**/*.otf',
+        //'**/*.eot',
+        //'**/*.woff',
+        //'**/*.woff2',
+        
+        './**/*',
+        
         // include specific files and folders
-        'screenshot.png',
 
         // exclude files and folders
-        '!node_modules/**/*',
-        '!style.css.map',
-        '!assets/js/custom/*',
-        '!assets/css/patrials/*'
-
+        '!./composer.json', 
+        '!./composer.lock'
+        '!./gulpfile.js',
+        '!./node_modules/**/*',
+        '!./phpcs.ruleset.xml',
+        '!./sass/**/*',
+        '!./.stylelintrc',
+        '!./vendor/**/*'
     ];
     
 var phpSrc = [
@@ -77,7 +81,7 @@ var gulp = require('gulp'),
     phpcs = require('gulp-phpcs'); // Gulp plugin for running PHP Code Sniffer.
     phpcbf = require('gulp-phpcbf'); // PHP Code Beautifier
     gutil = require('gulp-util'); // gulp util
-    gulpzip = require('gulp-zip'); // gulp zip
+    zip = require('gulp-zip'); // gulp zip
 
 /**
  * Styles
@@ -211,6 +215,13 @@ gulp.task('phpcbf', function () {
  * Compiles styles, watches js and php files.
  *
  */
+
+// gulp zip (build)
+gulp.task('zip', function () {
+  return gulp.src(buildInclude)
+    .pipe(zip('cycling-results-management.zip'))
+    .pipe(gulp.dest('./'));
+});
 
 // Package Distributable - sort of
 gulp.task('build', function (cb) {
