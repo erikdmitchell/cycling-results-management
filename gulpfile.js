@@ -20,11 +20,12 @@ var buildInclude = [
         '!./composer.json', 
         '!./composer.lock',
         '!./gulpfile.js',
-        '!./node_modules/**/*',
+        '!./{node_modules,node_modules/**/*}',
+        '!./package.json',
         '!./phpcs.ruleset.xml',
-        '!./sass/**/*',
+        '!./{sass,sass/**/*}',
         '!./.stylelintrc',
-        '!./vendor/**/*'
+        '!./{vendor,vendor/**/*}',
     ];
     
 var phpSrc = [
