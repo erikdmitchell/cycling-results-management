@@ -1,23 +1,17 @@
 <?php
-/**
- * Calls the class on the post edit screen.
- */
-function call_UCIRelatedRacesMetabox() {
-    new UCIRelatedRacesMetabox();
-}
 
-if ( is_admin() ) :
-    add_action( 'load-post.php', 'call_UCIRelatedRacesMetabox' );
-    add_action( 'load-post-new.php', 'call_UCIRelatedRacesMetabox' );
-endif;
+class CRM_Related_Races_Meta_Box {
 
-class UCIRelatedRacesMetabox {
-
-    /**
-     * Hook into the appropriate actions when the class is constructed.
-     */
     public function __construct() {
+        if ( is_admin() ) :
+            add_action( 'load-post.php', array( $this, 'init_metabox' ) );
+            add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
+        endif;
+    }
+
+    public function init_metabox() {
         add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
+        //add_action( 'save_post', array( $this, 'save' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_styles' ) );
     }
 
@@ -84,4 +78,4 @@ class UCIRelatedRacesMetabox {
 
 }
 
-?>
+new CRM_Related_Races_Meta_Box();
