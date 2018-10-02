@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 	
-	// remove related race //
+	// remove related race.
 	$('.remove-related-race').on('click', function(e) {
 		e.preventDefault();
 		
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 		});
 	});
 	
-	// add related race //
+	// add related race.
 	$('#add-related-race').on('click', function(e) {
 		e.preventDefault();
 
@@ -29,13 +29,14 @@ jQuery(document).ready(function($) {
 		showLoader('#TB_ajaxContent');
 		
 		var raceID=$(this).data('id');
-		var data={
-			'action' : 'show_related_races_box'	
+		var data = {
+			'action': 'show_related_races_box',
+			'race_id': raceID,	
 		};
 		
 		$.post(ajaxurl, data, function(response) {
 			$('#TB_ajaxContent').append(response);
-			
+console.log(response);			
 			$('#TB_ajaxContent #race_id').val(raceID);
 			
 			hideLoader();			
@@ -70,7 +71,7 @@ jQuery(document).ready(function($) {
 	  return false;
 	});
 	
-	// truly add related race //
+	// truly add related race.
 	$('body').on('click', '.add-related-race #add', function(e) {
 		e.preventDefault();
 		
