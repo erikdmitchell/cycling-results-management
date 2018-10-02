@@ -253,7 +253,14 @@ function crm_race_results_rider_ids( $race_id = 0 ) {
     return $ids;
 }
 
-function crm_get_related_races( $race_id = 0 ) { // USED
+/**
+ * Get related races.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return object
+ */
+function crm_get_related_races( $race_id = 0 ) {
     global $wpdb;
 
     $related_races = array();
@@ -274,19 +281,26 @@ function crm_get_related_races( $race_id = 0 ) { // USED
             'include' => $related_races_ids,
             'post_type' => 'races',
             'orderby' => 'meta_value',
-            'meta_key' => '_race_date',
+            'meta_key' => '_race_start',
         )
     );
 
     // append some meta //
     foreach ( $related_races as $race ) :
-        $race->race_date = get_post_meta( $race->ID, '_race_date', true );
+        $race->race_date = get_post_meta( $race->ID, '_race_start', true );
     endforeach;
 
     return $related_races;
 }
 
-function crm_get_related_races_ids( $race_id = 0 ) { // USED
+/**
+ * Get related races ids.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return array
+ */
+function crm_get_related_races_ids( $race_id = 0 ) {
     global $wpdb;
 
     $related_race_id = crm_get_related_race_id( $race_id );
@@ -298,13 +312,20 @@ function crm_get_related_races_ids( $race_id = 0 ) { // USED
     $related_races_ids = $wpdb->get_col( "SELECT race_id FROM {$wpdb->prefix}crm_related_races WHERE related_race_id = $related_race_id" );
 
     if ( is_wp_error( $related_races_ids ) || $related_races_ids === null ) {
-        return false;
+        return array();
     }
 
     return $related_races_ids;
 }
 
-function crm_get_related_race_id( $race_id = 0 ) { // USED
+/**
+ * Get related race id.
+ * 
+ * @access public
+ * @param int $race_id (default: 0).
+ * @return string
+ */
+function crm_get_related_race_id( $race_id = 0 ) {
     return get_post_meta( $race_id, '_race_related', true );
 }
 

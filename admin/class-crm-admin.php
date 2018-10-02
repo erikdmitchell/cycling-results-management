@@ -14,8 +14,6 @@ class CRM_Admin {
         add_action( 'admin_init', array( $this, 'save_settings' ) );
         add_action( 'save_post', array( $this, 'assign_parent_terms' ), 10, 2 );
 
-        add_action( 'wp_ajax_uci_remove_related_race', array( $this, 'ajax_remove_related_race' ) );
-        add_action( 'wp_ajax_show_related_races_box', array( $this, 'ajax_show_related_races_box' ) );
         add_action( 'wp_ajax_race_id_search', array( $this, 'ajax_race_id_search' ) );
     }
 
@@ -142,27 +140,6 @@ class CRM_Admin {
         if ( ! isset( $_POST['crm_admin_settings'] ) || ! wp_verify_nonce( $_POST['crm_admin_settings'], 'update_settings' ) ) {
             return;
         }
-    }
-
-    /**
-     * ajax_remove_related_race function.
-     *
-     * @access public
-     * @return void
-     */
-    public function ajax_remove_related_race() {
-        global $wpdb;
-
-        $wpdb->delete(
-            $wpdb->uci_results_related_races, array(
-                'race_id' => $_POST['id'],
-                'related_race_id' => $_POST['rrid'],
-            )
-        );
-
-        echo true;
-
-        wp_die();
     }
 
     /**

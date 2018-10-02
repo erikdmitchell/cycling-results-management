@@ -9,7 +9,8 @@ class CRM_Related_Races_Meta_Box {
         endif;
         
         add_action( 'wp_ajax_add_related_races_to_race', array( $this, 'ajax_add_related_races_to_race' ) );
-        add_action( 'wp_ajax_search_related_races', array( $this, 'ajax_search_related_races' ) );
+        add_action( 'wp_ajax_remove_related_race', array( $this, 'ajax_remove_related_race' ) );        
+        add_action( 'wp_ajax_search_related_races', array( $this, 'ajax_search_related_races' ) );        
         add_action( 'wp_ajax_show_related_races_box', array( $this, 'ajax_show_related_races_box' ) );
     }
 
@@ -177,7 +178,28 @@ class CRM_Related_Races_Meta_Box {
         echo json_encode( $return );
 
         wp_die();
-    }          
+    }
+    
+    /**
+     * AJAX remove related race.
+     *
+     * @access public
+     * @return void
+     */
+    public function ajax_remove_related_race() {
+        global $wpdb;
+
+        $wpdb->delete(
+            $wpdb->uci_results_related_races, array(
+                'race_id' => $_POST['id'],
+                'related_race_id' => $_POST['rrid'],
+            )
+        );
+
+        echo true;
+
+        wp_die();
+    }              
 
 }
 

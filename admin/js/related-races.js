@@ -7,7 +7,7 @@ jQuery(document).ready(function($) {
 		var raceID=$(this).data('id');
 		
 		var data={
-			'action' : 'uci_remove_related_race',
+			'action' : 'remove_related_race',
 			'id' : raceID,
 			'rrid' : $(this).data('rrid')
 		};	

@@ -25,6 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php print_r($related_races); ?>
                     <?php if ( $related_races ) : ?>
                         <?php foreach ( $related_races as $race ) : ?>
                             <tr>
