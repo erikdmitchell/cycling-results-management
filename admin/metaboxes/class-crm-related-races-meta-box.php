@@ -188,13 +188,13 @@ class CRM_Related_Races_Meta_Box {
      */
     public function ajax_remove_related_race() {
         global $wpdb;
-
-        $wpdb->delete(
-            $wpdb->uci_results_related_races, array(
-                'race_id' => $_POST['id'],
-                'related_race_id' => $_POST['rrid'],
-            )
+        
+        $where = array(
+            'race_id' => $_POST['id'],
+            'related_race_id' => $_POST['rrid'],
         );
+
+        $wpdb->delete( "{$wpdb->prefix}crm_related_races", $where); 
 
         echo true;
 
