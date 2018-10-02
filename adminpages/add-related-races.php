@@ -1,3 +1,5 @@
+<?php $related_races = crm_get_related_races( $_POST['race_id'] ); ?>
+
 <div class="add-related-race">
 
     <div class="search-form">
@@ -8,8 +10,7 @@
     </div>
 
     <div class="races-list">
-
-        <h3><?php echo $race->event; ?></h3>
+        <h3><?php echo get_the_title($_POST['race_id']) ?></h3>
 
         <form name="add-races" id="add-races" method="post" action="">
             <table class="wp-list-table widefat fixed striped pages">
@@ -24,22 +25,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if ( $related_races ) :
-                        foreach ( $related_races as $race ) :
-                            ?>
-                        <tr>
-                            <th scope="row" class="check-column"><input id="cb-select-<?php echo $race->id; ?>" type="checkbox" name="races[]" value="<?php echo $race->id; ?>" checked="checked"></th>
-                            <td class="race-date"><?php echo date( get_option( 'date_format' ), strtotime( $race->date ) ); ?></td>
-                            <td class="race-name"><?php echo $race->event; ?></td>
-                            <td class="race-nat"><?php echo $race->nat; ?></td>
-                            <td class="race-class"><?php echo $race->class; ?></td>
-                            <td class="race-season"><?php echo $race->season; ?></td>
-                        </tr>
-                                            <?php
-                    endforeach;
-endif;
-                    ?>
+                    <?php if ( $related_races ) : ?>
+                        <?php foreach ( $related_races as $race ) : ?>
+                            <tr>
+                                <th scope="row" class="check-column"><input id="cb-select-<?php echo $race->id; ?>" type="checkbox" name="races[]" value="<?php echo $race->id; ?>" checked="checked"></th>
+                                <td class="race-date"><?php echo date( get_option( 'date_format' ), strtotime( $race->date ) ); ?></td>
+                                <td class="race-name"><?php echo $race->event; ?></td>
+                                <td class="race-nat"><?php echo $race->nat; ?></td>
+                                <td class="race-class"><?php echo $race->class; ?></td>
+                                <td class="race-season"><?php echo $race->season; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
                 <tbody id="related-races-search-results"></tbody>
             </table>
