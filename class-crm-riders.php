@@ -61,7 +61,7 @@ class CRM_Riders {
     }
 
     /**
-     * Get recent season from db.
+     * Get recent rankings season from db.
      *
      * @access public
      * @param string $discipline (default: 'cyclocross').
@@ -70,9 +70,45 @@ class CRM_Riders {
     public function get_recent_season( $discipline = 'cyclocross' ) {
         global $wpdb;
 
-        $season = $wpdb->get_var( "SELECT DISTINCT season FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '$discipline' ORDER BY season DESC" );
+        $season = $wpdb->get_var( "SELECT DISTINCT season FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '$discipline' ORDER BY season DESC LIMIT 1" );
 
         return $season;
+    }
+    
+    /**
+     * Get all rankings seasons.
+     * 
+     * @access public
+     * @param string $discipline (default: 'cyclocross')
+     * @return void
+     */
+    public function get_seasons( $discipline = 'cyclocross' ) {
+        global $wpdb;
+
+        $season = $wpdb->get_col( "SELECT DISTINCT season FROM {$wpdb->prefix}crm_rider_rankings WHERE discipline = '$discipline' ORDER BY season DESC" );
+
+        return $season;
+    }
+    
+    /**
+     * Get rankings disciplines.
+     * 
+     * @access public
+     * @param string $season (default: '').
+     * @return array
+     */
+    public function get_rankings_disciplines( $season = '') {
+        global $wpdb;
+        
+        $where = '';
+        
+        if (!empty($season)) :
+            $where = "WHERE season = '$season'";
+        endif;
+
+        $disciplines = $wpdb->get_col( "SELECT DISTINCT discipline FROM {$wpdb->prefix}crm_rider_rankings $where ORDER BY discipline ASC" );
+
+        return $disciplines;        
     }
 
     /**

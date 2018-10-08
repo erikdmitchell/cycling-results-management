@@ -245,3 +245,18 @@ function crm_get_rider_rankings( $args = '' ) {
 function crm_get_rider_name( $rider_id = 0 ) {
     return get_the_title( $rider_id );
 }
+
+/**
+ * Get riders rankings seasons.
+ * 
+ * @access public
+ * @param string $discipline (default: 'cyclocross')
+ * @return array
+ */
+function crm_riders_rankings_seasons( $discipline = 'cyclocross' ) {
+    return cycling_results_management()->riders->get_seasons($discipline);
+}
+
+function crm_riders_rankings_disciplines( $season = '' ) {
+    return cycling_results_management()->riders->get_rankings_disciplines($season);
+}
