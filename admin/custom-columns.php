@@ -47,11 +47,11 @@ add_action( 'manage_riders_posts_custom_column', 'custom_riders_columns', 10, 2 
 function set_custom_edit_races_columns( $columns ) {
     unset( $columns['date'] );
 
-    $columns['race_date'] = __( 'Date', 'uci-results' );
-    $columns['country'] = __( 'Country', 'uci-results' );
-    $columns['class'] = __( 'Class', 'uci-results' );
-    $columns['season'] = __( 'Season', 'uci-results' );
-    $columns['series'] = __( 'Series', 'uci-results' );
+    $columns['race_date'] = __( 'Date', 'crm' );
+    $columns['country'] = __( 'Country', 'crm' );
+    $columns['class'] = __( 'Class', 'crm' );
+    $columns['season'] = __( 'Season', 'crm' );
+    $columns['series'] = __( 'Series', 'crm' );
 
     return $columns;
 }
@@ -68,12 +68,12 @@ add_filter( 'manage_races_posts_columns', 'set_custom_edit_races_columns' );
 function custom_races_columns( $column, $post_id ) {
     switch ( $column ) :
         case 'country':
-            $terms = get_the_term_list( $post_id, 'country', '', ',', '' );
+            $terms = get_the_term_list( $post_id, 'crm_country', '', ',', '' );
 
             if ( is_string( $terms ) ) :
                 echo $terms;
             else :
-                _e( 'Unable to get country', 'uci-results' );
+                _e( 'Unable to get country', 'crm' );
             endif;
             break;
         case 'class':
@@ -82,7 +82,7 @@ function custom_races_columns( $column, $post_id ) {
             if ( is_string( $terms ) ) :
                 echo $terms;
             else :
-                _e( 'Unable to get class', 'uci-results' );
+                _e( 'Unable to get class', 'crm' );
             endif;
             break;
         case 'season':
@@ -91,7 +91,7 @@ function custom_races_columns( $column, $post_id ) {
             if ( is_string( $terms ) ) :
                 echo $terms;
             else :
-                _e( 'Unable to get season', 'uci-results' );
+                _e( 'Unable to get season', 'crm' );
             endif;
             break;
         case 'series':
@@ -100,7 +100,7 @@ function custom_races_columns( $column, $post_id ) {
             if ( is_string( $terms ) ) :
                 echo $terms;
             else :
-                _e( '', 'uci-results' );
+                _e( '', 'crm' );
             endif;
             break;
         case 'race_date':
