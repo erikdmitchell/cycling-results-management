@@ -217,6 +217,10 @@ class CRM_Add_Race_Results {
         else :
             $rider_nat = '';
         endif;
+        
+        // clean rider name.
+        if (!isset($result->name))
+            $result->name = $result->firstname . ' ' . $result->lastname;
 
         // get rider id.
         $rider_id = $this->get_rider_id( $result->name, $rider_nat, $args['insert'] );
