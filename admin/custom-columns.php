@@ -104,7 +104,9 @@ function custom_races_columns( $column, $post_id ) {
             endif;
             break;
         case 'race_date':
-            echo get_post_meta( $post_id, '_race_date', true );
+            echo get_post_meta( $post_id, '_race_start', true );
+            echo ' - ';
+            echo get_post_meta( $post_id, '_race_end', true );
             break;
     endswitch;
 }
