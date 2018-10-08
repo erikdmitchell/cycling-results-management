@@ -30,13 +30,16 @@ class CRM_Riders {
         $rankings = array();
         $default_args = array(
             'limit' => -1,
+            'offset' => 0,
             'discipline' => 'cyclocross',
             'season' => $this->get_recent_season(),
         );
         $args = wp_parse_args( $args, $default_args );
 
-        if ( $args['limit'] < 0 ) :
+        if ( -1 == $args['limit'] ) :
             $limit = '';
+        elseif ( $args['offset'] >= 1 ) :
+            $limit = 'LIMIT ' . $args['limit'] . ',' . $args['offset'];
         else :
             $limit = 'LIMIT ' . $args['limit'];
         endif;
