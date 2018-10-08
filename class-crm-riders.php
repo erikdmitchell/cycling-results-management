@@ -49,6 +49,7 @@ class CRM_Riders {
         // append name.
         foreach ( $rankings_db as $rider ) :
             $rider->name = get_the_title( $rider->rider_id );
+            $rider->nat = crm_get_first_term( $rider->rider_id, 'crm_country' );
         endforeach;
 
         // add details for links (possibly pag).
