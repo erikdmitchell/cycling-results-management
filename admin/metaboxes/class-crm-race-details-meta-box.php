@@ -27,7 +27,7 @@ class CRM_Race_Details_Meta_Box {
 
         wp_enqueue_style( 'flatpickr-style', CRM_URL . 'admin/css/flatpickr.min.css', '', '2.4.8' );
 
-        wp_enqueue_script( 'uci-results-admin-races-mb-script', CRM_URL . 'js/races-metabox.js', array( 'jquery-ui-datepicker' ) );
+        wp_enqueue_script( 'crm-races-mb-script', CRM_ADMIN_URL . 'js/races-metabox.js', array( 'jquery-ui-datepicker' ) );
     }
 
     /**
