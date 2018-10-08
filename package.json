@@ -1,6 +1,6 @@
 {
   "name": "cycling-results-management",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": " A WordPress plugin to manage cycling results. Designed to manage UCI race results and riders.",
   "main": "gulpfile.js",
   "scripts": {
