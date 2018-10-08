@@ -28,9 +28,9 @@ class CRM_Admin {
 
         $jquery_ui_version = $wp_scripts->registered['jquery-ui-core']->ver;
 
-        wp_enqueue_script( 'uci-results-admin', CRM_ADMIN_URL . '/js/admin.js', array( 'jquery' ), '0.1.0', true );
+        wp_enqueue_script( 'crm-admin', CRM_ADMIN_URL . '/js/admin.js', array( 'jquery' ), '0.1.0', true );
 
-        wp_enqueue_style( 'uci-results-api-admin-styles', CRM_ADMIN_URL . 'css/admin.css', '0.1.0' );
+        wp_enqueue_style( 'crm-admin-styles', CRM_ADMIN_URL . 'css/admin.css', '0.1.0' );
     }
 
     /**
