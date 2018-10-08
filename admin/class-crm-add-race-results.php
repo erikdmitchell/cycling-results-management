@@ -214,6 +214,8 @@ class CRM_Add_Race_Results {
         // get rider nat.
         if ( isset( $result->nat ) ) :
             $rider_nat = $result->nat;
+        elseif ( isset( $result->country ) ) :
+            $rider_nat = $result->country;
         else :
             $rider_nat = '';
         endif;
@@ -275,7 +277,7 @@ class CRM_Add_Race_Results {
                 );
                 $rider_id = wp_insert_post( $rider_insert );
 
-                wp_set_object_terms( $rider_id, $rider_country, 'country', false );
+                wp_set_object_terms( $rider_id, $rider_country, 'crm_country', false );
             else :
                 $rider_id = 0;
             endif;
