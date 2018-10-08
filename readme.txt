@@ -1,24 +1,24 @@
-=== UCI Results ===
+=== Cycling Results Management ===
 Contributors: erikdmitchell
 Donate link: erikdmitchell@gmail.com
 Tags: uci, cycling, bicycle, races
 Requires at least: 4.0
-Tested up to: 4.7.3
-Stable tag: 1.0.0
+Tested up to: 4.9.8
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Pulls in race results from the UCI website and adds it to your site.
+A WordPress plugin to manage cycling results. Designed to manage UCI race results and riders.
 
 == Description ==
 
-Pulls in race results from the UCI website and adds it to your site.
+A WordPress plugin to manage cycling results. Designed to manage UCI race results and riders.
 
 == Installation ==
 
-1. Upload `uci-results` to the `/wp-content/plugins/` directory
+1. Upload `cycling-results-management` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to the UCI Results admin tab for more and to setup.
+3. Go to the Cycling Results admin tab for more and to setup.
 
 == Frequently Asked Questions ==
 
@@ -34,50 +34,11 @@ coming soon...
 
 == Changelog ==
 
-= 1.0.0 =
-
-* Database version 1.0.0
-* Fully REST API compatable.
-* Leveraged a lot of WordPress built in functionality and setup.
-* Custom post types, taxonomies and metaboxes are utalized throughout the plugin.
-* Eliminates almost all of the custom db tables (4 remain)
-* Updated templates.
-* Massive speed increase
-
-= 0.1.5 =
-
-* Database upgraded to version 0.2.1
-* The cron job log is now controlled through admin settings. You can enable, view and clear the log.
-
-= 0.1.4 =
-
-* Reworked our backend for automatically adding races. Synched WP CLI and cron job functionality.
-* Added an automated class to handle our cron job/wp cli automatic functions.
-* Integrated duplicate rider cleanup functions into WP CLI.
-
-= 0.1.3 =
-
-* Database upgrade to version 0.2.0. Mainly added indexes for faster queries.
-
-= 0.1.2 =
-
-* Added trim function to race name. Also added this as part of db upgrade.
-* Added db update/upgrade functionality.
-* Added admin override for custom templates.
-
-= 0.1.1 =
-
-* Added updater
+= 0.2.0 =
 
 = 0.1.0 =
 
-* Now that the plugin is UCI Results, we rolled back the version.
-* A major rework of the entire plugin.
-* Now called UCI Results
-* Removed all "fantasy" aspects of plugin - see Fantasy Cycling plugin
-* Previous log removed. It is in git somewhere if need be.
+* Initial version
 
 == Upgrade Notice ==
 
-* 1.0.0 is also a major upgrade, but includes a migration script to help the update.
-* 0.1.0 is a major overhaul and renaming of plugin. Not backwards compatible.
