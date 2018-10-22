@@ -155,6 +155,8 @@ final class Cycling_Results_Management {
         include_once( CRM_PATH . 'class-crm-install.php' );
         include_once( CRM_PATH . 'crm-update-functions.php' );
         include_once( CRM_PATH . 'class-crm-yoast-seo-mods.php' );
+        
+        include_once( CRM_PATH . 'ajax-frontend.php' );
     }
 
     /**
@@ -190,12 +192,18 @@ final class Cycling_Results_Management {
         endif;
     }
 
+    /**
+     * Front end scripts and styles.
+     * 
+     * @access public
+     * @return void
+     */
     public function frontend_scripts_styles() {
-        wp_register_script( 'uci-results-front-end', CRM_URL . '/js/front-end.js', array( 'jquery' ), '0.1.0', true );
+        wp_register_script( 'crm-ajax-frontend', CRM_URL . '/js/ajax-frontend.js', array( 'jquery' ), $this->version, true );
 
-        wp_localize_script( 'uci-results-front-end', 'UCIResultsFrontEnd', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+        wp_localize_script( 'crm-ajax-frontend', 'CRMFrontEnd', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
-        wp_enqueue_script( 'uci-results-front-end' );
+        wp_enqueue_script( 'crm-ajax-frontend' );
 
         wp_enqueue_style( 'crm-fa-style', CRM_URL . 'css/font-awesome.min.css' );
         wp_enqueue_style( 'crm-style', CRM_URL . 'css/crm.css' );
