@@ -11,7 +11,6 @@ class CRM_Admin {
         add_action( 'admin_menu', array( $this, 'register_menu_page' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_styles' ) );
         add_action( 'admin_init', array( $this, 'init' ) );
-        add_action( 'admin_init', array( $this, 'save_settings' ) );
         add_action( 'save_post', array( $this, 'assign_parent_terms' ), 10, 2 );
 
         add_action( 'wp_ajax_race_id_search', array( $this, 'ajax_race_id_search' ) );
@@ -51,7 +50,6 @@ class CRM_Admin {
         add_submenu_page( $parent_slug, 'Discipline', 'Discipline', $manage_options_cap, 'edit-tags.php?taxonomy=discipline&post_type=races' );
         add_submenu_page( $parent_slug, 'Series', 'Series', $manage_options_cap, 'edit-tags.php?taxonomy=series&post_type=races' );
         add_submenu_page( $parent_slug, 'Season', 'Season', $manage_options_cap, 'edit-tags.php?taxonomy=season&post_type=races' );
-        add_submenu_page( $parent_slug, 'Settings', 'Settings', $manage_options_cap, $parent_slug );
         add_submenu_page( $parent_slug, 'Rider Rankings', 'Rider Rankings', $manage_options_cap, 'admin.php?page=' . $parent_slug . '&subpage=rider-rankings' );
         add_submenu_page( $parent_slug, 'UCI Rankings', 'UCI Rankings', $manage_options_cap, 'admin.php?page=' . $parent_slug . '&subpage=uci-rankings' );
     }
@@ -73,9 +71,6 @@ class CRM_Admin {
             case 'rider-rankings':
                 $html .= $this->get_admin_page( 'rider-rankings' );
                 break;
-            case 'settings':
-                $html .= $this->get_admin_page( 'settings' );
-                break;
             case 'results':
                 if ( isset( $_GET['action'] ) && $_GET['action'] == 'add-csv' ) :
                     $html .= $this->get_admin_page( 'results-csv' );
@@ -85,7 +80,7 @@ class CRM_Admin {
                 $html .= $this->get_admin_page( 'uci-rankings' );
                 break;
             default:
-                $html .= $this->get_admin_page( 'settings' );
+                $html .= $this->get_admin_page( 'main' );
             endswitch;
 
         $html .= '</div><!-- /.wrap -->';
@@ -128,18 +123,6 @@ class CRM_Admin {
      */
     public function init() {
         $this->load_files();
-    }
-
-    /**
-     * save_settings function.
-     *
-     * @access public
-     * @return void
-     */
-    public function save_settings() {
-        if ( ! isset( $_POST['crm_admin_settings'] ) || ! wp_verify_nonce( $_POST['crm_admin_settings'], 'update_settings' ) ) {
-            return;
-        }
     }
 
     /**
