@@ -37,7 +37,7 @@ $races = new WP_Query(
                 ?>
                 <div class="row">
                     <div class="col-sm-6 race-name"><a href="<?php crm_race_url( $post->post_name ); ?>"><?php the_title(); ?></a></div>
-                    <div class="col-sm-2 race-date"><?php echo $post->race_date; ?></div>
+                    <div class="col-sm-2 race-date"><?php echo date( get_option( 'date_format' ), strtotime( $post->race_date ) ); ?></div>
                     <div class="col-sm-1 race-nat"><?php echo crm_get_country_flag( $post->nat ); ?></div>
                     <div class="col-sm-1 race-class"><?php echo $post->class; ?></div>
                 </div>
