@@ -124,5 +124,15 @@ class UCI_Rankings {
 
         return $dates;
     }
+    
+    /**
+     * Get disciplines.
+     * 
+     * @access public
+     * @return void
+     */
+    public function get_disciplines() {
+        return get_terms('discipline', array());
+    }
 
 }
