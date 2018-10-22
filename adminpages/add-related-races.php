@@ -10,7 +10,7 @@
     </div>
 
     <div class="races-list">
-        <h3><?php echo get_the_title($_POST['race_id']) ?></h3>
+        <h3><?php echo get_the_title( $_POST['race_id'] ); ?></h3>
 
         <form name="add-races" id="add-races" method="post" action="">
             <table class="wp-list-table widefat fixed striped pages">
@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php print_r($related_races); ?>
+                    <?php print_r( $related_races ); ?>
                     <?php if ( $related_races ) : ?>
                         <?php foreach ( $related_races as $race ) : ?>
                             <tr>

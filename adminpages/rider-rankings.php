@@ -7,7 +7,7 @@
         <div class="disciplines">
             Discipline:
             <select name="discipline">
-                <?php foreach(crm_riders_rankings_disciplines() as $discipline) : ?>
+                <?php foreach ( crm_riders_rankings_disciplines() as $discipline ) : ?>
                     <option value="<?php echo $discipline; ?>"><?php echo $discipline; ?></option>
                 <?php endforeach; ?>
             </select>
@@ -16,7 +16,7 @@
         <div class="seasons">
             Season:
             <select name="season">
-                <?php foreach(crm_riders_rankings_seasons() as $season) : ?>
+                <?php foreach ( crm_riders_rankings_seasons() as $season ) : ?>
                     <option value="<?php echo $season; ?>"><?php echo $season; ?></option>
                 <?php endforeach; ?>
             </select>

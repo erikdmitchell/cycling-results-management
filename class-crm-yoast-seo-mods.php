@@ -30,7 +30,7 @@ class CRM_Yoast_SEO_Mods {
     public function __construct() {
         $this->set_post_types();
 
-        add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes'), 11 );
+        add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ), 11 );
         add_action( 'admin_init', array( $this, 'init' ) );
 
         add_filter( 'wpseo_metabox_prio', array( $this, 'to_bottom' ) );
@@ -71,7 +71,7 @@ class CRM_Yoast_SEO_Mods {
         foreach ( $this->post_types as $post_type ) :
             remove_meta_box( 'wpseo_meta', $post_type, 'normal' );
         endforeach;
-        
+
         remove_meta_box( 'wpseo_meta', 'crm_country', 'normal' );
     }
 

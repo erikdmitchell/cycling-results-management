@@ -4,11 +4,11 @@
  * Registers the `crm_country` taxonomy,
  * for use with 'riders', 'races'.
  */
- 
- 
+
+
 /**
  * CRM country taxonomy.
- * 
+ *
  * Registers the `crm_country` taxonomy, for use with 'riders', 'races'.
  *
  * @access public

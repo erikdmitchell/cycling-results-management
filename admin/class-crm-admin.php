@@ -114,10 +114,10 @@ class CRM_Admin {
 
         return $html;
     }
-    
+
     /**
      * Init.
-     * 
+     *
      * @access public
      * @return void
      */

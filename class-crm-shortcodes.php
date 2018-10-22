@@ -14,12 +14,12 @@ class CRM_Shortcodes {
 
         return crm_get_template_part( 'main' );
     }
-    
-    function crm_uci_rankings($atts) {
+
+    function crm_uci_rankings( $atts ) {
         $atts = shortcode_atts(
             array(), $atts, 'crm_uci_rankings'
-        );        
-        
+        );
+
         return crm_get_template_part( 'uci-rankings-landing' );
     }
 

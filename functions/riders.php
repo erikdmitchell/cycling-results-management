@@ -232,7 +232,7 @@ function crm_search_rider( $name = '' ) {
  * @return object
  */
 function crm_get_rider_rankings( $args = '' ) {
-    return cycling_results_management()->riders->get_riders_rankings($args);
+    return cycling_results_management()->riders->get_riders_rankings( $args );
 }
 
 /**
@@ -248,15 +248,15 @@ function crm_get_rider_name( $rider_id = 0 ) {
 
 /**
  * Get riders rankings seasons.
- * 
+ *
  * @access public
  * @param string $discipline (default: 'cyclocross')
  * @return array
  */
 function crm_riders_rankings_seasons( $discipline = 'cyclocross' ) {
-    return cycling_results_management()->riders->get_seasons($discipline);
+    return cycling_results_management()->riders->get_seasons( $discipline );
 }
 
 function crm_riders_rankings_disciplines( $season = '' ) {
-    return cycling_results_management()->riders->get_rankings_disciplines($season);
+    return cycling_results_management()->riders->get_rankings_disciplines( $season );
 }
