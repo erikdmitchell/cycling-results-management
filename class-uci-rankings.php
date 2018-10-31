@@ -93,9 +93,10 @@ class UCI_Rankings {
             return false;
         }
         
+        $discipline_term = get_term($discipline, 'discipline');
         $rankings = array(
             'riders' => $db_results,
-            'discipline' => $discipline,
+            'discipline' => $discipline_term->slug,
             'date' => $date,
         );
 
