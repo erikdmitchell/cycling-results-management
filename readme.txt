@@ -36,6 +36,15 @@ coming soon...
 
 = 0.2.0 =
 
+* Fixed script names.
+* Fixed admin columns for country.
+* Fixed issue with flatpickr call.
+
+* Updated templates.
+
+* Added shortcodes for most templates.
+* Added filters for rider rankings.
+
 = 0.1.0 =
 
 * Initial version
