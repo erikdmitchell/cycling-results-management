@@ -1,0 +1,19 @@
+.strike{text-decoration:line-through}#toplevel_page_uci-results .wp-first-item{display:none}
+.uci-results-metabox label{font-weight:bold;display:inline-block;width:125px}.uci-results-metabox input.date{width:150px}
+.uci-results-metabox input.url{width:80%}.uci-results-metabox input.number{width:50px}
+table.uci-results-race-results th{font-weight:bold}table.uci-results-race-results .name{width:200px}
+.uci-results-settings .warning{border-left:4px solid #dd3d36;background-color:#fff;color:#424242;padding:5px 15px 15px 15px}
+.uci-results-settings .warning-button,.uci-results-settings .warning-button:focus{border:1px solid #9e0b0f;background:#9e0b0f;color:#FFF;-webkit-box-shadow:inset 0 2px 5px -3px rgba(173,12,17,0.5);box-shadow:inset 0 2px 5px -3px rgba(173,12,17,0.5);text-shadow:none !important}
+.uci-results-settings .warning-button:hover,.uci-results-settings .warning-button:active{border:1px solid #dd3d36;background:#dd3d36;color:#FFF;-webkit-box-shadow:inset 0 2px 5px -3px rgba(173,12,17,0.5);box-shadow:inset 0 2px 5px -3px rgba(173,12,17,0.5);text-shadow:none !important}
+.uci-results-settings .message{margin-bottom:15px}.loader-image-container{position:absolute;width:100%;height:100%;top:0;left:0;background:rgba(204,204,204,0.70);display:none}
+.loader-image-container .loader-image{position:absolute;top:50%;left:50%}#add-races-to-db .wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.check-column){display:table-cell}
+.uci-results-metabox.related-races .row{overflow:hidden}.uci-results-metabox.related-races .row a{text-decoration:none}
+.uci-results-metabox.related-races .race-name{float:left;margin-right:15px;width:300px}
+.uci-results-metabox.related-races .race-date{float:left;margin-right:15px;width:125px}
+.uci-results-metabox.related-races .action-icons{float:left}.uci-results-admin-pagination>div{width:50%;float:left}
+.uci-results-admin-pagination a{text-decoration:none}.uci-results-admin-pagination .next-link{text-align:right}
+.uci-results #csv-data{margin:15px 0}.uci-results .button#add-results{display:none}
+#csv-data .form-table th{padding-top:0;padding-bottom:5px}#csv-data .form-table td{padding:0}
+#csv-data .race-info .race-date{display:inline-block;font-weight:normal;margin-left:15px}
+.uci-results-api .examples code{display:block;margin-bottom:15px}.uci-results-api .examples ul.params{margin-left:15px}
+.uci-results-admin.uci-rankings form label{font-weight:bold}.uci-results-admin.uci-rankings form td>div{margin-top:10px}
