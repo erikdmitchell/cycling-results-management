@@ -21,7 +21,7 @@ final class Cycling_Results_Management {
      * @var string
      * @access public
      */
-    public $version = '0.1.0';
+    public $version = '0.2.0';
 
     /**
      * admin
