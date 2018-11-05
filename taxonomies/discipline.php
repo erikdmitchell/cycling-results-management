@@ -2,7 +2,7 @@
 
 /**
  * Discipline taxonomy.
- * 
+ *
  * @access public
  * @return void
  */

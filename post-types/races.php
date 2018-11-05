@@ -2,7 +2,7 @@
 
 /**
  * Races post type.
- * 
+ *
  * @access public
  * @return void
  */
@@ -44,7 +44,7 @@ add_action( 'init', 'races_init' );
 
 /**
  * Race post type messages.
- * 
+ *
  * @access public
  * @param mixed $messages
  * @return void

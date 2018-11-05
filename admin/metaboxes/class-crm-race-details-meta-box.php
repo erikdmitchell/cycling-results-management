@@ -27,7 +27,7 @@ class CRM_Race_Details_Meta_Box {
 
         wp_enqueue_style( 'flatpickr-style', CRM_URL . 'admin/css/flatpickr.min.css', '', '2.4.8' );
 
-        wp_enqueue_script( 'uci-results-admin-races-mb-script', CRM_URL . 'js/races-metabox.js', array( 'jquery-ui-datepicker' ) );
+        wp_enqueue_script( 'crm-races-mb-script', CRM_ADMIN_URL . 'js/races-metabox.js', array( 'jquery-ui-datepicker' ) );
     }
 
     /**
@@ -137,13 +137,13 @@ class CRM_Race_Details_Meta_Box {
         
         <div class="uci-results-metabox">
             <div class="row">
-                <label for="start"><?php _e( 'Start Date', 'uci-results' ); ?></label>
-                <input type="text" id="start" name="race[start]" class="uci-results-datepicker date" value="<?php echo esc_attr( $meta['start'] ); ?>" size="25" />
+                <label for="start"><?php _e( 'Start Date', 'crm' ); ?></label>
+                <input type="text" id="start" name="race[start]" class="crm-results-datepicker date" value="<?php echo esc_attr( $meta['start'] ); ?>" size="25" />
             </div>
             
             <div class="row">
-                <label for="end-date"><?php _e( 'End Date', 'uci-results' ); ?></label>
-                <input type="text" id="end" name="race[end]" class="uci-results-datepicker date" value="<?php echo esc_attr( $meta['end'] ); ?>" size="25" />
+                <label for="end-date"><?php _e( 'End Date', 'crm' ); ?></label>
+                <input type="text" id="end" name="race[end]" class="crm-results-datepicker date" value="<?php echo esc_attr( $meta['end'] ); ?>" size="25" />
             </div>
         </div>
         

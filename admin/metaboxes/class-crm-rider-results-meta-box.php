@@ -31,7 +31,7 @@ class CRM_Rider_Results_Meta_Box {
 
     public function render_meta_box_content( $post ) {
         $results = crm_get_rider_results( array( 'rider_id' => $post->ID ) );
-        $output = apply_filters( 'rider_metabox_rider_output', array( 'race_name', 'place', 'uci_points', 'race_date', 'race_season' ), $post->ID );        
+        $output = apply_filters( 'rider_metabox_rider_output', array( 'race_name', 'place', 'uci_points', 'race_date', 'race_season' ), $post->ID );
         ?>
         
         <table class="uci-results-rider-results widefat fixed striped">

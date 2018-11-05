@@ -7,10 +7,10 @@ class CRM_Related_Races_Meta_Box {
             add_action( 'load-post.php', array( $this, 'init_metabox' ) );
             add_action( 'load-post-new.php', array( $this, 'init_metabox' ) );
         endif;
-        
+
         add_action( 'wp_ajax_add_related_races_to_race', array( $this, 'ajax_add_related_races_to_race' ) );
-        add_action( 'wp_ajax_remove_related_race', array( $this, 'ajax_remove_related_race' ) );        
-        add_action( 'wp_ajax_search_related_races', array( $this, 'ajax_search_related_races' ) );        
+        add_action( 'wp_ajax_remove_related_race', array( $this, 'ajax_remove_related_race' ) );
+        add_action( 'wp_ajax_search_related_races', array( $this, 'ajax_search_related_races' ) );
         add_action( 'wp_ajax_show_related_races_box', array( $this, 'ajax_show_related_races_box' ) );
     }
 
@@ -79,19 +79,19 @@ class CRM_Related_Races_Meta_Box {
         
         <?php
     }
-    
+
     /**
      * AJAX shore related races box.
      *
      * @access public
      * @return void
      */
-    public function ajax_show_related_races_box() {        
+    public function ajax_show_related_races_box() {
         echo cycling_results_management()->admin->get_admin_page( 'add-related-races' );
 
         wp_die();
-    } 
-    
+    }
+
     /**
      * AJAX search related races.
      *
@@ -102,8 +102,8 @@ class CRM_Related_Races_Meta_Box {
         global $wpdb;
 
         $html = null;
-        $query = $_POST['query'];       
-        $races = $wpdb->get_results("SELECT * FROM $wpdb->posts WHERE post_title LIKE '%$query%' AND post_type = 'races'");
+        $query = $_POST['query'];
+        $races = $wpdb->get_results( "SELECT * FROM $wpdb->posts WHERE post_title LIKE '%$query%' AND post_type = 'races'" );
         $related_races_ids = crm_get_related_races_ids( $_POST['id'] );
 
         // build out html //
@@ -129,8 +129,8 @@ class CRM_Related_Races_Meta_Box {
         echo $html;
 
         wp_die();
-    } 
-    
+    }
+
     /**
      * AJAX add related races to race.
      *
@@ -179,7 +179,7 @@ class CRM_Related_Races_Meta_Box {
 
         wp_die();
     }
-    
+
     /**
      * AJAX remove related race.
      *
@@ -188,18 +188,18 @@ class CRM_Related_Races_Meta_Box {
      */
     public function ajax_remove_related_race() {
         global $wpdb;
-        
+
         $where = array(
             'race_id' => $_POST['id'],
             'related_race_id' => $_POST['rrid'],
         );
 
-        $wpdb->delete( "{$wpdb->prefix}crm_related_races", $where); 
+        $wpdb->delete( "{$wpdb->prefix}crm_related_races", $where );
 
         echo true;
 
         wp_die();
-    }              
+    }
 
 }
 

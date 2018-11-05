@@ -2,7 +2,7 @@
 
 /**
  * Season taxonomy.
- * 
+ *
  * @access public
  * @return void
  */

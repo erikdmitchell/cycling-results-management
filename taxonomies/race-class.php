@@ -2,7 +2,7 @@
 
 /**
  * Race class taxonomy.
- * 
+ *
  * @access public
  * @return void
  */

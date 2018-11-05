@@ -61,7 +61,8 @@ class UCI_Rankings {
         if ( ! empty( $date ) ) :
             $where[] = "date = '$date'";
         else :
-            $where[] = "date = '" . $wpdb->get_var( 'SELECT date FROM ' . $this->table_name . " WHERE discipline = $discipline ORDER BY date DESC LIMIT 1" ) . "'";
+            $date = $wpdb->get_var( 'SELECT date FROM ' . $this->table_name . " WHERE discipline = $discipline ORDER BY date DESC LIMIT 1" );
+            $where[] = "date = '" . $date . "'";
         endif;
 
         // clean where var //
@@ -91,8 +92,15 @@ class UCI_Rankings {
         if ( is_wp_error( $db_results ) ) {
             return false;
         }
+        
+        $discipline_term = get_term($discipline, 'discipline');
+        $rankings = array(
+            'riders' => $db_results,
+            'discipline' => $discipline_term->slug,
+            'date' => $date,
+        );
 
-        return $db_results;
+        return $rankings;
     }
 
     /**
@@ -123,6 +131,16 @@ class UCI_Rankings {
         $dates = $wpdb->get_results( "SELECT DISTINCT $select FROM " . $this->table_name . " $join $where" );
 
         return $dates;
+    }
+
+    /**
+     * Get disciplines.
+     *
+     * @access public
+     * @return void
+     */
+    public function get_disciplines() {
+        return get_terms( 'discipline', array() );
     }
 
 }

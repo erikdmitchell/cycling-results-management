@@ -60,7 +60,9 @@ class CRM_Race_Results_Meta_Box {
                 <?php foreach ( $riders as $rider ) : ?>
                     <tr>
                         <?php foreach ( $rider_output as $slug ) : ?>
-                            <?php if ( isset( $rider[ $slug ] ) ) : ?>
+                            <?php if ( 'nat' == $slug ) : ?>
+                                <td class="<?php echo $slug; ?>"><?php echo get_the_term_list( $rider['ID'], 'crm_country', '', ',', '' ); ?></td>                        
+                            <?php elseif ( isset( $rider[ $slug ] ) ) : ?>
                                 <td class="<?php echo $slug; ?>"><?php echo $rider[ $slug ]; ?></td>
                             <?php else : ?>
                                 <td class="<?php echo $slug; ?>">&nbsp;</td>

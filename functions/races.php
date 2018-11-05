@@ -75,7 +75,7 @@ function crm_race_details( $race = '' ) {
 
 /**
  * Get race country.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return string
@@ -113,7 +113,7 @@ function crm_race_class( $race_id = 0 ) {
 
 /**
  * Get race season.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return string
@@ -132,7 +132,7 @@ function crm_race_season( $race_id = 0 ) {
 
 /**
  * Get race discipline.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return string
@@ -151,7 +151,7 @@ function crm_race_discipline( $race_id = 0 ) {
 
 /**
  * Get race series.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return string
@@ -170,9 +170,9 @@ function crm_race_series( $race_id = 0 ) {
 
 /**
  * Get race results.
- * 
+ *
  * @access public
- * @param int $race_id (default: 0).
+ * @param int    $race_id (default: 0).
  * @param string $format (default: 'array').
  * @return object
  */
@@ -217,7 +217,7 @@ function crm_results_get_race_results( $race_id = 0, $format = 'array' ) {
 
 /**
  * Get race columns.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return array
@@ -240,7 +240,7 @@ function crm_race_results_columns( $race_id = 0 ) {
 
 /**
  * Race results rider ids.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return object
@@ -255,7 +255,7 @@ function crm_race_results_rider_ids( $race_id = 0 ) {
 
 /**
  * Get related races.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return object
@@ -295,7 +295,7 @@ function crm_get_related_races( $race_id = 0 ) {
 
 /**
  * Get related races ids.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return array
@@ -320,7 +320,7 @@ function crm_get_related_races_ids( $race_id = 0 ) {
 
 /**
  * Get related race id.
- * 
+ *
  * @access public
  * @param int $race_id (default: 0).
  * @return string

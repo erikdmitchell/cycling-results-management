@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$('.uci-results-datepicker').flatpickr({
+	$('.crm-results-datepicker').flatpickr({
 		enableTime : true
 	});
 	

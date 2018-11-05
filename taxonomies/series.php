@@ -2,7 +2,7 @@
 
 /**
  * Series taxonomy.
- * 
+ *
  * @access public
  * @return void
  */

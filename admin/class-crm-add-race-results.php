@@ -22,7 +22,7 @@ class CRM_Add_Race_Results {
      * @return void
      */
     public function admin_scripts_styles() {
-        wp_enqueue_script( 'uci-results-add-races-admin-script', CRM_ADMIN_URL . 'js/add-races.js', array( 'uci-results-admin' ), '0.1.0', true );
+        wp_enqueue_script( 'crm-add-races-admin-script', CRM_ADMIN_URL . 'js/add-races.js', array( 'crm-admin' ), '0.1.0', true );
     }
 
     public function build_race_code( $args = '' ) {
@@ -214,9 +214,16 @@ class CRM_Add_Race_Results {
         // get rider nat.
         if ( isset( $result->nat ) ) :
             $rider_nat = $result->nat;
+        elseif ( isset( $result->country ) ) :
+            $rider_nat = $result->country;
         else :
             $rider_nat = '';
         endif;
+
+        // clean rider name.
+        if ( ! isset( $result->name ) ) {
+            $result->name = $result->firstname . ' ' . $result->lastname;
+        }
 
         // get rider id.
         $rider_id = $this->get_rider_id( $result->name, $rider_nat, $args['insert'] );
@@ -271,7 +278,7 @@ class CRM_Add_Race_Results {
                 );
                 $rider_id = wp_insert_post( $rider_insert );
 
-                wp_set_object_terms( $rider_id, $rider_country, 'country', false );
+                wp_set_object_terms( $rider_id, $rider_country, 'crm_country', false );
             else :
                 $rider_id = 0;
             endif;

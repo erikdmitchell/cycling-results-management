@@ -18,8 +18,9 @@ $rankings = cycling_results_management()->uci_rankings->get_rankings(
     )
 );
 ?>
+
 <div class="container uci-results uci-rankings">
-    <h1>UCI Rankings <span class="date"><?php echo get_query_var( 'rankings_date' ); ?></span></h1>
+    <h1>UCI Rankings: <span class="discipline"><?php echo ucwords( get_query_var( 'rankings_discipline' ) ); ?></span> - <span class="date"><?php echo date( get_option( 'date_format' ), strtotime( get_query_var( 'rankings_date' ) ) ); ?></span></h1>
     
     <div class="row header">
         <div class="col-sm-2">Rank</div>
@@ -27,7 +28,7 @@ $rankings = cycling_results_management()->uci_rankings->get_rankings(
         <div class="col-sm-3">Points</div>       
     </div>
         
-    <?php foreach ( $rankings as $rank ) : ?>
+    <?php foreach ( $rankings['riders'] as $rank ) : ?>
         <div class="row">
             <div class="col-sm-2"><?php echo $rank->rank; ?></div>
             <div class="col-sm-7"><a href="<?php echo crm_rider_url( $rank->rider_id ); ?>"><?php echo $rank->name; ?></a></div>

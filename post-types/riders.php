@@ -2,7 +2,7 @@
 
 /**
  * Riders post type.
- * 
+ *
  * @access public
  * @return void
  */
@@ -44,7 +44,7 @@ add_action( 'init', 'riders_init' );
 
 /**
  * Riders post type messages.
- * 
+ *
  * @access public
  * @param mixed $messages
  * @return void
